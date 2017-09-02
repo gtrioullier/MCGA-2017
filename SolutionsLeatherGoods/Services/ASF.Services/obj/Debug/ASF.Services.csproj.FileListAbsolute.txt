@@ -1,0 +1,5 @@
+C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.Services.dll
+C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.Services.pdb
+C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services\obj\Debug\ASF.Services.dll
+C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services\obj\Debug\ASF.Services.pdb
+C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services\obj\Debug\ASF.Services.csprojResolveAssemblyReference.cache
