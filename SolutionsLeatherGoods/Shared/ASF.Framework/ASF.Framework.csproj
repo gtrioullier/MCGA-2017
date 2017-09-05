@@ -58,7 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utilities\BotUtils.cs" />
+    <Compile Include="Utilities\CensorUtils.cs" />
+    <Compile Include="Utilities\ConfigUtils.cs" />
+    <Compile Include="Utilities\CsvReader.cs" />
+    <Compile Include="Utilities\DateUtils.cs" />
+    <Compile Include="Utilities\EnumUtils.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Utilities\GuidComb.cs" />
+    <Compile Include="Utilities\LanguageUtils.cs" />
+    <Compile Include="Utilities\Markdown.cs" />
+    <Compile Include="Utilities\NodePositions.cs" />
+    <Compile Include="Utilities\PorterStemmingAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ReflectionUtilities.cs" />
+    <Compile Include="Utilities\RssReader.cs" />
+    <Compile Include="Utilities\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
