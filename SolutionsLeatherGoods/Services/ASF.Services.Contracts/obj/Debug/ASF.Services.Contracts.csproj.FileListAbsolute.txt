@@ -3,3 +3,8 @@ C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.S
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.csprojResolveAssemblyReference.cache
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.dll
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Contracts.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Contracts.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.csprojResolveAssemblyReference.cache
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Contracts\obj\Debug\ASF.Services.Contracts.pdb
