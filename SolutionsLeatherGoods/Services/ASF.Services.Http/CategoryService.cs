@@ -46,11 +46,11 @@ namespace ASF.Services.Http
 
         [HttpGet]
         [Route("All")]
-        public AllResponse All()
+        public AllCategoryResponse All()
         {
             try
             {
-                var response = new AllResponse();
+                var response = new AllCategoryResponse();
                 var bc = new CategoryBusiness();
                 response.Result = bc.All();
                 return response;
@@ -89,12 +89,12 @@ namespace ASF.Services.Http
         }
 
         [HttpGet]
-        [Route("Find/{id}")]
-        public FindResponse Find(int id)
+        [Route("Find")]
+        public FindCategoryResponse Find(int id)
         {
             try
             {
-                var response = new FindResponse();
+                var response = new FindCategoryResponse();
                 var bc = new CategoryBusiness();
                 response.Result = bc.Find(id);
                 return response;
@@ -112,7 +112,7 @@ namespace ASF.Services.Http
         }
 
         [HttpGet]
-        [Route("Remove/{id}")]
+        [Route("Remove")]
         public void Remove(int id)
         {
             try

@@ -23,13 +23,16 @@ namespace ASF.UI.Process
         /// <returns></returns>
         public List<Category> SelectList()
         {
-            var response = HttpGet<AllResponse>("rest/Category/All", new Dictionary<string, object>(), MediaType.Json);
+            var response = HttpGet<AllCategoryResponse>("rest/Category/All", new Dictionary<string, object>(), MediaType.Json);
             return response.Result;
         }
 
         public Category Find(int id)
         {
-            var response = HttpGet<FindResponse>("rest/Category/Find/"+id, new Dictionary<string, object>(), MediaType.Json);
+            //var response = HttpGet<FindResponse>("rest/Category/Find/"+id, new Dictionary<string, object>(), MediaType.Json);
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("id", id);
+            var response = HttpGet<FindCategoryResponse>("rest/Category/Find", parameters, MediaType.Json);
             return response.Result;
         }
 
@@ -40,12 +43,15 @@ namespace ASF.UI.Process
 
         public void Delete(int id)//Service es remove{id}
         {
-            var response = HttpGet<FindResponse>("rest/Category/Remove/"+id, new Dictionary<string, object>(), MediaType.Json);
+            //var response = HttpGet<FindResponse>("rest/Category/Remove/" + id, new Dictionary<string, object>(), MediaType.Json);
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("id", id);
+            var response = HttpGet<FindCategoryResponse>("rest/Category/Remove", parameters, MediaType.Json);
         }
 
         public void Edit(Category C)//Service es edit{category}
         {
-            var request = HttpPost<Category>("rest/Category/Edit/", C, MediaType.Json);//cambié HttpPut por HttpPost
+            var request = HttpPost<Category>("rest/Category/Edit", C, MediaType.Json);//cambié HttpPut por HttpPost
         }
     }
 }
