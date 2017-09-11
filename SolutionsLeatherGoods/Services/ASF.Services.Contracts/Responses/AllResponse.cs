@@ -30,5 +30,69 @@ namespace ASF.Services.Contracts
        
         public List<Country> Result { get; set; }
     }
+
+    [DataContract]
+    public class AllDealerResponse
+    {
+        [DataMember]
+
+        public List<Dealer> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllClientResponse
+    {
+        [DataMember]
+
+        public List<Client> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllProductResponse
+    {
+        [DataMember]
+
+        public List<Product> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllRatingResponse
+    {
+        [DataMember]
+
+        public List<Rating> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllOrderDetailResponse
+    {
+        [DataMember]
+
+        public List<OrderDetail> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllOrderResponse
+    {
+        [DataMember]
+
+        public List<Order> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllCartResponse
+    {
+        [DataMember]
+
+        public List<Cart> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllCartItemResponse
+    {
+        [DataMember]
+
+        public List<CartItem> Result { get; set; }
+    }
 }
 

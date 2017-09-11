@@ -33,5 +33,21 @@ namespace ASF.UI.WbSite.Models
         public System.Data.Entity.DbSet<ASF.Entities.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<ASF.Entities.Country> Countries { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Dealer> Dealers { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Client> Clients { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Rating> Ratings { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.OrderDetail> OrderDetails { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Order> Orders { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Cart> Carts { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.CartItem> CartItems { get; set; }
     }
 }

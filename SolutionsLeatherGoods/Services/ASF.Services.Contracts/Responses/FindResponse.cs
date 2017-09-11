@@ -28,5 +28,61 @@ namespace ASF.Services.Contracts
         [DataMember]
         public Country Result { get; set; }
     }
+
+    [DataContract]
+    public class FindDealerResponse
+    {
+        [DataMember]
+        public Dealer Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindClientResponse
+    {
+        [DataMember]
+        public Client Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindProductResponse
+    {
+        [DataMember]
+        public Product Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindRatingResponse
+    {
+        [DataMember]
+        public Rating Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindOrderDetailResponse
+    {
+        [DataMember]
+        public OrderDetail Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindOrderResponse
+    {
+        [DataMember]
+        public Order Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindCartResponse
+    {
+        [DataMember]
+        public Cart Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindCartItemResponse
+    {
+        [DataMember]
+        public CartItem Result { get; set; }
+    }
 }
 
