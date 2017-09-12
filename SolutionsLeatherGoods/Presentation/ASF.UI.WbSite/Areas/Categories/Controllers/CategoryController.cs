@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASF.UI.WbSite.Services.Cache;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,8 +13,9 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
         // GET: Categories/Category
         public ActionResult Index()
         {
-            var cp = new ASF.UI.Process.CategoryProcess();
-            var lista = cp.SelectList();
+            //var cp = new ASF.UI.Process.CategoryProcess();
+            //var lista = cp.SelectList();
+            var lista = DataCacheService.Instance.CategoryList();
             return View(lista);
         }
 

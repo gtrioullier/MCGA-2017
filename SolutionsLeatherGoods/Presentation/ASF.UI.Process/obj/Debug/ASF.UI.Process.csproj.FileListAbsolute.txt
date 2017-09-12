@@ -8,3 +8,8 @@ C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.UI.Process.pd
 C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.csprojResolveAssemblyReference.cache
 C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.dll
 C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.pdb
+D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.UI.Process.dll
+D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.UI.Process.pdb
+D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.csprojResolveAssemblyReference.cache
+D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.dll
+D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Debug\ASF.UI.Process.pdb

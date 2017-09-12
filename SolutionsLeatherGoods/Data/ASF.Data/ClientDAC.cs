@@ -92,10 +92,10 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@SignupDate", DbType.DateTime, client.SignupDate);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, client.Rowid);
                 db.AddInParameter(cmd, "@OrderCount", DbType.Int32, client.OrderCount);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, client.FirstName);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.String, client.FirstName);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, client.FirstName);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.String, client.FirstName);
+                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, client.CreatedOn);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, client.CreatedBy);
+                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, client.ChangedOn);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, client.ChangedBy);
                 //Obtenemos el valor de la primary key.
                 client.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
