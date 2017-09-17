@@ -19,7 +19,7 @@ namespace ASF.Data
                 Id = GetDataValue<int>(dr, "Id"),
                 CartId = GetDataValue<int>(dr, "CartId"),
                 ProductId = GetDataValue<int>(dr, "ProductId"),
-                Price = GetDataValue<Single>(dr, "Price"),
+                Price = GetDataValue<Double>(dr, "Price"),
                 Quantity = GetDataValue<int>(dr, "Quantity"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
                 CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
@@ -83,7 +83,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@CartId", DbType.Int32, cartitem.CartId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, cartitem.ProductId);
-                db.AddInParameter(cmd, "@Price", DbType.Single, cartitem.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, cartitem.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, cartitem.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cartitem.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cartitem.CreatedBy);
@@ -125,7 +125,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@CartId", DbType.Int32, cartitem.CartId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, cartitem.ProductId);
-                db.AddInParameter(cmd, "@Price", DbType.Single, cartitem.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, cartitem.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, cartitem.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cartitem.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cartitem.CreatedBy);

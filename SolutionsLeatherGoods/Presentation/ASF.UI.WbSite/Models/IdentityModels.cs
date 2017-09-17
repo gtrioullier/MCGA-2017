@@ -49,5 +49,9 @@ namespace ASF.UI.WbSite.Models
         public System.Data.Entity.DbSet<ASF.Entities.Cart> Carts { get; set; }
 
         public System.Data.Entity.DbSet<ASF.Entities.CartItem> CartItems { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.OrderNumber> OrderNumbers { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Error> Errors { get; set; }
     }
 }

@@ -84,5 +84,19 @@ namespace ASF.Services.Contracts
         [DataMember]
         public CartItem Result { get; set; }
     }
+
+    [DataContract]
+    public class FindOrderNumberResponse
+    {
+        [DataMember]
+        public OrderNumber Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindErrorResponse
+    {
+        [DataMember]
+        public Error Result { get; set; }
+    }
 }
 

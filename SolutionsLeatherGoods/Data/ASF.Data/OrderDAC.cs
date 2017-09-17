@@ -19,7 +19,7 @@ namespace ASF.Data
                 Id = GetDataValue<int>(dr, "Id"),
                 ClientId = GetDataValue<int>(dr, "ClientId"),
                 OrderDate = GetDataValue<DateTime>(dr, "OrderDate"),
-                TotalPrice = GetDataValue<Single>(dr, "TotalPrice"),
+                TotalPrice = GetDataValue<Double>(dr, "TotalPrice"),
                 State = GetDataValue<int>(dr, "State"),
                 OrderNumber = GetDataValue<int>(dr, "OrderNumber"),
                 ItemCount = GetDataValue<int>(dr, "ItemCount"),
@@ -45,8 +45,8 @@ namespace ASF.Data
                 {
                     while (dr.Read())
                     {
-                        var orderdetail = LoadOrder(dr); // Mapper
-                        result.Add(orderdetail);
+                        var order = LoadOrder(dr); // Mapper
+                        result.Add(order);
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@ClientId", DbType.Int32, order.ClientId);
                 db.AddInParameter(cmd, "@OrderDate", DbType.DateTime, order.OrderDate);
-                db.AddInParameter(cmd, "@TotalPrice", DbType.Single, order.TotalPrice);
+                db.AddInParameter(cmd, "@TotalPrice", DbType.Double, order.TotalPrice);
                 db.AddInParameter(cmd, "@State", DbType.Int32, order.State);
                 db.AddInParameter(cmd, "@OrderNumber", DbType.Int32, order.OrderNumber);
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);
@@ -135,7 +135,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@ClientId", DbType.Int32, order.ClientId);
                 db.AddInParameter(cmd, "@OrderDate", DbType.Int32, order.OrderDate);
-                db.AddInParameter(cmd, "@TotalPrice", DbType.Single, order.TotalPrice);
+                db.AddInParameter(cmd, "@TotalPrice", DbType.Double, order.TotalPrice);
                 db.AddInParameter(cmd, "@State", DbType.Int32, order.State);
                 db.AddInParameter(cmd, "@OrderNumber", DbType.Int32, order.OrderNumber);
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);

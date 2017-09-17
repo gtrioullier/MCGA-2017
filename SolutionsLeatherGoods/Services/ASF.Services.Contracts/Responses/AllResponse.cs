@@ -94,5 +94,21 @@ namespace ASF.Services.Contracts
 
         public List<CartItem> Result { get; set; }
     }
+
+    [DataContract]
+    public class AllOrderNumberResponse
+    {
+        [DataMember]
+
+        public List<OrderNumber> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllErrorResponse
+    {
+        [DataMember]
+
+        public List<Error> Result { get; set; }
+    }
 }
 

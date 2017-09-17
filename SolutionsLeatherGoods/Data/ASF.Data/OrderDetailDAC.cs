@@ -19,7 +19,7 @@ namespace ASF.Data
                 Id = GetDataValue<int>(dr, "Id"),
                 OrderId = GetDataValue<int>(dr, "OrderId"),
                 ProductId = GetDataValue<int>(dr, "ProductId"),
-                Price = GetDataValue<Single>(dr, "Price"),
+                Price = GetDataValue<Double>(dr, "Price"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
                 CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
@@ -83,7 +83,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@OrderId", DbType.Int32, orderdetail.OrderId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, orderdetail.ProductId);
-                db.AddInParameter(cmd, "@Price", DbType.Single, orderdetail.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);
@@ -123,7 +123,7 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@OrderId", DbType.Int32, orderdetail.OrderId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, orderdetail.ProductId);
-                db.AddInParameter(cmd, "@Price", DbType.Single, orderdetail.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);

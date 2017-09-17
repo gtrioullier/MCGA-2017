@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASF.UI.WbSite.Services.Cache;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,9 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         // GET: Countries/Country
         public ActionResult Index()
         {
-            var cp = new ASF.UI.Process.CountryProcess();
-            var lista = cp.SelectList();
+            //var cp = new ASF.UI.Process.CountryProcess();
+            //var lista = cp.SelectList();
+            var lista = DataCacheService.Instance.CountryList();
             return View(lista);
         }
 

@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRoles.cs" />
+    <Compile Include="AspNetUserClaims.cs" />
+    <Compile Include="AspNetUserLogins.cs" />
+    <Compile Include="AspNetUserRoles.cs" />
+    <Compile Include="AspNetUsers.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs" />
@@ -47,6 +52,10 @@
     <Compile Include="Country.cs" />
     <Compile Include="Dealer.cs" />
     <Compile Include="EntityBase.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="LocaleResourceKey.cs" />
+    <Compile Include="LocaleStringResource.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
     <Compile Include="OrderNumber.cs" />

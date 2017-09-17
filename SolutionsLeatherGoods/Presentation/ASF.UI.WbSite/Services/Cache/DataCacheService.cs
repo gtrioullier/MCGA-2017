@@ -49,5 +49,16 @@ namespace ASF.UI.WbSite.Services.Cache
                 CacheSetting.Category.SlidingExpiration);
             return lista;
         }
+        
+        public List<Country> CountryList()
+        {
+            var lista = _cacheService.GetOrAdd(CacheSetting.Category.Key, () =>
+            {
+                var cp = new CountryProcess();
+                return cp.SelectList();
+            },
+                CacheSetting.Country.SlidingExpiration);
+            return lista;
+        }
     }
 }

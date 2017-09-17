@@ -54,8 +54,10 @@
     <Compile Include="CountryDAC.cs" />
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="DealerDAC.cs" />
+    <Compile Include="ErrorDAC.cs" />
     <Compile Include="OrderDAC.cs" />
     <Compile Include="OrderDetailDAC.cs" />
+    <Compile Include="OrderNumberDAC.cs" />
     <Compile Include="ProductDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingDAC.cs" />

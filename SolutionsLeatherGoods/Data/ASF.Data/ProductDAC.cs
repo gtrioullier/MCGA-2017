@@ -90,9 +90,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Description", DbType.String, product.Description);
                 db.AddInParameter(cmd, "@DealerId", DbType.Int32, product.DealerId);
                 db.AddInParameter(cmd, "@Image", DbType.String, product.Image);
-                db.AddInParameter(cmd, "@Price", DbType.Single, product.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, product.Price);
                 db.AddInParameter(cmd, "@QuantitySold", DbType.Int32, product.QuantitySold);
-                db.AddInParameter(cmd, "@AvgStars", DbType.Single, product.AvgStars);
+                db.AddInParameter(cmd, "@AvgStars", DbType.Double, product.AvgStars);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, product.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, product.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, product.CreatedBy);
@@ -140,9 +140,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Description", DbType.String, product.Description);
                 db.AddInParameter(cmd, "@DealerId", DbType.Int32, product.DealerId);
                 db.AddInParameter(cmd, "@Image", DbType.String, product.Image);
-                db.AddInParameter(cmd, "@Price", DbType.Single, product.Price);
+                db.AddInParameter(cmd, "@Price", DbType.Double, product.Price);
                 db.AddInParameter(cmd, "@QuantitySold", DbType.Int32, product.QuantitySold);
-                db.AddInParameter(cmd, "@AvgStars", DbType.Single, product.AvgStars);
+                db.AddInParameter(cmd, "@AvgStars", DbType.Double, product.AvgStars);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, product.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, product.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, product.CreatedBy);

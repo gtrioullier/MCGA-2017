@@ -46,8 +46,10 @@
     <Compile Include="ClientBusiness.cs" />
     <Compile Include="CountryBusiness.cs" />
     <Compile Include="DealerBusiness.cs" />
+    <Compile Include="ErrorBusiness.cs" />
     <Compile Include="OrderBusiness.cs" />
     <Compile Include="OrderDetailBusiness.cs" />
+    <Compile Include="OrderNumberBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingBusiness.cs" />

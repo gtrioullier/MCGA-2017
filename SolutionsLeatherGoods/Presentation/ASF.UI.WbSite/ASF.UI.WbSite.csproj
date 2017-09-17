@@ -249,8 +249,12 @@
     <Compile Include="Areas\Countries\CountriesAreaRegistration.cs" />
     <Compile Include="Areas\Dealers\Controllers\DealerController.cs" />
     <Compile Include="Areas\Dealers\DealersAreaRegistration.cs" />
+    <Compile Include="Areas\Errors\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Errors\ErrorsAreaRegistration.cs" />
     <Compile Include="Areas\OrdersDetails\Controllers\OrderDetailController.cs" />
     <Compile Include="Areas\OrdersDetails\OrdersDetailsAreaRegistration.cs" />
+    <Compile Include="Areas\OrdersNumbers\Controllers\OrderNumberController.cs" />
+    <Compile Include="Areas\OrdersNumbers\OrdersNumbersAreaRegistration.cs" />
     <Compile Include="Areas\Orders\Controllers\OrderController.cs" />
     <Compile Include="Areas\Orders\OrdersAreaRegistration.cs" />
     <Compile Include="Areas\Products\Controllers\ProductController.cs" />
@@ -490,6 +494,18 @@
     <Content Include="Areas\CartsItems\Views\CartItem\Create.cshtml" />
     <Content Include="Areas\CartsItems\Views\CartItem\Delete.cshtml" />
     <Content Include="Areas\CartsItems\Views\CartItem\Edit.cshtml" />
+    <Content Include="Areas\OrdersNumbers\Views\web.config" />
+    <Content Include="Areas\OrdersNumbers\Views\OrderNumber\Index.cshtml" />
+    <Content Include="Areas\OrdersNumbers\Views\OrderNumber\Details.cshtml" />
+    <Content Include="Areas\OrdersNumbers\Views\OrderNumber\Create.cshtml" />
+    <Content Include="Areas\OrdersNumbers\Views\OrderNumber\Delete.cshtml" />
+    <Content Include="Areas\OrdersNumbers\Views\OrderNumber\Edit.cshtml" />
+    <Content Include="Areas\Errors\Views\web.config" />
+    <Content Include="Areas\Errors\Views\Error\Index.cshtml" />
+    <Content Include="Areas\Errors\Views\Error\Details.cshtml" />
+    <Content Include="Areas\Errors\Views\Error\Create.cshtml" />
+    <Content Include="Areas\Errors\Views\Error\Delete.cshtml" />
+    <Content Include="Areas\Errors\Views\Error\Edit.cshtml" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -645,8 +661,12 @@
     <Folder Include="Areas\Clients\Models\" />
     <Folder Include="Areas\Countries\Models\" />
     <Folder Include="Areas\Dealers\Models\" />
+    <Folder Include="Areas\Errors\Models\" />
+    <Folder Include="Areas\Errors\Views\Shared\" />
     <Folder Include="Areas\OrdersDetails\Models\" />
     <Folder Include="Areas\OrdersDetails\Views\Shared\" />
+    <Folder Include="Areas\OrdersNumbers\Models\" />
+    <Folder Include="Areas\OrdersNumbers\Views\Shared\" />
     <Folder Include="Areas\Orders\Models\" />
     <Folder Include="Areas\Orders\Views\Shared\" />
     <Folder Include="Areas\Products\Models\" />
