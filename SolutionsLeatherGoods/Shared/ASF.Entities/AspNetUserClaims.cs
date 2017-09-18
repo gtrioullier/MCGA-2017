@@ -22,11 +22,11 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Claim Type")]
-        public string? ClaimType { get; set; }
+        public string ClaimType { get; set; }
 
         [DataMember]
         [DisplayName("Claim Value")]
-        public string? ClaimValue { get; set; }
+        public string ClaimValue { get; set; }
 
     }
 }

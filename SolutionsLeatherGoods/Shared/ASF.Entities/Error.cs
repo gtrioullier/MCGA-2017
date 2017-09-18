@@ -26,31 +26,31 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Ip Address")]
-        public string? IpAddress { get; set; }
+        public string IpAddress { get; set; }
 
         [DataMember]
         [DisplayName("Client Agent")]
-        public string? ClientAgent { get; set; }
+        public string ClientAgent { get; set; }
 
         [DataMember]
         [DisplayName("Exception")]
-        public string? Exception { get; set; }
+        public string Exception { get; set; }
 
         [DataMember]
         [DisplayName("Message")]
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
         [DataMember]
         [DisplayName("Everything")]
-        public string? Everything { get; set; }
+        public string Everything { get; set; }
 
         [DataMember]
         [DisplayName("HttpReferer")]
-        public string? HttpReferer { get; set; }
+        public string HttpReferer { get; set; }
 
         [DataMember]
         [DisplayName("Path And Query")]
-        public string? PathAndQuery { get; set; }
+        public string PathAndQuery { get; set; }
 
         [DataMember]
         [DisplayName("Created On")]

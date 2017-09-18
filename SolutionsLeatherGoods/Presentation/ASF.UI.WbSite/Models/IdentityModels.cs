@@ -53,5 +53,13 @@ namespace ASF.UI.WbSite.Models
         public System.Data.Entity.DbSet<ASF.Entities.OrderNumber> OrderNumbers { get; set; }
 
         public System.Data.Entity.DbSet<ASF.Entities.Error> Errors { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Setting> Settings { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.Language> Languages { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.LocaleResourceKey> LocaleResourceKeys { get; set; }
+
+        public System.Data.Entity.DbSet<ASF.Entities.LocaleStringResource> LocaleStringResources { get; set; }
     }
 }

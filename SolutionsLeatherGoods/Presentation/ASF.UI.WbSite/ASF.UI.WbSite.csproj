@@ -251,6 +251,12 @@
     <Compile Include="Areas\Dealers\DealersAreaRegistration.cs" />
     <Compile Include="Areas\Errors\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Errors\ErrorsAreaRegistration.cs" />
+    <Compile Include="Areas\Languages\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Languages\LanguagesAreaRegistration.cs" />
+    <Compile Include="Areas\LocalesResourcesKeys\Controllers\LocaleResourceKeyController.cs" />
+    <Compile Include="Areas\LocalesResourcesKeys\LocalesResourcesKeysAreaRegistration.cs" />
+    <Compile Include="Areas\LocalesStringsResources\LocalesStringsResourcesAreaRegistration.cs" />
+    <Compile Include="Areas\LocalesStringsResources\LocaleStringResourceController.cs" />
     <Compile Include="Areas\OrdersDetails\Controllers\OrderDetailController.cs" />
     <Compile Include="Areas\OrdersDetails\OrdersDetailsAreaRegistration.cs" />
     <Compile Include="Areas\OrdersNumbers\Controllers\OrderNumberController.cs" />
@@ -261,6 +267,8 @@
     <Compile Include="Areas\Products\ProductsAreaRegistration.cs" />
     <Compile Include="Areas\Ratings\Controllers\RatingController.cs" />
     <Compile Include="Areas\Ratings\RatingsAreaRegistration.cs" />
+    <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Constants\ExtensionMethods\HtmlLabelExtensions.cs" />
     <Compile Include="Constants\ExtensionMethods\TypeFactory.cs" />
     <Compile Include="Constants\ExtensionMethods\WebGridExtensions.cs" />
@@ -506,6 +514,30 @@
     <Content Include="Areas\Errors\Views\Error\Create.cshtml" />
     <Content Include="Areas\Errors\Views\Error\Delete.cshtml" />
     <Content Include="Areas\Errors\Views\Error\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\web.config" />
+    <Content Include="Areas\Settings\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Setting\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\Setting\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\Setting\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\Setting\Edit.cshtml" />
+    <Content Include="Areas\Languages\Views\web.config" />
+    <Content Include="Areas\Languages\Views\Language\Index.cshtml" />
+    <Content Include="Areas\Languages\Views\Language\Details.cshtml" />
+    <Content Include="Areas\Languages\Views\Language\Create.cshtml" />
+    <Content Include="Areas\Languages\Views\Language\Delete.cshtml" />
+    <Content Include="Areas\Languages\Views\Language\Edit.cshtml" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\web.config" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\LocaleResourceKey\Index.cshtml" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\LocaleResourceKey\Details.cshtml" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\LocaleResourceKey\Create.cshtml" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\LocaleResourceKey\Delete.cshtml" />
+    <Content Include="Areas\LocalesResourcesKeys\Views\LocaleResourceKey\Edit.cshtml" />
+    <Content Include="Areas\LocalesStringsResources\Views\web.config" />
+    <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Index.cshtml" />
+    <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Details.cshtml" />
+    <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Create.cshtml" />
+    <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Delete.cshtml" />
+    <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Edit.cshtml" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -663,6 +695,13 @@
     <Folder Include="Areas\Dealers\Models\" />
     <Folder Include="Areas\Errors\Models\" />
     <Folder Include="Areas\Errors\Views\Shared\" />
+    <Folder Include="Areas\Languages\Models\" />
+    <Folder Include="Areas\Languages\Views\Shared\" />
+    <Folder Include="Areas\LocalesResourcesKeys\Models\" />
+    <Folder Include="Areas\LocalesResourcesKeys\Views\Shared\" />
+    <Folder Include="Areas\LocalesStringsResources\Controllers\" />
+    <Folder Include="Areas\LocalesStringsResources\Models\" />
+    <Folder Include="Areas\LocalesStringsResources\Views\Shared\" />
     <Folder Include="Areas\OrdersDetails\Models\" />
     <Folder Include="Areas\OrdersDetails\Views\Shared\" />
     <Folder Include="Areas\OrdersNumbers\Models\" />
@@ -673,6 +712,8 @@
     <Folder Include="Areas\Products\Views\Shared\" />
     <Folder Include="Areas\Ratings\Models\" />
     <Folder Include="Areas\Ratings\Views\Shared\" />
+    <Folder Include="Areas\Settings\Models\" />
+    <Folder Include="Areas\Settings\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

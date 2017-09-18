@@ -18,7 +18,7 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [DataMember]
         [DisplayName("Email Confirmed")]
@@ -26,15 +26,15 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Password Hash")]
-        public string? PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
 
         [DataMember]
         [DisplayName("Security Stamp")]
-        public string? SecurityStamp { get; set; }
+        public string SecurityStamp { get; set; }
 
         [DataMember]
         [DisplayName("Phone Number")]
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DataMember]
         [DisplayName("Phone Number Confirmed")]

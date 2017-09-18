@@ -55,12 +55,16 @@
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="DealerDAC.cs" />
     <Compile Include="ErrorDAC.cs" />
+    <Compile Include="LanguageDAC.cs" />
+    <Compile Include="LocaleResourceKeyDAC.cs" />
+    <Compile Include="LocaleStringResourceDAC.cs" />
     <Compile Include="OrderDAC.cs" />
     <Compile Include="OrderDetailDAC.cs" />
     <Compile Include="OrderNumberDAC.cs" />
     <Compile Include="ProductDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingDAC.cs" />
+    <Compile Include="SettingDAC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

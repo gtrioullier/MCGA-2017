@@ -27,7 +27,6 @@ namespace ASF.Services.Contracts
     public class AllCountryResponse
     {
         [DataMember]
-       
         public List<Country> Result { get; set; }
     }
 
@@ -35,7 +34,6 @@ namespace ASF.Services.Contracts
     public class AllDealerResponse
     {
         [DataMember]
-
         public List<Dealer> Result { get; set; }
     }
 
@@ -43,7 +41,6 @@ namespace ASF.Services.Contracts
     public class AllClientResponse
     {
         [DataMember]
-
         public List<Client> Result { get; set; }
     }
 
@@ -51,7 +48,6 @@ namespace ASF.Services.Contracts
     public class AllProductResponse
     {
         [DataMember]
-
         public List<Product> Result { get; set; }
     }
 
@@ -59,7 +55,6 @@ namespace ASF.Services.Contracts
     public class AllRatingResponse
     {
         [DataMember]
-
         public List<Rating> Result { get; set; }
     }
 
@@ -67,7 +62,6 @@ namespace ASF.Services.Contracts
     public class AllOrderDetailResponse
     {
         [DataMember]
-
         public List<OrderDetail> Result { get; set; }
     }
 
@@ -75,7 +69,6 @@ namespace ASF.Services.Contracts
     public class AllOrderResponse
     {
         [DataMember]
-
         public List<Order> Result { get; set; }
     }
 
@@ -83,7 +76,6 @@ namespace ASF.Services.Contracts
     public class AllCartResponse
     {
         [DataMember]
-
         public List<Cart> Result { get; set; }
     }
 
@@ -91,7 +83,6 @@ namespace ASF.Services.Contracts
     public class AllCartItemResponse
     {
         [DataMember]
-
         public List<CartItem> Result { get; set; }
     }
 
@@ -99,7 +90,6 @@ namespace ASF.Services.Contracts
     public class AllOrderNumberResponse
     {
         [DataMember]
-
         public List<OrderNumber> Result { get; set; }
     }
 
@@ -107,8 +97,35 @@ namespace ASF.Services.Contracts
     public class AllErrorResponse
     {
         [DataMember]
-
         public List<Error> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllSettingResponse
+    {
+        [DataMember]
+        public List<Setting> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllLanguageResponse
+    {
+        [DataMember]
+        public List<Language> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllLocaleResourceKeyResponse
+    {
+        [DataMember]
+        public List<LocaleResourceKey> Result { get; set; }
+    }
+
+    [DataContract]
+    public class AllLocaleStringResourceResponse
+    {
+        [DataMember]
+        public List<LocaleStringResource> Result { get; set; }
     }
 }
 

@@ -9,7 +9,7 @@ namespace ASF.Entities
 {
     [Serializable]
     [DataContract]
-    public class Language : EntityBase
+    public partial class Language : EntityBase
     {
         [DataMember]
         [DisplayName("Id")]
@@ -26,7 +26,7 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Flag Image File Name")]
-        public string? FlagImageFileName { get; set; }
+        public string FlagImageFileName { get; set; }
 
         [DataMember]
         [DisplayName("Right To Left")]

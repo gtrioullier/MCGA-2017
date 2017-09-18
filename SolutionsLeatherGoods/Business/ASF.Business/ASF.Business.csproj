@@ -47,12 +47,16 @@
     <Compile Include="CountryBusiness.cs" />
     <Compile Include="DealerBusiness.cs" />
     <Compile Include="ErrorBusiness.cs" />
+    <Compile Include="LanguageBusiness.cs" />
+    <Compile Include="LocaleResourceKeyBusiness.cs" />
+    <Compile Include="LocaleStringResourceBusiness.cs" />
     <Compile Include="OrderBusiness.cs" />
     <Compile Include="OrderDetailBusiness.cs" />
     <Compile Include="OrderNumberBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingBusiness.cs" />
+    <Compile Include="SettingBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ASF.Data\ASF.Data.csproj">

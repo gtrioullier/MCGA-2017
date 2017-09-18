@@ -21,7 +21,7 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Notes")]
-        public string? Notes { get; set; }
+        public string Notes { get; set; }
 
         [DataMember]
         [DisplayName("Date Added")]
