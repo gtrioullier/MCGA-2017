@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUserClaimsBusiness.cs" />
+    <Compile Include="AspNetUsersBusiness.cs" />
     <Compile Include="CartBusiness.cs" />
     <Compile Include="CartItemBusiness.cs" />
     <Compile Include="CategoryBusiness.cs" />

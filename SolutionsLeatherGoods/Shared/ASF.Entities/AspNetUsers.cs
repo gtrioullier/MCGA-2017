@@ -9,7 +9,7 @@ namespace ASF.Entities
 {
     [Serializable]
     [DataContract]
-    class AspNetUsers
+    public partial class AspNetUsers : EntityBase
     {
         [DataMember]
         [DisplayName("Id")]

@@ -237,6 +237,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\AspsNetsUsersClaims\AspsNetsUsersClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\AspsNetsUsersClaims\Controllers\AspNetUserClaimsController.cs" />
+    <Compile Include="Areas\AspsNetsUsers\AspsNetsUsersAreaRegistration.cs" />
+    <Compile Include="Areas\AspsNetsUsers\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\CartsItems\CartsItemsAreaRegistration.cs" />
     <Compile Include="Areas\CartsItems\Controllers\CartItemController.cs" />
     <Compile Include="Areas\Carts\CartsAreaRegistration.cs" />
@@ -538,6 +542,8 @@
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Create.cshtml" />
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Delete.cshtml" />
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Edit.cshtml" />
+    <Content Include="Areas\AspsNetsUsers\Views\web.config" />
+    <Content Include="Areas\AspsNetsUsersClaims\Views\web.config" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -685,6 +691,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AspsNetsUsersClaims\Models\" />
+    <Folder Include="Areas\AspsNetsUsersClaims\Views\AspNetUserClaims\" />
+    <Folder Include="Areas\AspsNetsUsersClaims\Views\Shared\" />
+    <Folder Include="Areas\AspsNetsUsers\Models\" />
+    <Folder Include="Areas\AspsNetsUsers\Views\AspNetUsers\" />
+    <Folder Include="Areas\AspsNetsUsers\Views\Shared\" />
     <Folder Include="Areas\CartsItems\Models\" />
     <Folder Include="Areas\CartsItems\Views\Shared\" />
     <Folder Include="Areas\Carts\Models\" />

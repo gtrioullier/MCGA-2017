@@ -126,5 +126,19 @@ namespace ASF.Services.Contracts
         [DataMember]
         public LocaleStringResource Result { get; set; }
     }
+
+    [DataContract]
+    public class FindAspNetUsersResponse
+    {
+        [DataMember]
+        public AspNetUsers Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindAspNetUserClaimsResponse
+    {
+        [DataMember]
+        public AspNetUserClaims Result { get; set; }
+    }
 }
 
