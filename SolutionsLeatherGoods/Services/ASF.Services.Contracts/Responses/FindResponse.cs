@@ -140,5 +140,26 @@ namespace ASF.Services.Contracts
         [DataMember]
         public AspNetUserClaims Result { get; set; }
     }
+
+    [DataContract]
+    public class FindAspNetUserLoginsResponse
+    {
+        [DataMember]
+        public AspNetUserLogins Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindAspNetUserRolesResponse
+    {
+        [DataMember]
+        public AspNetUserRoles Result { get; set; }
+    }
+
+    [DataContract]
+    public class FindAspNetRolesResponse
+    {
+        [DataMember]
+        public AspNetRoles Result { get; set; }
+    }
 }
 

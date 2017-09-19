@@ -54,7 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRolesService.cs" />
     <Compile Include="AspNetUserClaimsService.cs" />
+    <Compile Include="AspNetUserLoginsService.cs" />
+    <Compile Include="AspNetUserRolesService.cs" />
     <Compile Include="AspNetUsersService.cs" />
     <Compile Include="CartItemService.cs" />
     <Compile Include="CartService.cs" />

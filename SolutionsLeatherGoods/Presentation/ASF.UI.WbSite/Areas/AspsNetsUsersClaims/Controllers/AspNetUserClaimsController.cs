@@ -8,83 +8,76 @@ namespace ASF.UI.WbSite.Areas.AspsNetsUsersClaims.Controllers
 {
     public class AspNetUserClaimsController : Controller
     {
-        // GET: Settings/Setting
+        // GET: AspsNetsUsersClaims/AspNetUserClaims
         public ActionResult Index()
         {
-            var cp = new ASF.UI.Process.SettingProcess();
+            var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
             var lista = cp.SelectList();
             return View(lista);
         }
 
-        //GET: Settings/Setting/Details/5
+        //GET: AspsNetsUsersClaims/AspNetUserClaims/Details/5
         public ActionResult Details(int id)
         {
-            var cp = new ASF.UI.Process.SettingProcess();
-            var setting = cp.Find(id);
-            return View(setting);
+            var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
+            var aspnetuserclaims = cp.Find(id);
+            return View(aspnetuserclaims);
         }
 
-        //GET: Settings/Setting/Create
+        //GET: AspsNetsUsersClaims/AspNetUserClaims/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        //POST: Settings/Setting/Create
+        //POST: AspsNetsUsersClaims/AspNetUserClaims/Create
         [HttpPost]
-        public ActionResult Create(ASF.Entities.Setting model)
+        public ActionResult Create(ASF.Entities.AspNetUserClaims model)
         {
             if (ModelState.IsValid)
             {
-                var cp = new ASF.UI.Process.SettingProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
+                var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
                 cp.Create(model);
             }
             return RedirectToAction("Index");
         }
 
-        //GET: Settings/Setting/Delete
+        //GET: AspsNetsUsersClaims/AspNetUserClaims/Delete
         public ActionResult Delete(int id)
         {
-            var cp = new ASF.UI.Process.SettingProcess();
-            var setting = cp.Find(id);
-            return View(setting);
+            var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
+            var aspnetuserclaims = cp.Find(id);
+            return View(aspnetuserclaims);
         }
 
-        //POST: Settings/Setting/Delete
+        //POST: AspsNetsUsersClaims/AspNetUserClaims/Delete
         [HttpPost]
-        public ActionResult Delete(ASF.Entities.Setting model)
+        public ActionResult Delete(ASF.Entities.AspNetUserClaims model)
         {
             if (ModelState.IsValid)
             {
-                var cp = new ASF.UI.Process.SettingProcess();
+                var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
                 cp.Delete(model.Id);
             }
             return RedirectToAction("Index");
 
         }
 
-        //GET: Settings/Setting/Edit
+        //GET: AspsNetsUsersClaims/AspNetUserClaims/Edit
         public ActionResult Edit(int id)
         {
-            var cp = new ASF.UI.Process.SettingProcess();
-            var setting = cp.Find(id);
-            return View(setting);
+            var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
+            var aspnetuserclaims = cp.Find(id);
+            return View(aspnetuserclaims);
         }
 
-        //POST: Settings/Setting/Edit
+        //POST: AspsNetsUsersClaims/AspNetUserClaims/Edit
         [HttpPost]
-        public ActionResult Edit(ASF.Entities.Setting model)
+        public ActionResult Edit(ASF.Entities.AspNetUserClaims model)
         {
             if (ModelState.IsValid)
             {
-                var cp = new ASF.UI.Process.SettingProcess();
-                model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var cp = new ASF.UI.Process.AspNetUserClaimsProcess();
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

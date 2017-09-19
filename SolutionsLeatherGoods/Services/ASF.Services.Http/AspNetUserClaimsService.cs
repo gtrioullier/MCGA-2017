@@ -11,7 +11,7 @@ using ASF.Services.Contracts;
 namespace ASF.Services.Http
 {
     [RoutePrefix("rest/AspNetUserClaims")]
-    public class AspNetUserClaimsService :ApiController
+    public class AspNetUserClaimsService : ApiController
     {
         [HttpGet]
         [Route("All")]

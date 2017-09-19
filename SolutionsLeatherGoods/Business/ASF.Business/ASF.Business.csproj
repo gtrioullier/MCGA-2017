@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRolesBusiness.cs" />
     <Compile Include="AspNetUserClaimsBusiness.cs" />
+    <Compile Include="AspNetUserLoginsBusiness.cs" />
+    <Compile Include="AspNetUserRolesBusiness.cs" />
     <Compile Include="AspNetUsersBusiness.cs" />
     <Compile Include="CartBusiness.cs" />
     <Compile Include="CartItemBusiness.cs" />

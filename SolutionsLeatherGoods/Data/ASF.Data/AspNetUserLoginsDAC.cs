@@ -44,12 +44,12 @@ namespace ASF.Data
             return result;
         }
 
-        public AspNetUserLogins SelectById(string UserId, string ProviderKey, string LoginProvider)
+        public AspNetUserLogins SelectById(AspNetUserLogins aspnetuserlogins)
         {
             const string sqlStatement = "SELECT [UserId], [ProviderKey], [LoginProvider] FROM dbo.AspNetUserLogins" +
-                "WHERE [UserId]=@UserId, [ProviderKey]=@ProviderKey, [LoginProvider]=@LoginProvider";
+                "WHERE [UserId]=@UserId AND [ProviderKey]=@ProviderKey AND [LoginProvider]=@LoginProvider";
 
-            AspNetUserLogins aspnetuserlogins = null;
+            //AspNetUserLogins aspnetuserlogins = null;
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
@@ -83,8 +83,40 @@ namespace ASF.Data
             return aspnetuserlogins;
         }
 
-        public void DeleteById() { }
+        public void DeleteById(AspNetUserLogins aspnetuserlogins)
+        {
+            const string sqlStatement = "DELETE FROM dbo.AspNetUserLogins WHERE [UserId]=@UserId AND [ProviderKey]=@ProviderKey AND [LoginProvider]=@LoginProvider";
 
-        public void UpdateById() { }
+            var db = DatabaseFactory.CreateDatabase(ConnectionName);
+            using (var cmd = db.GetSqlStringCommand(sqlStatement))
+            {
+                db.AddInParameter(cmd, "@UserId", DbType.String, "UserId");
+                db.AddInParameter(cmd, "@ProviderKey", DbType.String, "ProviderKey");
+                db.AddInParameter(cmd, "@LoginProvider", DbType.String, "LoginProvider");
+
+                db.ExecuteNonQuery(cmd);
+            }
+
+        }
+
+        public void UpdateById(AspNetUserLogins aspnetuserlogins)
+        {
+            const string sqlStatement = "UPDATE dbo.AspNetUserLogins" +
+                "SET [UserId]=@UserId, " +
+                    "[ProviderKey]=@ProviderKey, " +
+                    "[LoginProvider]=@LoginProvider" +
+                 "WHERE [UserId]=@UserId AND [ProviderKey]=@ProviderKey AND [LoginProvider]=@LoginProvider";
+            var db = DatabaseFactory.CreateDatabase(ConnectionName);
+
+            using (var cmd = db.GetSqlStringCommand(sqlStatement))
+            {
+                db.AddInParameter(cmd, "@UserId", DbType.String, "UserId");
+                db.AddInParameter(cmd, "@ProviderKey", DbType.String, "ProviderKey");
+                db.AddInParameter(cmd, "@LoginProvider", DbType.String, "LoginProvider");
+
+                db.ExecuteNonQuery(cmd);
+
+            }
+        }
     }
 }
