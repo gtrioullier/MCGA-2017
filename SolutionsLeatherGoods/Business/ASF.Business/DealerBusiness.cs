@@ -16,10 +16,10 @@ namespace ASF.Business
             return result;
         }
 
-        public Dealer Find(int id)
+        public Dealer Find(Guid Rowid)
         {
             var dealerDac = new DealerDAC();
-            var result = dealerDac.SelectById(id);
+            var result = dealerDac.SelectByRowid(Rowid);
             return result;
         }
 
@@ -29,10 +29,10 @@ namespace ASF.Business
             return dealerDac.Create(dealer);
         }
 
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             var dealerDac = new DealerDAC();
-            dealerDac.DeleteById(id);
+            dealerDac.DeleteByRowid(Rowid);
         }
 
         public void Edit(Dealer dealer)

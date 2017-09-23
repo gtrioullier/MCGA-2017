@@ -15,10 +15,10 @@ namespace ASF.Business
             return result;
         }
 
-        public Product Find(int id)
+        public Product Find(Guid Rowid)
         {
             var productDac = new ProductDAC();
-            var result = productDac.SelectById(id);
+            var result = productDac.SelectByRowid(Rowid);
             return result;
         }
 
@@ -28,16 +28,16 @@ namespace ASF.Business
             return productDac.Create(product);
         }
 
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             var productDac = new ProductDAC();
-            productDac.DeleteById(id);
+            productDac.DeleteByRowid(Rowid);
         }
 
         public void Edit(Product product)
         {
             var productDac = new ProductDAC();
-            productDac.UpdateById(product);
+            productDac.UpdateByrowid(product);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace ASF.UI.WbSite.Areas.Clients
         {
             context.MapRoute(
                 "Clients_default",
-                "Clients/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Clients/{controller}/{action}/{Rowid}",
+                new { action = "Index", Rowid = UrlParameter.Optional }
             );
         }
     }

@@ -23,10 +23,10 @@ namespace ASF.UI.Process
             return response.Result;
         }
 
-        public Product Find(int id)
+        public Product Find(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindProductResponse>("rest/Product/Find", parameters, MediaType.Json);
             return response.Result;
         }
@@ -36,10 +36,10 @@ namespace ASF.UI.Process
             var request = HttpPost<Product>("rest/Product/Add", P, MediaType.Json);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindProductResponse>("rest/Product/Remove", parameters, MediaType.Json);
         }
 

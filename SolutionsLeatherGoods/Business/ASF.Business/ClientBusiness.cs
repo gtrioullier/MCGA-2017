@@ -15,10 +15,10 @@ namespace ASF.Business
             return result;
         }
 
-        public Client Find(int id)
+        public Client Find(Guid Rowid)
         {
             var clientDac = new ClientDAC();
-            var result = clientDac.SelectById(id);
+            var result = clientDac.SelectByRowid(Rowid);
             return result;
         }
 
@@ -28,16 +28,16 @@ namespace ASF.Business
             return clientDac.Create(client);
         }
 
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             var clientDac = new ClientDAC();
-            clientDac.DeleteById(id);
+            clientDac.DeleteByRowid(Rowid);
         }
 
         public void Edit(Client client)
         {
             var clientDac = new ClientDAC();
-            clientDac.UpdateById(client);
+            clientDac.UpdateByRowid(client);
         }
     }
 }

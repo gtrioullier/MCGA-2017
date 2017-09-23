@@ -21,9 +21,9 @@ namespace ASF.Data
                 Description = GetDataValue<string>(dr, "Description"),
                 DealerId = GetDataValue<int>(dr, "DealerId"),
                 Image = GetDataValue<string>(dr, "Image"),
-                Price = GetDataValue<float>(dr, "Price"),
+                Price = GetDataValue<double>(dr, "Price"),
                 QuantitySold = GetDataValue<int>(dr, "QuantitySold"),
-                AvgStars = GetDataValue<float>(dr, "AvgStars"),
+                AvgStars = GetDataValue<double>(dr, "AvgStars"),
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
                 CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
@@ -55,23 +55,20 @@ namespace ASF.Data
             return result;
         }
 
-        public Product SelectById(int id)
+        public Product SelectByRowid(Guid Rowid)
         {
             const string sqlStatement = "SELECT [Id], [Title], [Description], [DealerId], [Image], [Price], [QuantitySold], [AvgStars], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                "FROM dbo.Product WHERE [Id]=@Id "; ;
+                "FROM dbo.Product WHERE [Rowid]=@Rowid "; ;
 
             Product product = null;
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
-                    while (dr.Read())
-                    {
                         if (dr.Read()) product = LoadProduct(dr);
-                    }
                 }
             }
 
@@ -94,9 +91,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@QuantitySold", DbType.Int32, product.QuantitySold);
                 db.AddInParameter(cmd, "@AvgStars", DbType.Double, product.AvgStars);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, product.Rowid);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, product.CreatedOn);
+                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, product.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, product.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, product.ChangedOn);
+                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, product.ChangedOn);
                 db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, product.ChangedBy);
                 // Obtener el valor de la primary key.
                 product.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -105,18 +102,18 @@ namespace ASF.Data
             return product;
         }
 
-        public void DeleteById(int id)
+        public void DeleteByRowid(Guid Rowid)
         {
-            const string sqlStatement = "DELETE dbo.Product WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE dbo.Product WHERE [Rowid]=@Rowid ";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 db.ExecuteNonQuery(cmd);
             }
         }
 
-        public void UpdateById(Product product)
+        public void UpdateByrowid(Product product)
         {
             const string sqlStatement = "UPDATE dbo.Product " +
                 "SET [Title]=@Title, " +
@@ -144,9 +141,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@QuantitySold", DbType.Int32, product.QuantitySold);
                 db.AddInParameter(cmd, "@AvgStars", DbType.Double, product.AvgStars);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, product.Rowid);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, product.CreatedOn);
+                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, product.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, product.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, product.ChangedOn);
+                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, product.ChangedOn);
                 db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, product.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);

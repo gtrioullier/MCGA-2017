@@ -20,14 +20,14 @@ namespace ASF.Data
                 Name = GetDataValue<string>(dr, "Name"),
                 LanguageCulture = GetDataValue<string>(dr, "LanguageCulture"),
                 FlagImageFileName = GetDataValue<string>(dr, "FlagImageFileName"),
-                RigthToLeft = GetDataValue<bool>(dr, "RigthToLeft")
+                RightToLeft = GetDataValue<bool>(dr, "RightToLeft")
             };
             return language;
         }
 
         public List<Language> Select()
         {
-            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RigthToLeft] FROM dbo.Language";
+            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RightToLeft] FROM dbo.Language";
 
             var result = new List<Language>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -47,7 +47,7 @@ namespace ASF.Data
 
         public Language SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RigthToLeft]" +
+            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RightToLeft]" +
                 "FROM dbo.Language WHERE [Id]=@Id";
 
             Language language = null;
@@ -65,16 +65,16 @@ namespace ASF.Data
 
         public Language Create(Language language)
         {
-            const string sqlStatement = "INSERT INTO dbo.Language ([Name], [LanguageCulture], [FlagImageFileName], [RigthToLeft])" + 
-                "VALUES (@Name, @LanguageCulture, @FlagImageFileName, @RigthToLeft)";
+            const string sqlStatement = "INSERT INTO dbo.Language ([Name], [LanguageCulture], [FlagImageFileName], [RightToLeft])" +
+                "VALUES (@Name, @LanguageCulture, @FlagImageFileName, @RightToLeft)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Name", DbType.Int32, language.Name);
+                db.AddInParameter(cmd, "@Name", DbType.String, language.Name);
                 db.AddInParameter(cmd, "@LanguageCulture", DbType.String, language.LanguageCulture);
                 db.AddInParameter(cmd, "@FlagImageFileName", DbType.String, language.FlagImageFileName);
-                db.AddInParameter(cmd, "@RigthToLeft", DbType.String, language.RigthToLeft);
+                db.AddInParameter(cmd, "@RightToLeft", DbType.Boolean, language.RightToLeft);
 
                 // Obtener el valor de la primary key.
                 language.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -99,18 +99,31 @@ namespace ASF.Data
                 "SET [Name]=@Name, " +
                     "[LanguageCulture]=@LanguageCulture," +
                     "[FlagImageFileName]=@FlagImageFileName," +
-                    "[RigthToLeft]=@,RigthToLeft" +
+                    "[RightToLeft]=@,RightToLeft" +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Name", DbType.Int32, language.Name);
+                db.AddInParameter(cmd, "@Name", DbType.String, language.Name);
                 db.AddInParameter(cmd, "@LanguageCulture", DbType.String, language.LanguageCulture);
                 db.AddInParameter(cmd, "@FlagImageFileName", DbType.String, language.FlagImageFileName);
-                db.AddInParameter(cmd, "@RigthToLeft", DbType.String, language.RigthToLeft);
+                db.AddInParameter(cmd, "@RightToLeft", DbType.Boolean, language.RightToLeft);
 
                 db.ExecuteNonQuery(cmd);
+            }
+        }
+
+        public int getId(string culture)
+        {
+            const string sqlStatement = "SELECT [Id] FROM dbo.Language WHERE [LanguageCulture]=@culture";
+
+            var db = DatabaseFactory.CreateDatabase(ConnectionName);
+            using (var cmd = db.GetSqlStringCommand(sqlStatement))
+            {
+                db.AddInParameter(cmd, "@culture", DbType.String, culture);
+
+                return Convert.ToInt32(db.ExecuteScalar(cmd));
             }
         }
     }

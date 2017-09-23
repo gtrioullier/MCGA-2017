@@ -39,5 +39,11 @@ namespace ASF.Business
             var localestringresourceDAC = new LocaleStringResourceDAC();
             localestringresourceDAC.UpdateById(localestringresource);
         }
+
+        public string Translate(int languageId, int localeResourceKeyId)
+        {
+            var localestringresourceDAC = new LocaleStringResourceDAC();
+            return localestringresourceDAC.Translate(languageId, localeResourceKeyId);
+        }
     }
 }

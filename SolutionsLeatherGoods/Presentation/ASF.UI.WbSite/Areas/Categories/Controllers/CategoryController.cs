@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ASF.UI.WbSite.Areas.Categories.Controllers
 {
-
+    [Authorize]
     public class CategoryController : Controller
     {
         // GET: Categories/Category
@@ -39,6 +39,7 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCategory();
                 var cp = new ASF.UI.Process.CategoryProcess();
                 model.CreatedOn = DateTime.Now;
                 model.ChangedOn = DateTime.Now;
@@ -61,6 +62,7 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCategory();
                 var cp = new ASF.UI.Process.CategoryProcess();
                 cp.Delete(model.Id);
             }
@@ -82,12 +84,10 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCategory();
                 var cp = new ASF.UI.Process.CategoryProcess();
                 model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                model.ChangedBy = 0;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

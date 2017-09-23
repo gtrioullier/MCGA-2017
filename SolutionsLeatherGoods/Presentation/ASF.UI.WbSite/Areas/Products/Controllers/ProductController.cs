@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ASF.UI.WbSite.Areas.Products.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         // GET: Products/Product
@@ -17,17 +18,31 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         }
 
         //GET: Products/Product/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ProductProcess();
-            var product = cp.Find(id);
+            var product = cp.Find(Rowid);
             return View(product);
         }
 
         //GET: Products/Product/Create
         public ActionResult Create()
         {
-            return View();
+            var cpDealers = new ASF.UI.Process.DealerProcess();
+            var dealers = cpDealers.SelectList();
+            var model = new ASF.Entities.Product();
+
+            ViewBag.dealers = dealers;
+
+            model.CreatedBy = 0;
+            model.ChangedBy = 0;
+            model.CreatedOn = DateTime.Now;
+            model.ChangedOn = DateTime.Now;
+            model.Rowid = Guid.NewGuid();
+            model.AvgStars = 0;
+            model.QuantitySold = 0;
+
+            return View(model);
         }
 
         //POST: Products/Product/Create
@@ -37,18 +52,16 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ProductProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
         }
 
         //GET: Products/Product/Delete
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ProductProcess();
-            var product = cp.Find(id);
+            var product = cp.Find(Rowid);
             return View(product);
         }
 
@@ -59,17 +72,17 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ProductProcess();
-                cp.Delete(model.Id);
+                cp.Delete(model.Rowid);
             }
             return RedirectToAction("Index");
 
         }
 
         //GET: Products/Product/Edit
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ProductProcess();
-            var product = cp.Find(id);
+            var product = cp.Find(Rowid);
             return View(product);
         }
 
@@ -79,12 +92,9 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cp = new ASF.UI.Process.ProductProcess();
+                model.ChangedBy = 0;
                 model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var cp = new ASF.UI.Process.ProductProcess();
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

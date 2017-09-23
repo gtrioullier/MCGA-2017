@@ -38,13 +38,13 @@ namespace ASF.Services.Http
 
         [HttpGet]
         [Route("Find")]
-        public FindClientResponse Find(int id)
+        public FindClientResponse Find(Guid Rowid)
         {
             try
             {
                 var response = new FindClientResponse();
                 var bc = new ClientBusiness();
-                response.Result = bc.Find(id);
+                response.Result = bc.Find(Rowid);
                 return response;
             }
             catch (Exception ex)
@@ -82,12 +82,12 @@ namespace ASF.Services.Http
 
         [HttpGet]
         [Route("Remove")]
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             try
             {
                 var bc = new ClientBusiness();
-                bc.Remove(id);
+                bc.Remove(Rowid);
             }
             catch (Exception ex)
             {

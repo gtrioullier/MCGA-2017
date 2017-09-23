@@ -39,5 +39,11 @@ namespace ASF.Business
             var localeresourcekeyDac = new LocaleResourceKeyDAC();
             localeresourcekeyDac.UpdateById(localeresourcekey);
         }
+
+        public int getId(string key)
+        {
+            var localeresourcekeyDac = new LocaleResourceKeyDAC();
+            return localeresourcekeyDac.getId(key);
+        }
     }
 }

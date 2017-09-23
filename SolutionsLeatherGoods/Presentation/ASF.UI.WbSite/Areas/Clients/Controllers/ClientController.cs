@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ASF.UI.WbSite.Services.Cache;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace ASF.UI.WbSite.Areas.Clients.Controllers
 {
+    [Authorize]
     public class ClientController : Controller
     {
         // GET: Clients/Client
@@ -17,17 +20,34 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
         }
 
         //GET: Clients/Client/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ClientProcess();
-            var cliente = cp.Find(id);
+            var cliente = cp.Find(Rowid);
             return View(cliente);
         }
 
         //GET: Clients/Client/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new ASF.Entities.Client();
+            var countries = DataCacheService.Instance.CountryList();
+            Guid g;
+            g = Guid.NewGuid();
+
+            model.OrderCount = 0;
+            model.SignupDate = DateTime.Now;
+            model.CreatedBy = 0;
+            model.CreatedOn = DateTime.Now;
+            model.ChangedBy = 0;
+            model.ChangedOn = DateTime.Now;
+            model.Rowid = g;
+            model.Email=User.Identity.Name;
+            model.AspNetUsers = User.Identity.GetUserId();
+
+            ViewBag.countries = countries;
+            
+            return View(model);
         }
 
         //POST: Clients/Client/Create
@@ -37,18 +57,16 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ClientProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
         }
 
         //GET: Clients/Client/Delete
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ClientProcess();
-            var cliente = cp.Find(id);
+            var cliente = cp.Find(Rowid);
             return View(cliente);
         }
 
@@ -59,17 +77,21 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ClientProcess();
-                cp.Delete(model.Id);
+                cp.Delete(model.Rowid);
             }
             return RedirectToAction("Index");
 
         }
 
         //GET: Clients/Client/Edit
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ClientProcess();
-            var cliente = cp.Find(id);
+            var cliente = cp.Find(Rowid);
+            var countries = DataCacheService.Instance.CountryList();
+
+            ViewBag.countries = countries;
+           
             return View(cliente);
         }
 
@@ -81,10 +103,7 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
             {
                 var cp = new ASF.UI.Process.ClientProcess();
                 model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                model.ChangedBy = 0;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

@@ -121,5 +121,26 @@ namespace ASF.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
+
+        [HttpGet]
+        [Route("getId")]
+        public int getId(string culture)
+        {
+            try
+            {
+                var bc = new LanguageBusiness();
+                return bc.getId(culture);
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+
+                throw new HttpResponseException(httpError);
+            }
+        }
     }
 }

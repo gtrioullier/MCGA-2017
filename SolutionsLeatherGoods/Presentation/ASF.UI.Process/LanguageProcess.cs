@@ -47,5 +47,13 @@ namespace ASF.UI.Process
         {
             var request = HttpPost<Language>("rest/Language/Edit", R, MediaType.Json);
         }
+
+        public int getId(string culture)
+        {
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("LanguageCulture", culture);
+            var response = HttpGet<int>("rest/Language/getId", parameters, MediaType.Json);
+            return response;
+        }
     }
 }

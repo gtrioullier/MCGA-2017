@@ -54,7 +54,7 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, "Id");
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
                 using (var dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read()) localeresourcekey = LoadLocaleResourceKey(dr);
@@ -71,9 +71,9 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Name", DbType.String, "Name");
-                db.AddInParameter(cmd, "@Notes", DbType.String, "Notes");
-                db.AddInParameter(cmd, "@DateAdded", DbType.DateTime, "DateAdded");
+                db.AddInParameter(cmd, "@Name", DbType.String, localeresourcekey.Name);
+                db.AddInParameter(cmd, "@Notes", DbType.String, localeresourcekey.Notes);
+                db.AddInParameter(cmd, "@DateAdded", DbType.DateTime, localeresourcekey.DateAdded);
                 //Obtener el valor de la primary key.
                 localeresourcekey.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -82,12 +82,12 @@ namespace ASF.Data
 
         public void DeleteById(int id)
         {
-            const string sqlStatement = "DELETE FROM dbo.LocaleResourceKey WHERE [Id[]=@Id";
+            const string sqlStatement = "DELETE FROM dbo.LocaleResourceKey WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, "Id");
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
                 db.ExecuteNonQuery(cmd);
             }
         }
@@ -103,11 +103,25 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Name", DbType.String, "Name");
-                db.AddInParameter(cmd, "@Notes", DbType.String, "Notes");
-                db.AddInParameter(cmd, "@DateAdded", DbType.DateTime, "DateAdded");
+                db.AddInParameter(cmd, "@Name", DbType.String, localeresourcekey.Name);
+                db.AddInParameter(cmd, "@Notes", DbType.String, localeresourcekey.Notes);
+                db.AddInParameter(cmd, "@DateAdded", DbType.DateTime, localeresourcekey.DateAdded);
 
                 db.ExecuteNonQuery(cmd);
+            }
+        }
+
+        public int getId(string key)
+        {
+            const string sqlStatement = "SELECT [Id] FROM dbo.LocaleResourceKey" + 
+                "WHERE [Name]=@key";
+
+            var db = DatabaseFactory.CreateDatabase(ConnectionName);
+            using (var cmd = db.GetSqlStringCommand(sqlStatement))
+            {
+                db.AddInParameter(cmd, "@Name", DbType.String, key);
+
+                return Convert.ToInt32(db.ExecuteScalar(cmd));
             }
         }
     }

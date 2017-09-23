@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ASF.UI.WbSite.Areas.Countries.Controllers
 {
+    [Authorize]
     public class CountryController : Controller
     {
         // GET: Countries/Country
@@ -29,7 +30,14 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         //GET: Categories/Country/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new ASF.Entities.Country();
+
+            model.ChangedOn = DateTime.Now;
+            model.CreatedOn = DateTime.Now;
+            model.ChangedBy = 0;
+            model.CreatedBy = 0;
+
+            return View(model);
         }
 
         //POST: Categories/Country/Create
@@ -38,9 +46,8 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCountry();
                 var cp = new ASF.UI.Process.CountryProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
@@ -60,6 +67,7 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCountry();
                 var cp = new ASF.UI.Process.CountryProcess();
                 cp.Delete(model.Id);
             }
@@ -81,12 +89,10 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearCountry();
                 var cp = new ASF.UI.Process.CountryProcess();
                 model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                model.ChangedBy = 0;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

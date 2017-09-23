@@ -55,16 +55,16 @@ namespace ASF.Data
             return result;
         }
 
-        public Dealer SelectById(int id)
+        public Dealer SelectByRowid(Guid Rowid)
         {
             const string sqlStatement = "SELECT [Id], [FirstName], [LastName], [CategoryId], [CountryId], [Description], [TotalProducts], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                "FROM dbo.Dealer WHERE [Id]=@Id ";
+                "FROM dbo.Dealer WHERE [Rowid]=@Rowid ";
 
             Dealer dealer = null;
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read()) dealer = LoadDealer(dr);
@@ -102,13 +102,13 @@ namespace ASF.Data
             return dealer;
         }
 
-        public void DeleteById(int id)
+        public void DeleteByRowid(Guid Rowid)
         {
-            const string sqlStatement = "DELETE dbo.Dealer WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE dbo.Dealer WHERE [Rowid]=@Rowid ";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 db.ExecuteNonQuery(cmd);
             }
         }
@@ -127,7 +127,7 @@ namespace ASF.Data
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
                     "[ChangedBy]=@ChangedBy " +
-                "WHERE [Id]=@Id ";
+                "WHERE [Rowid]=@Rowid ";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -143,7 +143,6 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, dealer.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, dealer.ChangedOn);
                 db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, dealer.ChangedBy);
-                db.AddInParameter(cmd, "@Id", DbType.Int32, dealer.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

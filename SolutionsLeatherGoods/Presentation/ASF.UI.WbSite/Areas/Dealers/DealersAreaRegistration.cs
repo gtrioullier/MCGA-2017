@@ -16,8 +16,8 @@ namespace ASF.UI.WbSite.Areas.Dealers
         {
             context.MapRoute(
                 "Dealers_default",
-                "Dealers/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Dealers/{controller}/{action}/{Rowid}",
+                new { action = "Index", Rowid = UrlParameter.Optional }
             );
         }
     }

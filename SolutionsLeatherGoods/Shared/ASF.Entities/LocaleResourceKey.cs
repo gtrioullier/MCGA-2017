@@ -16,6 +16,7 @@ namespace ASF.Entities
         [Browsable(false)]
         public int Id { get; set; }
 
+        [DataMember]
         [DisplayName("Name")]
         public string Name { get; set; }
 

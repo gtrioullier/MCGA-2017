@@ -24,10 +24,10 @@ namespace ASF.UI.Process
             return response.Result;
         }
 
-        public Client Find(int id)
+        public Client Find(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindClientResponse>("rest/Client/Find", parameters, MediaType.Json);
             return response.Result;
         }
@@ -37,10 +37,10 @@ namespace ASF.UI.Process
             var request = HttpPost<Client>("rest/Client/Add", C, MediaType.Json);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindClientResponse>("rest/Client/Remove", parameters, MediaType.Json);
         }
 

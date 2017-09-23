@@ -56,16 +56,16 @@ namespace ASF.Data
             return result;
         }
 
-        public Client SelectById(int id)
+        public Client SelectByRowid(Guid Rowid)
         {
             const string sqlStatement = "SELECT [Id], [FirstName], [LastName], [Email], [CountryId], [AspNetUsers], [City], [SignupDate], [Rowid], [OrderCount], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                " FROM dbo.Client WHERE [Id]=@Id";
+                " FROM dbo.Client WHERE [Rowid]=@Rowid";
 
             Client client = null;
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read()) client = LoadClient(dr);
@@ -104,22 +104,21 @@ namespace ASF.Data
 
         }
 
-        public void DeleteById(int id)
+        public void DeleteByRowid(Guid Rowid)
         {
-            const string sqlStatement = "DELETE dbo.Client WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE dbo.Client WHERE [Rowid]=@Rowid ";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 db.ExecuteNonQuery(cmd);
             }
         }
 
-        public void UpdateById(Client client)
+        public void UpdateByRowid(Client client)
         {
             const string sqlStatement = "UPDATE dbo.Client " +
-                "SET [Id]=@Id, " +
-                    "[FirstName]=@FirstName, " +
+                "SET [FirstName]=@FirstName, " +
                     "[LastName]=@LastName, " +
                     "[Email]=@Email, " +
                     "[CountryId]=@CountryId, " +
@@ -129,10 +128,10 @@ namespace ASF.Data
                     "[SignupDate]=@SignupDate," +
                     "[OrderCount]=@OrderCount, " +
                     "[CreatedOn]=@CreatedOn, " +
-                    "[CreatedOn]=@CreatedOn, " +
+                    "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
                     "[ChangedBy]=@ChangedBy " +
-                "WHERE [Id]=@Id ";
+                "WHERE [Rowid]=@Rowid ";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -146,10 +145,10 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@SignupDate", DbType.DateTime, client.SignupDate);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, client.Rowid);
                 db.AddInParameter(cmd, "@OrderCount", DbType.Int32, client.OrderCount);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, client.FirstName);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.String, client.FirstName);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, client.FirstName);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.String, client.FirstName);
+                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, client.CreatedOn);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, client.CreatedBy);
+                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, client.ChangedOn);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, client.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

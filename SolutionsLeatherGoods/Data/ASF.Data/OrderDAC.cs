@@ -20,7 +20,7 @@ namespace ASF.Data
                 ClientId = GetDataValue<int>(dr, "ClientId"),
                 OrderDate = GetDataValue<DateTime>(dr, "OrderDate"),
                 TotalPrice = GetDataValue<Double>(dr, "TotalPrice"),
-                State = GetDataValue<int>(dr, "State"),
+                State = GetDataValue<string>(dr, "State"),
                 OrderNumber = GetDataValue<int>(dr, "OrderNumber"),
                 ItemCount = GetDataValue<int>(dr, "ItemCount"),
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
@@ -88,7 +88,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ClientId", DbType.Int32, order.ClientId);
                 db.AddInParameter(cmd, "@OrderDate", DbType.DateTime, order.OrderDate);
                 db.AddInParameter(cmd, "@TotalPrice", DbType.Double, order.TotalPrice);
-                db.AddInParameter(cmd, "@State", DbType.Int32, order.State);
+                db.AddInParameter(cmd, "@State", DbType.String, order.State);
                 db.AddInParameter(cmd, "@OrderNumber", DbType.Int32, order.OrderNumber);
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, order.Rowid);
@@ -136,7 +136,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ClientId", DbType.Int32, order.ClientId);
                 db.AddInParameter(cmd, "@OrderDate", DbType.Int32, order.OrderDate);
                 db.AddInParameter(cmd, "@TotalPrice", DbType.Double, order.TotalPrice);
-                db.AddInParameter(cmd, "@State", DbType.Int32, order.State);
+                db.AddInParameter(cmd, "@State", DbType.String, order.State);
                 db.AddInParameter(cmd, "@OrderNumber", DbType.Int32, order.OrderNumber);
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, order.Rowid);

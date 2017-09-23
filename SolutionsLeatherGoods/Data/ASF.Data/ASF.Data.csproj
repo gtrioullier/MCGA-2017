@@ -47,11 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNetRolesDAC.cs" />
-    <Compile Include="AspNetUserClaimsDAC.cs" />
-    <Compile Include="AspNetUserLoginsDAC.cs" />
-    <Compile Include="AspNetUserRolesDAC.cs" />
-    <Compile Include="AspNetUsersDAC.cs" />
     <Compile Include="CartDAC.cs" />
     <Compile Include="CartItemDAC.cs" />
     <Compile Include="CategoryDAC.cs" />

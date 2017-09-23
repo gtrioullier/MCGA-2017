@@ -16,8 +16,8 @@ namespace ASF.UI.WbSite.Areas.Products
         {
             context.MapRoute(
                 "Products_default",
-                "Products/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Products/{controller}/{action}/{Rowid}",
+                new { action = "Index", Rowid = UrlParameter.Optional }
             );
         }
     }

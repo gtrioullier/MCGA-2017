@@ -44,11 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNetRolesProcess.cs" />
-    <Compile Include="AspNetUserClaimsProcess.cs" />
-    <Compile Include="AspNetUserLoginsProcess.cs" />
-    <Compile Include="AspNetUserRolesProcess.cs" />
-    <Compile Include="AspNetUsersProcess.cs" />
     <Compile Include="CartItemProcess.cs" />
     <Compile Include="CartProcess.cs" />
     <Compile Include="CategoryProcess.cs" />

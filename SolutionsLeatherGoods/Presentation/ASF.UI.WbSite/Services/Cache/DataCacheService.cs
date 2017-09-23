@@ -34,12 +34,13 @@ namespace ASF.UI.WbSite.Services.Cache
         #endregion
 
         private readonly ICacheService _cacheService;
+
         private DataCacheService()
         {
             _cacheService = DependencyResolver.Current.GetService<ICacheService>();
         }
 
-        public List<Category> CategoryList() 
+        public List<Category> CategoryList()
         {
             var lista = _cacheService.GetOrAdd(CacheSetting.Category.Key, () =>
                 {
@@ -49,16 +50,27 @@ namespace ASF.UI.WbSite.Services.Cache
                 CacheSetting.Category.SlidingExpiration);
             return lista;
         }
-        
+
+        public void ClearCategory()
+        {
+            _cacheService.Remove(CacheSetting.Category.Key);
+        }
+
+
         public List<Country> CountryList()
         {
-            var lista = _cacheService.GetOrAdd(CacheSetting.Category.Key, () =>
+            var lista = _cacheService.GetOrAdd(CacheSetting.Country.Key, () =>
             {
                 var cp = new CountryProcess();
                 return cp.SelectList();
             },
                 CacheSetting.Country.SlidingExpiration);
             return lista;
+        }
+
+        public void ClearCountry()
+        {
+            _cacheService.Remove(CacheSetting.Country.Key);
         }
     }
 }

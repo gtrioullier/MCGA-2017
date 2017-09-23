@@ -30,6 +30,6 @@ namespace ASF.Entities
 
         [DataMember]
         [DisplayName("Right To Left")]
-        public bool RigthToLeft { get; set; }
+        public bool RightToLeft { get; set; }
     }
 }

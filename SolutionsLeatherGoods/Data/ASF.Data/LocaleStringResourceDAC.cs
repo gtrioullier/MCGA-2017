@@ -28,7 +28,7 @@ namespace ASF.Data
 
         public List<LocaleStringResource> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ResourceValue], [LocaleResourceKey_Id], [Language_Id] FROM dbo.LocaleStingResource";
+            const string sqlStatement = "SELECT [Id], [ResourceValue], [LocaleResourceKey_Id], [Language_Id] FROM dbo.LocaleStringResource";
 
             var result = new List<LocaleStringResource>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -49,14 +49,14 @@ namespace ASF.Data
         public LocaleStringResource SelectById(int id)
         {
             const string sqlStatement = "SELECT [Id], [ResourceValue], [LocaleResourceKey_Id], [Language_Id]" +
-                "FROM dbo.LocaleStingResource WHERE [Id]=@Id";
+                "FROM dbo.LocaleStringResource WHERE [Id]=@Id";
 
             LocaleStringResource localestringresource = null;
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, "Id");
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
                 using (var dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read()) localestringresource = LoadLocaleStringResource(dr);
@@ -73,9 +73,9 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@ResourceValue", DbType.String, "ResourceValue");
-                db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, "LocaleResourceKey_Id");
-                db.AddInParameter(cmd, "@Language_Id", DbType.Int32, "Language_Id");
+                db.AddInParameter(cmd, "@ResourceValue", DbType.String, localestringresource.ResourceValue);
+                db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, localestringresource.LocaleResourceKey_Id);
+                db.AddInParameter(cmd, "@Language_Id", DbType.Int32, localestringresource.Language_Id);
 
                 //Obtener el valor de la primary key.
                 localestringresource.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -90,7 +90,7 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, "Id");
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
                 db.ExecuteNonQuery(cmd);
             }
         }
@@ -106,13 +106,28 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@ResourceValue", DbType.String, "ResourceValue");
-                db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, "LocaleResourceKey_Id");
-                db.AddInParameter(cmd, "@Language_Id", DbType.Int32, "Language_Id");
+                db.AddInParameter(cmd, "@ResourceValue", DbType.String, localestringresource.ResourceValue);
+                db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, localestringresource.LocaleResourceKey_Id);
+                db.AddInParameter(cmd, "@Language_Id", DbType.Int32, localestringresource.Language_Id);
 
                 db.ExecuteNonQuery(cmd);
             }
         }
 
+        public string Translate(int languageId, int localeResourceKeyId)
+        {
+            const string sqlStatment = "SELECT [ResourceValue] FROM dbo.LocaleStringResource" +
+                "WHERE [Language_Id]=@languageId AND [LocaleResourceKey_Id]=@localeResourceKeyId";
+            var db = DatabaseFactory.CreateDatabase(ConnectionName);
+            using (var cmd = db.GetSqlStringCommand(sqlStatment))
+            {
+                db.AddInParameter(cmd, "Language_Id", DbType.Int32, languageId);
+                db.AddInParameter(cmd, "LocaleResourceKey_Id", DbType.Int32, localeResourceKeyId);
+
+                var result = db.ExecuteScalar(cmd).ToString();
+
+                return result;
+            }
+        }
     }
 }
