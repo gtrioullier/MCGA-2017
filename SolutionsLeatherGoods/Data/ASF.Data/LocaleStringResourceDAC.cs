@@ -114,20 +114,5 @@ namespace ASF.Data
             }
         }
 
-        public string Translate(int languageId, int localeResourceKeyId)
-        {
-            const string sqlStatment = "SELECT [ResourceValue] FROM dbo.LocaleStringResource" +
-                "WHERE [Language_Id]=@languageId AND [LocaleResourceKey_Id]=@localeResourceKeyId";
-            var db = DatabaseFactory.CreateDatabase(ConnectionName);
-            using (var cmd = db.GetSqlStringCommand(sqlStatment))
-            {
-                db.AddInParameter(cmd, "Language_Id", DbType.Int32, languageId);
-                db.AddInParameter(cmd, "LocaleResourceKey_Id", DbType.Int32, localeResourceKeyId);
-
-                var result = db.ExecuteScalar(cmd).ToString();
-
-                return result;
-            }
-        }
     }
 }

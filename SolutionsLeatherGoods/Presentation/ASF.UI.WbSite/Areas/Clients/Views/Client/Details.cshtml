@@ -1,18 +1,20 @@
-﻿@model ASF.Entities.Client
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model ASF.Entities.Client
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.getResourceString("Details")</h2>
 
 <div>
-    <h4>Client</h4>
+    <h4>@Html.getResourceString("Client")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName(Html.getResourceString("Name"))
         </dt>
 
         <dd>
@@ -20,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName(Html.getResourceString("LastName"))
         </dt>
 
         <dd>
@@ -28,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayName(Html.getResourceString("Email"))
         </dt>
 
         <dd>
@@ -36,7 +38,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CountryId)
+            @Html.DisplayName(Html.getResourceString("Country"))
         </dt>
 
         <dd>
@@ -52,7 +54,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName(Html.getResourceString("City"))
         </dt>
 
         <dd>
@@ -60,7 +62,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SignupDate)
+            @Html.DisplayName(Html.getResourceString("SignupDate"))
         </dt>
 
         <dd>
@@ -76,7 +78,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OrderCount)
+            @Html.DisplayName(Html.getResourceString("OrderCount"))
         </dt>
 
         <dd>
@@ -84,7 +86,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
+            @Html.DisplayName(Html.getResourceString("CreatedOn"))
         </dt>
 
         <dd>
@@ -92,7 +94,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayName(Html.getResourceString("CreatedBy"))
         </dt>
 
         <dd>
@@ -100,7 +102,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChangedOn)
+            @Html.DisplayName(Html.getResourceString("ChangedOn"))
         </dt>
 
         <dd>
@@ -108,7 +110,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChangedBy)
+            @Html.DisplayName(Html.getResourceString("ChangedBy"))
         </dt>
 
         <dd>
@@ -118,6 +120,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { Rowid = Model.Rowid }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = Model.Rowid }, new { @class = "btn btn-default" })
+    @Html.ActionLink(Html.getResourceString("Back"), "Index", null, new { @class = "btn btn-default" })
 </p>

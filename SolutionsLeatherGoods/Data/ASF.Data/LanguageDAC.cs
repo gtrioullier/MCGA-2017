@@ -113,18 +113,5 @@ namespace ASF.Data
                 db.ExecuteNonQuery(cmd);
             }
         }
-
-        public int getId(string culture)
-        {
-            const string sqlStatement = "SELECT [Id] FROM dbo.Language WHERE [LanguageCulture]=@culture";
-
-            var db = DatabaseFactory.CreateDatabase(ConnectionName);
-            using (var cmd = db.GetSqlStringCommand(sqlStatement))
-            {
-                db.AddInParameter(cmd, "@culture", DbType.String, culture);
-
-                return Convert.ToInt32(db.ExecuteScalar(cmd));
-            }
-        }
     }
 }

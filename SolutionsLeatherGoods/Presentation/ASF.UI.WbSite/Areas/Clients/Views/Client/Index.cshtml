@@ -1,43 +1,45 @@
-﻿@model IEnumerable<ASF.Entities.Client>
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model IEnumerable<ASF.Entities.Client>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Html.getResourceString("Index")</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(Html.getResourceString("Create"), "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName(Html.getResourceString("LastName"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName(Html.getResourceString("Name"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayName(Html.getResourceString("Email"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CountryId)
+            @Html.DisplayName(Html.getResourceString("Country"))
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.AspNetUsers)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName(Html.getResourceString("City"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SignupDate)
+            @Html.DisplayName(Html.getResourceString("SignupDate"))
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Rowid)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.OrderCount)
+            @Html.DisplayName(Html.getResourceString("OrderCount"))
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.CreatedOn)
@@ -96,9 +98,9 @@
             @Html.DisplayFor(modelItem => item.ChangedBy)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Details", "Details", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Delete", "Delete", new { Rowid = item.Rowid })
+            @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = item.Rowid }) |
+            @Html.ActionLink(Html.getResourceString("Details"), "Details", new { Rowid = item.Rowid }) |
+            @Html.ActionLink(Html.getResourceString("Delete"), "Delete", new { Rowid = item.Rowid })
         </td>
     </tr>
 }

@@ -122,25 +122,5 @@ namespace ASF.Services.Http
             }
         }
 
-        [HttpGet]
-        [Route("getId")]
-        public int getId(string key)
-        {
-            try
-            {
-                var bc = new LocaleResourceKeyBusiness();
-                return bc.getId(key);
-            }
-            catch (Exception ex)
-            {
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422,
-                    ReasonPhrase = ex.Message
-                };
-
-                throw new HttpResponseException(httpError);
-            }
-        }
     }
 }

@@ -15,9 +15,19 @@ namespace ASF.UI.WbSite.Areas.Dealers.Controllers
         public ActionResult Index()
         {
             var cp = new ASF.UI.Process.DealerProcess();
+            var cpCountry = new ASF.UI.Process.CountryProcess();
+            var cpCategory = new ASF.UI.Process.CategoryProcess();
             var lista = cp.SelectList().OrderBy(d => d.LastName);
+            var countries = DataCacheService.Instance.CountryList();
+            var categories = DataCacheService.Instance.CategoryList();
 
-            return View(lista);
+            foreach (var l in lista)
+            {
+                l.Category = categories.Find(c => c.Id == l.CategoryId);
+                l.Country = countries.Find(c => c.Id == l.CountryId);
+            }
+
+            return View(lista.OrderBy(l => l.LastName));
         }
 
         //GET: Dealers/Dealer/Details/5

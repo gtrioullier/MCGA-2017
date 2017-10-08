@@ -48,13 +48,5 @@ namespace ASF.UI.Process
             var request = HttpPost<LocaleStringResource>("rest/LocaleStringResource/Edit", R, MediaType.Json);
         }
 
-        public string Translate(int languageId, int localeResourceKeyId)
-        {
-            var parameters = new Dictionary<string,object>();
-            parameters.Add("Language_Id", languageId);
-            parameters.Add("LocaleResourceKey_Id", localeResourceKeyId);
-            var response = HttpGet<string>("rest/LocaleStringResource/Translate", parameters, MediaType.Json);
-            return response;
-        }
     }
 }

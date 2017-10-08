@@ -13,8 +13,16 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         public ActionResult Index()
         {
             var cp = new ASF.UI.Process.ProductProcess();
+            var cpd = new ASF.UI.Process.DealerProcess();
+            var dealers = cpd.SelectList();
             var lista = cp.SelectList();
-            return View(lista);
+
+            foreach(var l in lista)
+            {
+                l.Vendedor = dealers.Find(v => v.Id == l.DealerId);
+            }
+
+            return View(lista.OrderBy(l => l.Vendedor.LastName));
         }
 
         //GET: Products/Product/Details/5
@@ -29,10 +37,14 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         public ActionResult Create()
         {
             var cpDealers = new ASF.UI.Process.DealerProcess();
-            var dealers = cpDealers.SelectList();
+            var dealers = cpDealers.SelectList().Select(d => new {
+                Id = d.Id,
+                Text = string.Format("{0}, {1}", d.LastName, d.FirstName)
+            }).ToList();
+
             var model = new ASF.Entities.Product();
 
-            ViewBag.dealers = dealers;
+            ViewBag.dealers = dealers.OrderBy(d => d.Text);
 
             model.CreatedBy = 0;
             model.ChangedBy = 0;
@@ -83,6 +95,15 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         {
             var cp = new ASF.UI.Process.ProductProcess();
             var product = cp.Find(Rowid);
+            var cpDealers = new ASF.UI.Process.DealerProcess();
+            var dealers = cpDealers.SelectList().Select(d => new
+            {
+                Id = d.Id,
+                Text = string.Format("{0}, {1}", d.LastName, d.FirstName)
+            }).ToList();
+
+            ViewBag.dealers = dealers.OrderBy(d =>d.Text);
+
             return View(product);
         }
 

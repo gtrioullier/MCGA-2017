@@ -1,18 +1,20 @@
-﻿@model ASF.Entities.Country
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model ASF.Entities.Country
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.getResourceString("Details")</h2>
 
 <div>
-    <h4>Country</h4>
+    <h4>@Html.getResourceString("Country")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName(Html.getResourceString("Name"))
         </dt>
 
         <dd>
@@ -20,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
+            @Html.DisplayName(Html.getResourceString("CreatedOn"))
         </dt>
 
         <dd>
@@ -28,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayName(Html.getResourceString("CreatedBy"))
         </dt>
 
         <dd>
@@ -36,7 +38,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChangedOn)
+            @Html.DisplayName(Html.getResourceString("ChangedOn"))
         </dt>
 
         <dd>
@@ -44,7 +46,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChangedBy)
+            @Html.DisplayName(Html.getResourceString("ChangedBy"))
         </dt>
 
         <dd>
@@ -54,6 +56,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink(Html.getResourceString("Back"), "Index", null, new { @class = "btn btn-default" })
 </p>

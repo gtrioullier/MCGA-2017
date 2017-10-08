@@ -1,37 +1,39 @@
-﻿@model IEnumerable<ASF.Entities.Product>
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model IEnumerable<ASF.Entities.Product>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@Html.getResourceString("Index")</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(Html.getResourceString("Create"), "Create")
 </p>
-<table class="table">
+<table class="table table-responsive table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayName(Html.getResourceString("Title"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayName(Html.getResourceString("Description"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DealerId)
+            @Html.DisplayName(Html.getResourceString("Dealer"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayName(Html.getResourceString("Image"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayName(Html.getResourceString("Price"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuantitySold)
+            @Html.DisplayName(Html.getResourceString("QuantitySold"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AvgStars)
+            @Html.DisplayName(Html.getResourceString("AvgStars"))
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Rowid)
@@ -60,7 +62,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DealerId)
+            @Html.DisplayFor(modelItem => item.Vendedor.LastName), @Html.DisplayFor(modelItem => item.Vendedor.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Image)
@@ -90,9 +92,9 @@
             @Html.DisplayFor(modelItem => item.ChangedBy)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Details", "Details", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Delete", "Delete", new { Rowid = item.Rowid })
+            @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = item.Rowid }) |
+            @Html.ActionLink(Html.getResourceString("Details"), "Details", new { Rowid = item.Rowid }) |
+            @Html.ActionLink(Html.getResourceString("Delete"), "Delete", new { Rowid = item.Rowid })
         </td>
     </tr>
 }

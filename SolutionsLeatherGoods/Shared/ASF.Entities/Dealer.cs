@@ -22,6 +22,8 @@ namespace ASF.Entities
     [DataContract]
     public partial class Dealer : EntityBase
     {
+        public Category Category { get; set; }
+        public Country Country { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -303,6 +303,8 @@
     <Compile Include="Services\Cache\DataCacheService.cs" />
     <Compile Include="Services\Cache\ICacheService.cs" />
     <Compile Include="Services\CultureHelper\CultureHelperService.cs" />
+    <Compile Include="Services\CultureHelper\ICultureHelperService.cs" />
+    <Compile Include="Services\CultureHelper\Language.cs" />
     <Compile Include="Services\Logging\ILoggingService.cs" />
     <Compile Include="Services\Logging\LoggingService.cs" />
     <Compile Include="Services\Manifest\IManifestService.cs" />

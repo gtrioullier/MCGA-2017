@@ -122,25 +122,5 @@ namespace ASF.Services.Http
             }
         }
 
-        [HttpGet]
-        [Route("Translate")]
-        public string Translate(int languageId, int localeResourceKeyId)
-        {
-            try
-            {
-                var bc = new LocaleStringResourceBusiness();
-                return bc.Translate(languageId, localeResourceKeyId);
-            }
-            catch (Exception ex)
-            {
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422,
-                    ReasonPhrase = ex.Message
-                };
-                
-                throw new HttpResponseException(httpError);
-            }
-        }
     }
 }

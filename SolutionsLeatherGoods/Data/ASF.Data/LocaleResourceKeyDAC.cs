@@ -111,18 +111,5 @@ namespace ASF.Data
             }
         }
 
-        public int getId(string key)
-        {
-            const string sqlStatement = "SELECT [Id] FROM dbo.LocaleResourceKey" + 
-                "WHERE [Name]=@key";
-
-            var db = DatabaseFactory.CreateDatabase(ConnectionName);
-            using (var cmd = db.GetSqlStringCommand(sqlStatement))
-            {
-                db.AddInParameter(cmd, "@Name", DbType.String, key);
-
-                return Convert.ToInt32(db.ExecuteScalar(cmd));
-            }
-        }
     }
 }

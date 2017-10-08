@@ -22,6 +22,7 @@ namespace ASF.Entities
     [DataContract]
     public partial class Product : EntityBase
     {
+        public Dealer Vendedor { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -39,11 +39,5 @@ namespace ASF.Business
             var languageDac = new LanguageDAC();
             languageDac.UpdateById(language);
         }
-
-        public int getId(string culture)
-        {
-            var languageDac = new LanguageDAC();
-            return languageDac.getId(culture);
-        }
     }
 }
