@@ -66,9 +66,9 @@
             @Html.DisplayFor(modelItem => item.ChangedBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { Rowid = item.Rowid }) |
+            @Html.ActionLink("Details", "Details", new { Rowid = item.Rowid }) |
+            @Html.ActionLink("Delete", "Delete", new { Rowid = item.Rowid })
         </td>
     </tr>
 }

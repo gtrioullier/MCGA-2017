@@ -113,6 +113,5 @@ namespace ASF.Data
                 db.ExecuteNonQuery(cmd);
             }
         }
-
     }
 }

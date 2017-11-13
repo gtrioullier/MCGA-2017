@@ -128,7 +128,7 @@ namespace ASF.Data
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
                     "[ChangedBy]=@ChangedBy " +
-                "WHERE [Id]=@Id ";
+                "WHERE [Rowid]=@Rowid ";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))

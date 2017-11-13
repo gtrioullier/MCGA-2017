@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASF.UI.WbSite.Constants;
+using System;
 using System.Threading.Tasks;
 
 namespace ASF.UI.WbSite.Services.Cache
@@ -191,5 +192,13 @@ namespace ASF.UI.WbSite.Services.Cache
         /// <param name="key">A unique identifier for the cache entry to remove.</param>
         /// <exception cref="System.ArgumentNullException">key is null.</exception>
         void Remove(string key);
+
+        /// <summary>
+        /// Cache objects for a specified amount of time
+        /// </summary>
+        /// <param name="key">The cache key</param>
+        /// <param name="data">Object / Data to cache</param>
+        /// <param name="minutesToCache">How many minutes to cache them for</param>
+        void Set(string key, object data, CacheTimes minutesToCache);
     }
 }

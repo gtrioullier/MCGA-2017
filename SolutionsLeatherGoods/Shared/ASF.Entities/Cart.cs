@@ -86,6 +86,6 @@ namespace ASF.Entities
         [DisplayName("Changed By")]
         public int? ChangedBy { get; set; }
 
-        
+        public virtual List<CartItem> CartItem { get; set; }
     }
 }

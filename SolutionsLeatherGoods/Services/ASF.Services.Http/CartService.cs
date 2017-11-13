@@ -38,13 +38,13 @@ namespace ASF.Services.Http
 
         [HttpGet]
         [Route("Find")]
-        public FindCartResponse Find(int id)
+        public FindCartResponse Find(Guid Rowid)
         {
             try
             {
                 var response = new FindCartResponse();
                 var bc = new CartBusiness();
-                response.Result = bc.Find(id);
+                response.Result = bc.Find(Rowid);
                 return response;
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace ASF.Services.Http
         public Cart Add(Cart cart)
         {
             try
-            {
+                {
                 var bc = new CartBusiness();
                 return bc.Add(cart);
             }
@@ -82,12 +82,12 @@ namespace ASF.Services.Http
 
         [HttpGet]
         [Route("Remove")]
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             try
             {
                 var bc = new CartBusiness();
-                bc.Remove(id);
+                bc.Remove(Rowid);
             }
             catch (Exception ex)
             {

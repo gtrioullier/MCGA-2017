@@ -3,13 +3,13 @@ C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.S
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.Services.Http.pdb
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.dll
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.pdb
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Http.dll
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Http.pdb
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.csprojResolveAssemblyReference.cache
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.dll
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.pdb
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.Services.Http.dll
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.Services.Http.pdb
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.csprojResolveAssemblyReference.cache
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.dll
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Http.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Services.Http.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.csprojResolveAssemblyReference.cache
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Services\ASF.Services.Http\obj\Debug\ASF.Services.Http.pdb

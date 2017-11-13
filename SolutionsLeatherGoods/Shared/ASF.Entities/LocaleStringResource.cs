@@ -27,5 +27,8 @@ namespace ASF.Entities
         [DataMember]
         [DisplayName("Language")]
         public int Language_Id { get; set; }
+
+        public virtual LocaleResourceKey LocaleResourceKey { get; set; }
+        public virtual Language Language { get; set; }
     }
 }

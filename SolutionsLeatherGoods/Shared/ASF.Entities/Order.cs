@@ -107,6 +107,8 @@ namespace ASF.Entities
         [DisplayName("Changed By")]
         public int? ChangedBy { get; set; }
 
-        
+        public virtual Client Client { get; set; }
+
+        public virtual OrderDetail OrderDetail { get; set; }
     }
 }

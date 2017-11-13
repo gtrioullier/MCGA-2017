@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASF.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -86,7 +87,7 @@ namespace ASF.UI.Process
 
         public static T HttpPost<T>(string path, T value, string mediaType)
         {
-            
+
             var pathAndQuery = path.EndsWith("/") ? path : path + "/";
             using (var client = new HttpClient())
             {

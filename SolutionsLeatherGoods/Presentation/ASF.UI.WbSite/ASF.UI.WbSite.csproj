@@ -262,6 +262,7 @@
     <Compile Include="Areas\OrdersNumbers\Controllers\OrderNumberController.cs" />
     <Compile Include="Areas\OrdersNumbers\OrdersNumbersAreaRegistration.cs" />
     <Compile Include="Areas\Orders\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Orders\Models\OrderStates.cs" />
     <Compile Include="Areas\Orders\OrdersAreaRegistration.cs" />
     <Compile Include="Areas\Products\Controllers\ProductController.cs" />
     <Compile Include="Areas\Products\ProductsAreaRegistration.cs" />
@@ -269,6 +270,8 @@
     <Compile Include="Areas\Ratings\RatingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
+    <Compile Include="Constants\AppConstants.cs" />
+    <Compile Include="Constants\CacheTimes.cs" />
     <Compile Include="Constants\ExtensionMethods\HtmlLabelExtensions.cs" />
     <Compile Include="Constants\ExtensionMethods\TypeFactory.cs" />
     <Compile Include="Constants\ExtensionMethods\WebGridExtensions.cs" />
@@ -297,6 +300,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Audit\Audit.cs" />
+    <Compile Include="Services\Audit\AuditService.cs" />
+    <Compile Include="Services\Audit\IAuditService.cs" />
     <Compile Include="Services\BrowserConfig\BrowserConfigService.cs" />
     <Compile Include="Services\BrowserConfig\IBrowserConfigService.cs" />
     <Compile Include="Services\Cache\CacheService.cs" />
@@ -304,7 +310,7 @@
     <Compile Include="Services\Cache\ICacheService.cs" />
     <Compile Include="Services\CultureHelper\CultureHelperService.cs" />
     <Compile Include="Services\CultureHelper\ICultureHelperService.cs" />
-    <Compile Include="Services\CultureHelper\Language.cs" />
+    <Compile Include="Services\CultureHelper\CultureHelper.cs" />
     <Compile Include="Services\Logging\ILoggingService.cs" />
     <Compile Include="Services\Logging\LoggingService.cs" />
     <Compile Include="Services\Manifest\IManifestService.cs" />
@@ -324,8 +330,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\autocomplete.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Carousel.css" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -337,6 +345,7 @@
     <Content Include="Content\icons\android-chrome-96x96.png" />
     <Content Include="Content\icons\atom-icon-48x48.png" />
     <Content Include="Content\icons\atom-logo-96x48.png" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Content\icons\open-graph-1200x630.png" />
     <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
@@ -437,6 +446,53 @@
     <Content Include="Areas\Categories\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Categories\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Categories\Views\Category\Index.cshtml" />
+    <Content Include="Content\img\banner-marroquineria.jpg" />
+    <Content Include="Content\img\carteras.jpg" />
+    <Content Include="Content\img\marroquinería.png" />
+    <Content Include="Content\img\no-image.gif" />
+    <Content Include="Content\img\zapatos.jpg" />
+    <Content Include="Content\landing-page.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -490,7 +546,7 @@
     <Content Include="Areas\Orders\Views\web.config" />
     <Content Include="Areas\Orders\Views\Order\Index.cshtml" />
     <Content Include="Areas\Orders\Views\Order\Details.cshtml" />
-    <Content Include="Areas\Orders\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Orders\Views\Order\Create_OLD.cshtml" />
     <Content Include="Areas\Orders\Views\Order\Delete.cshtml" />
     <Content Include="Areas\Orders\Views\Order\Edit.cshtml" />
     <Content Include="Areas\Carts\Views\web.config" />
@@ -542,6 +598,15 @@
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Delete.cshtml" />
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Edit.cshtml" />
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Translate.cshtml" />
+    <Content Include="Areas\Orders\Views\Order\Create.cshtml" />
+    <Content Include="Scripts\detalles.js" />
+    <Content Include="Scripts\carusel.js" />
+    <Content Include="Scripts\Cookie.js" />
+    <Content Include="Scripts\searchProduct.js" />
+    <Content Include="Scripts\subtotal.js" />
+    <Content Include="Scripts\total.js" />
+    <Content Include="Views\Shared\_partialProductCarusel.cshtml" />
+    <Content Include="Areas\Products\Views\Product\Sell.cshtml" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -614,6 +679,7 @@
     <Content Include="Nota-Estado.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\Fallback\styles.js" />
     <Content Include="Scripts\Fallback\scripts.js" />
     <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff" />
@@ -628,11 +694,15 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\autocomplete.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -709,7 +779,6 @@
     <Folder Include="Areas\OrdersDetails\Views\Shared\" />
     <Folder Include="Areas\OrdersNumbers\Models\" />
     <Folder Include="Areas\OrdersNumbers\Views\Shared\" />
-    <Folder Include="Areas\Orders\Models\" />
     <Folder Include="Areas\Orders\Views\Shared\" />
     <Folder Include="Areas\Products\Models\" />
     <Folder Include="Areas\Products\Views\Shared\" />

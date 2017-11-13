@@ -15,10 +15,10 @@ namespace ASF.Business
             return result;
         }
 
-        public Order Find(int id)
+        public Order Find(Guid Rowid)
         {
             var orderDac = new OrderDAC();
-            var result = orderDac.SelectById(id);
+            var result = orderDac.SelectById(Rowid);
             return result;
         }
 
@@ -28,10 +28,10 @@ namespace ASF.Business
             return orderDac.Create(order);
         }
 
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             var orderDac = new OrderDAC();
-            orderDac.DeleteById(id);
+            orderDac.DeleteById(Rowid);
         }
 
         public void Edit(Order order)

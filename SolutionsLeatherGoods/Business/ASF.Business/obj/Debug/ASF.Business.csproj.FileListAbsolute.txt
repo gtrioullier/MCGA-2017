@@ -3,13 +3,13 @@ C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.B
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\bin\ASF.Business.pdb
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.dll
 C:\Users\rick\Source\Workspaces\Área de trabajo\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.pdb
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Business.dll
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Business.pdb
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.csprojResolveAssemblyReference.cache
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.dll
-C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.pdb
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.Business.dll
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\bin\ASF.Business.pdb
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.csprojResolveAssemblyReference.cache
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.dll
 D:\Gustavo.Trioullier\MCGA\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Business.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.Business.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.csprojResolveAssemblyReference.cache
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Business\ASF.Business\obj\Debug\ASF.Business.pdb

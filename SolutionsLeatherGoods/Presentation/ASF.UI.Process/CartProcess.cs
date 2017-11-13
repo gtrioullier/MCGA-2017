@@ -23,29 +23,30 @@ namespace ASF.UI.Process
             return response.Result;
         }
 
-        public Cart Find(int id)
+        public Cart Find(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindCartResponse>("rest/Cart/Find", parameters, MediaType.Json);
             return response.Result;
         }
 
-        public void Create(Cart P)
+        public Cart Create(Cart C)
         {
-            var request = HttpPost<Cart>("rest/Cart/Add", P, MediaType.Json);
+            var request = HttpPost<Cart>("rest/Cart/Add", C, MediaType.Json);
+            return request;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindCartResponse>("rest/Cart/Remove", parameters, MediaType.Json);
         }
 
-        public void Edit(Cart P)
+        public void Edit(Cart C)
         {
-            var request = HttpPost<Cart>("rest/Cart/Edit", P, MediaType.Json);
+            var request = HttpPost<Cart>("rest/Cart/Edit", C, MediaType.Json);
         }
     }
 }

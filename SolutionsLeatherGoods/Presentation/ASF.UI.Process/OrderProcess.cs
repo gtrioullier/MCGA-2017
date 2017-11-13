@@ -23,10 +23,10 @@ namespace ASF.UI.Process
             return response.Result;
         }
 
-        public Order Find(int id)
+        public Order Find(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindOrderResponse>("rest/Order/Find", parameters, MediaType.Json);
             return response.Result;
         }
@@ -36,10 +36,10 @@ namespace ASF.UI.Process
             var request = HttpPost<Order>("rest/Order/Add", O, MediaType.Json);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid Rowid)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("id", id);
+            parameters.Add("Rowid", Rowid);
             var response = HttpGet<FindOrderResponse>("rest/Order/Remove", parameters, MediaType.Json);
         }
 

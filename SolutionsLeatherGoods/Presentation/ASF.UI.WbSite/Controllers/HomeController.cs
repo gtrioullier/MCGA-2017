@@ -6,6 +6,7 @@ using ASF.UI.WbSite.Services.OpenSearch;
 using ASF.UI.WbSite.Services.Robots;
 using ASF.UI.WbSite.Services.Sitemap;
 using Microsoft.AspNet.Identity;
+using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Controllers
 {
@@ -67,6 +68,8 @@ namespace ASF.UI.WbSite.Controllers
             //    Destination = "user@emaill"
             //};
             //this.emailService.SendAsync(msg);
+
+            ViewBag.categorias = DataCacheService.Instance.CategoryList();
 
             return this.View(HomeControllerAction.Index);
         }

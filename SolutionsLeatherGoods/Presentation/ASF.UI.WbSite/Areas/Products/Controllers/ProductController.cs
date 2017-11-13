@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Cache;
+using System.Globalization;
 
 namespace ASF.UI.WbSite.Areas.Products.Controllers
 {
-    [Authorize]
     public class ProductController : Controller
     {
         // GET: Products/Product
@@ -17,7 +18,7 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             var dealers = cpd.SelectList();
             var lista = cp.SelectList();
 
-            foreach(var l in lista)
+            foreach (var l in lista)
             {
                 l.Vendedor = dealers.Find(v => v.Id == l.DealerId);
             }
@@ -37,7 +38,8 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         public ActionResult Create()
         {
             var cpDealers = new ASF.UI.Process.DealerProcess();
-            var dealers = cpDealers.SelectList().Select(d => new {
+            var dealers = cpDealers.SelectList().Select(d => new
+            {
                 Id = d.Id,
                 Text = string.Format("{0}, {1}", d.LastName, d.FirstName)
             }).ToList();
@@ -102,7 +104,7 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
                 Text = string.Format("{0}, {1}", d.LastName, d.FirstName)
             }).ToList();
 
-            ViewBag.dealers = dealers.OrderBy(d =>d.Text);
+            ViewBag.dealers = dealers.OrderBy(d => d.Text);
 
             return View(product);
         }
@@ -119,6 +121,57 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
+        }
+
+
+        //GET: Products/Product/fillCarusel
+        public ActionResult fillCarusel(string categoria)
+        {
+            var lista = new List<ASF.Entities.Product>();
+            var categories = DataCacheService.Instance.CategoryList();
+            var categoryid = categories.Where(c => c.Name.ToLower() == categoria).Select(c => c.Id).FirstOrDefault();
+            var cpdealers = new ASF.UI.Process.DealerProcess();
+            var dealers = cpdealers.SelectList().Where(d => d.CategoryId == categoryid).Select(d => d.Id);
+            foreach (var dealer in dealers)
+            {
+                var cp = new ASF.UI.Process.ProductProcess();
+                lista = cp.SelectList().Where(p => p.DealerId == dealer).ToList();
+            }
+            return PartialView("_partialProductCarusel", lista);
+        }
+
+        //GET: Products/Product/Sell/5
+        public ActionResult Sell(Guid Rowid)
+        {
+            var cp = new ASF.UI.Process.ProductProcess();
+            var product = cp.Find(Rowid);
+            return View(product);
+        }
+
+        public JsonResult GetProducts(string Areas, string term = "")
+        {
+            {
+
+                if (term != "")
+                {
+                    try
+                    {
+                        var cp = new ASF.UI.Process.ProductProcess();
+                        var productos = cp.SelectList().Where(p => p.Description.StartsWith(term, true, CultureInfo.CurrentCulture)).Select(p => new
+                        {
+                            Description = p.Description,
+                            Price = p.Price,
+                            Rowid = p.Rowid
+                        });
+                        return Json(productos, JsonRequestBehavior.AllowGet);
+                    }
+                    catch (Exception)
+                    {
+                        return Json(string.Empty, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

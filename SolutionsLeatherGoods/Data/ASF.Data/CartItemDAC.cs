@@ -32,7 +32,7 @@ namespace ASF.Data
 
         public List<CartItem> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.CartItem";
+            const string sqlStatement = "SELECT [Id], [CartId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.CartItem";
 
             var result = new List<CartItem>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -61,12 +61,10 @@ namespace ASF.Data
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
+                db.AddInParameter(cmd, "@id", DbType.Int32, id);
                 using (var dr = db.ExecuteReader(cmd))
                 {
-                    while (dr.Read())
-                    {
                         if (dr.Read()) cartitem = LoadCartItem(dr);
-                    }
                 }
             }
 
@@ -76,7 +74,7 @@ namespace ASF.Data
         public CartItem Create(CartItem cartitem)
         {
             const string sqlStatement = "INSERT INTO dbo.CartItem ([CartId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy])" +
-               "VALUES (@CartId, @ProductId, @Price, @Quantity, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy], @CartId, @ProductId, @Price, @Quantity, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
+               "VALUES (@CartId, @ProductId, @Price, @Quantity, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -109,7 +107,7 @@ namespace ASF.Data
 
         public void UpdateById(CartItem cartitem)
         {
-            const string sqlStatement = "UPDATE dbo.CartItem" +
+            const string sqlStatement = "UPDATE dbo.CartItem " +
                 "SET [CartId]=@CartId, " +
                     "[ProductId]=@ProductId, " +
                     "[Price]=@Price, " +
@@ -131,6 +129,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cartitem.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cartitem.ChangedOn);
                 db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cartitem.ChangedBy);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, cartitem.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

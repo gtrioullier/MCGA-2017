@@ -33,13 +33,13 @@ namespace ASF.Data
 
         public List<Cart> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.Cart";
+            const string sqlStatement = "SELECT [Id], [Cookie], [CartDate], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.Cart";
 
             var result = new List<Cart>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                using (var dr = db.ExecuteReader(cmd))
+                using ( var dr = db.ExecuteReader(cmd))
                 {
                     while (dr.Read())
                     {
@@ -52,22 +52,20 @@ namespace ASF.Data
             return result;
         }
 
-        public Cart SelectById(int id)
+        public Cart SelectById(Guid Rowid)
         {
             const string sqlStatement = "SELECT [Id], [Cookie], [CartDate], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                "FROM dbo.Cart WHERE [Id]=@Id ";
+                "FROM dbo.Cart WHERE [Rowid]=@Rowid ";
 
             Cart cart = null;
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
-                    while (dr.Read())
-                    {
                         if (dr.Read()) cart = LoadCart(dr);
-                    }
                 }
             }
 
@@ -77,7 +75,7 @@ namespace ASF.Data
         public Cart Create(Cart cart)
         {
             const string sqlStatement = "INSERT INTO dbo.Cart ([Cookie], [CartDate], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy])" +
-               "VALUES (@Cookie, @CartDate, @ItemCount, @Rowid, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy], @Cookie, @CartDate, @ItemCount, @Rowid, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
+               "VALUES (@Cookie, @CartDate, @ItemCount, @Rowid, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -97,20 +95,20 @@ namespace ASF.Data
             return cart;
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(Guid Rowid)
         {
-            const string sqlStatement = "DELETE dbo.Cart WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE dbo.Cart WHERE [Rowid]=@Rowid ";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 db.ExecuteNonQuery(cmd);
             }
         }
 
         public void UpdateById(Cart cart)
         {
-            const string sqlStatement = "UPDATE dbo.Cart" +
+            const string sqlStatement = "UPDATE dbo.Cart " +
                 "SET [Cookie]=@Cookie, " +
                     "[CartDate]=@CartDate, " +
                     "[ItemCount]=@ItemCount, " +
@@ -119,7 +117,7 @@ namespace ASF.Data
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
                     "[ChangedBy]=@ChangedBy " +
-                "WHERE [Id]=@Id ";
+                "WHERE [Rowid]=@Rowid ";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -132,6 +130,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cart.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cart.ChangedOn);
                 db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cart.ChangedBy);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, cart.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

@@ -31,5 +31,7 @@ namespace ASF.Entities
         [DataMember]
         [DisplayName("Right To Left")]
         public bool RightToLeft { get; set; }
+
+        public virtual IList<LocaleStringResource> LocaleStringResources { get; set; }
     }
 }

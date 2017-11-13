@@ -35,7 +35,7 @@ namespace ASF.Data
 
         public List<Order> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.Order";
+            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM [dbo].[Order]";
 
             var result = new List<Order>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -54,17 +54,17 @@ namespace ASF.Data
             return result;
         }
 
-        public Order SelectById(int id)
+        public Order SelectById(Guid Rowid)
         {
             const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                "FROM dbo.Order WHERE [Id]=@Id ";
+                "FROM [dbo].[Order] WHERE [Rowid]=@Rowid ";
 
             Order order = null;
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
                     while (dr.Read())
@@ -79,7 +79,7 @@ namespace ASF.Data
 
         public Order Create(Order order)
         {
-            const string sqlStatement = "INSERT INTO dbo.Order ([ClientId], [OrderDate], [TotalTotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
+            const string sqlStatement = "INSERT INTO [dbo].[Order] ([ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
                 "VALUES(@ClientId, @OrderDate, @TotalPrice, @State, @OrderNumber, @ItemCount, @Rowid, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy); SELECT SCOPE_IDENTITY();";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -103,20 +103,20 @@ namespace ASF.Data
             return order;
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(Guid Rowid)
         {
-            const string sqlStatement = "DELETE dbo.Order WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE [dbo].[Order] WHERE [Rowid]=@Rowid ";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 db.ExecuteNonQuery(cmd);
             }
         }
 
         public void UpdateById(Order order)
         {
-            const string sqlStatement = "UPDATE dbo.Order" +
+            const string sqlStatement = "UPDATE [dbo].[Order]" +
                 "SET [ClientId]=@ClientId , " +
                     "[OrderDate]=@OrderDate, " +
                     "[TotalTotalPrice]=@TotalPrice, " +
@@ -128,7 +128,7 @@ namespace ASF.Data
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
                     "[ChangedBy]=@ChangedBy " +
-                "WHERE  [Id]=@Id ";
+                "WHERE  [Rowid]=@Rowid ";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))

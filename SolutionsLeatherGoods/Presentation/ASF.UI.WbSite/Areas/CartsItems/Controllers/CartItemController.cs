@@ -25,23 +25,57 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
         }
 
         //GET: CartItemsItems/CartItem/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         //POST: CartItemsItems/CartItem/Create
-        [HttpPost]
-        public ActionResult Create(ASF.Entities.CartItem model)
+        //[HttpPost]
+        //public ActionResult Create(ASF.Entities.CartItem model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var cp = new ASF.UI.Process.CartItemProcess();
+        //        model.CreatedOn = DateTime.Now;
+        //        model.ChangedOn = DateTime.Now;
+        //        cp.Create(model);
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
+        //GET: CartItemsItems/CartItem/Create/5
+        public ActionResult Create(Guid productRowid)
         {
-            if (ModelState.IsValid)
+            ASF.Entities.CartItem cartItem = new Entities.CartItem();
+            Guid cartRowid = new Guid();
+            if (Request.Cookies["cartCookie"] != null)
             {
-                var cp = new ASF.UI.Process.CartItemProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
-                cp.Create(model);
+                string stringcartRowid = Request.Cookies["cartCookie"].Value;
+                cartRowid = Guid.Parse(stringcartRowid);
             }
-            return RedirectToAction("Index");
+            var cpCart = new ASF.UI.Process.CartProcess();
+            var cart = cpCart.Find(cartRowid);
+            var cpProduct = new ASF.UI.Process.ProductProcess();
+            var product = cpProduct.Find(productRowid);
+
+            cartItem.CartId = cart.Id;
+            cartItem.ProductId = product.Id;
+            cartItem.Quantity = 1;
+            cartItem.Price = product.Price * cartItem.Quantity;
+            cartItem.CreatedOn = DateTime.Now;
+            cartItem.CreatedBy = 0;
+            cartItem.ChangedOn = DateTime.Now;
+            cartItem.ChangedBy = 0;
+
+            var cpCartItem = new ASF.UI.Process.CartItemProcess();
+            cpCartItem.Create(cartItem);
+
+            //sumar 1 a item count del carrito
+            cart.ItemCount = cart.ItemCount + 1;
+            cpCart.Edit(cart);
+            
+            return RedirectToAction("Details","Cart", new { area="Carts", Rowid=cartRowid});
         }
 
         //GET: CartItemsItems/CartItem/Delete
@@ -88,6 +122,54 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
+        }
+
+        public JsonResult addItem(int cartItemId)
+        {
+            var cp = new ASF.UI.Process.CartItemProcess();
+            var cartItem = cp.Find(cartItemId);
+            var productPrice = cartItem.Price / cartItem.Quantity;
+            cartItem.ChangedOn = DateTime.Now;
+            cartItem.ChangedBy = 0;
+            cartItem.Quantity = cartItem.Quantity + 1;
+            cartItem.Price = productPrice * cartItem.Quantity;
+            cp.Edit(cartItem);
+            var value = cartItem.Quantity;
+
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult removeItem(int cartItemId)
+        {
+            var cp = new ASF.UI.Process.CartItemProcess();
+            var cartItem = cp.Find(cartItemId);
+            var productPrice = cartItem.Price / cartItem.Quantity;
+            cartItem.ChangedOn = DateTime.Now;
+            cartItem.ChangedBy = 0;
+            cartItem.Quantity = cartItem.Quantity - 1;
+            cartItem.Price = productPrice * cartItem.Quantity;
+            cp.Edit(cartItem);
+            var value = cartItem.Quantity;
+
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult removeDetail(int cartItemId)
+        {
+            var cp = new ASF.UI.Process.CartItemProcess();
+            cp.Delete(cartItemId);
+            Guid cartRowid = new Guid();
+            if (Request.Cookies["cartCookie"] != null)
+            {
+                string stringcartRowid = Request.Cookies["cartCookie"].Value;
+                cartRowid = Guid.Parse(stringcartRowid);
+            }
+            var cpCart = new ASF.UI.Process.CartProcess();
+            var cart = cpCart.Find(cartRowid);
+            cart.ItemCount = cart.ItemCount - 1;
+            cpCart.Edit(cart);
+
+            return Json("Deleted succesfully", JsonRequestBehavior.AllowGet);
         }
     }
 }

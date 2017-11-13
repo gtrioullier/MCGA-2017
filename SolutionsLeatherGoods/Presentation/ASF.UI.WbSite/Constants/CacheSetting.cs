@@ -21,5 +21,23 @@
             public const string Key = "Country";
             public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
         }
+
+        public static class Language
+        {
+            public const string Key = "Language";
+            public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
+        }
+
+        //public static class LocaleResourceKey
+        //{
+        //    public const string Key = "LocaleResourceKey";
+        //    public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
+        //}
+
+        public static class LangDictionary
+        {
+            public const string key = "LangDictionary";
+            public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
+        }
     }
 }

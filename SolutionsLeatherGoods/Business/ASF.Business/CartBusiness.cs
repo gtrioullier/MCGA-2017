@@ -16,10 +16,10 @@ namespace ASF.Business
             return result;
         }
 
-        public Cart Find(int id)
+        public Cart Find(Guid Rowid)
         {
             var cartDac = new CartDAC();
-            var result = cartDac.SelectById(id);
+            var result = cartDac.SelectById(Rowid);
             return result;
         }
 
@@ -29,10 +29,10 @@ namespace ASF.Business
             return cartDac.Create(cart);
         }
 
-        public void Remove(int id)
+        public void Remove(Guid Rowid)
         {
             var cartDac = new CartDAC();
-            cartDac.DeleteById(id);
+            cartDac.DeleteById(Rowid);
         }
 
         public void Edit(Cart cart)

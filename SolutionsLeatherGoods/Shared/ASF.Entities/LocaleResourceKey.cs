@@ -27,5 +27,7 @@ namespace ASF.Entities
         [DataMember]
         [DisplayName("Date Added")]
         public DateTime DateAdded { get; set; }
+
+        public virtual IList<LocaleStringResource> LocaleStringResources { get; set; }
     }
 }

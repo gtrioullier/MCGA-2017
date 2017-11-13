@@ -165,8 +165,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="@Url.RouteUrl(HomeControllerRoute.GetAbout)"><span aria-hidden="true" class="fa fa-users"></span> About</a></li>
-                        <li><a href="@Url.RouteUrl(HomeControllerRoute.GetContact)"><span aria-hidden="true" class="fa fa-phone"></span> Contact</a></li>
+                        <li><a href="~/#About"><span aria-hidden="true" class="fa fa-users"></span> About</a></li>
+                        <li><a href="~/#Contact"><span aria-hidden="true" class="fa fa-phone"></span> Contact</a></li>
                         <li><a href="@Url.RouteUrl(HomeControllerRoute.GetFeed)"><span aria-hidden="true" class="fa fa-rss"></span> RSS</a></li>
                         @if (Request.IsAuthenticated)
                         {
@@ -194,6 +194,7 @@
                             }
                         }
                     </ul>
+
                     @Html.Partial("_LoginPartial")
                     @*<form action="@Url.RouteUrl(HomeControllerRoute.GetSearch)" class="navbar-form navbar-right" method="get" role="search">
                             <div class="input-group">
@@ -226,5 +227,10 @@
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/site")
         @RenderSection("scripts", required: false)
+        @*<link href="~/Content/autocomplete.css" rel="stylesheet" />*@
+        @*<link href="~/Content/datepicker.css" rel="stylesheet" />*@
+        <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+        <link href="~/Content/landing-page.css" rel="stylesheet" />
+        <link href="~/Content/Carousel.css" rel="stylesheet" />
     </body>
 </html>

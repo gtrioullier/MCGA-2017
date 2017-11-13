@@ -2,23 +2,28 @@
 
 namespace ASF.UI.WbSite.Areas.Products
 {
-    public class ProductsAreaRegistration : AreaRegistration 
+    public class ProductsAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Products";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Products_default",
                 "Products/{controller}/{action}/{Rowid}",
                 new { action = "Index", Rowid = UrlParameter.Optional }
             );
+            context.MapRoute(
+    "fillCarusel",
+    "Products/{controller}/{action}/{categoria}",
+    new { action = "fillCarusel", categoria = UrlParameter.Optional }
+);
         }
     }
 }

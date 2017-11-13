@@ -83,7 +83,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, ordernumber.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, ordernumber.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, ordernumber.ChangedOn);
-                db.AddInParameter(cmd, "@ChangerBy", DbType.DateTime, ordernumber.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, ordernumber.ChangedBy);
 
                 ordernumber.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -120,7 +120,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, ordernumber.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, ordernumber.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, ordernumber.ChangedOn);
-                db.AddInParameter(cmd, "@ChangerBy", DbType.DateTime, ordernumber.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, ordernumber.ChangedBy);
 
                 ordernumber.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }

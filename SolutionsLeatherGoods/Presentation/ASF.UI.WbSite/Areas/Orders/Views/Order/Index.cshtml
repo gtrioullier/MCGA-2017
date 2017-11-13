@@ -9,6 +9,7 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("CreateJ", "CreateJ")
 </p>
 <table class="table">
     <tr>
@@ -51,7 +52,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ClientId)
+            @Html.DisplayFor(modelItem => item.Client.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OrderDate)

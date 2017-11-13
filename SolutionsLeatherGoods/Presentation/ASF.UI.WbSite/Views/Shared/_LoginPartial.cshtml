@@ -6,6 +6,7 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="cartAnchor"><span aria-hidden="true" class="fa fa-shopping-cart"></span></a></li>
             <li>
                 @Html.ActionLink(" Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { Area = "" }, htmlAttributes: new { title = "Manage", @class = "fa fa-user" })
             </li>
@@ -18,6 +19,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" id="cartAnchor"><span aria-hidden="true" class="fa fa-shopping-cart"></span></a></li>
         <li>@Html.ActionLink(" Register ", "Register", "Account", new { area = "" }, htmlAttributes: new { id = "registerLink", @class="fa fa-pencil-square-o" })</li>
         <li>@Html.ActionLink(" Log in ", "Login", "Account", new { area = "" }, htmlAttributes: new { id = "loginLink", @class="fa fa-sign-in"})</li>
     </ul>
