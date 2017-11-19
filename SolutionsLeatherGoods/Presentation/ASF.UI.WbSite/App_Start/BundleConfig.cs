@@ -106,6 +106,10 @@
                 .Include("~/Scripts/Fallback/scripts.js")
                 .Include("~/Scripts/site.js");
             bundles.Add(failoverCoreBundle);
+
+            Bundle lightSlider = new ScriptBundle("~/bundles/lightslider/js").
+                Include("~/Scripts/lightSlider/lightslider.js");
+            bundles.Add(lightSlider);
         }
     }
 }

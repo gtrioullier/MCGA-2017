@@ -20,6 +20,7 @@ namespace ASF.Data
                 OrderId = GetDataValue<int>(dr, "OrderId"),
                 ProductId = GetDataValue<int>(dr, "ProductId"),
                 Price = GetDataValue<Double>(dr, "Price"),
+                Quantity = GetDataValue<int>(dr, "Quantity"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
                 CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
@@ -31,7 +32,7 @@ namespace ASF.Data
 
         public List<OrderDetail> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [ProductId], [Stars], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.OrderDetail";
+            const string sqlStatement = "SELECT [Id], [OrderId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.OrderDetail";
 
             var result = new List<OrderDetail>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -52,7 +53,7 @@ namespace ASF.Data
 
         public OrderDetail SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [ProductId], [Stars], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
+            const string sqlStatement = "SELECT [Id], [OrderId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
                 "FROM dbo.OrderDetail WHERE [Id]=@Id ";
 
             OrderDetail orderdetail = null;
@@ -75,8 +76,8 @@ namespace ASF.Data
 
         public OrderDetail Create(OrderDetail orderdetail)
         {
-            const string sqlStatement = "INSERT INTO dbo.OrderDetail ([OrderId], [ProductId], [Price], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
-                "VALUES(@OrderId, @ProductId, @Price, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy); SELECT SCOPE_IDENTITY();";
+            const string sqlStatement = "INSERT INTO dbo.OrderDetail ([OrderId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
+                "VALUES(@OrderId, @ProductId, @Price, @Quantity, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy); SELECT SCOPE_IDENTITY();";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -84,6 +85,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@OrderId", DbType.Int32, orderdetail.OrderId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, orderdetail.ProductId);
                 db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
+                db.AddInParameter(cmd, "@Quantity", DbType.Int32, orderdetail.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);
@@ -110,8 +112,9 @@ namespace ASF.Data
         {
             const string sqlStatement = "UPDATE dbo.OrderDetail " +
                 "SET [OrderId]=@OrderId, " +
-                    "[ProductId]=@ProductId," +
-                    "[Price]=@Price," +
+                    "[ProductId]=@ProductId, " +
+                    "[Price]=@Price, " +
+                    "[Quantity]=@Quantity, " +
                     "[CreatedOn]=@CreatedOn, " +
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
@@ -124,6 +127,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@OrderId", DbType.Int32, orderdetail.OrderId);
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, orderdetail.ProductId);
                 db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
+                db.AddInParameter(cmd, "@Quantity", DbType.Int32, orderdetail.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
                 db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);

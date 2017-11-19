@@ -141,11 +141,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
 
             var ctrlOrder = new Orders.Controllers.OrderController();
             ctrlOrder.ControllerContext = ControllerContext;
-            ctrlOrder.Create(orden.TotalPrice, orden.State, orden.OrderDate, orden.ItemCount);
-
-            //cpOrden.Create(orden);
-
-            //RedirectToAction("Create", "Order", new { total = totalPrice, state = orden.State, orderdate = orden.OrderDate, itemcount= orden.ItemCount });
+            orden = ctrlOrder.Create(orden.TotalPrice, orden.State, orden.OrderDate, orden.ItemCount);
 
             foreach (var item in CartItems)
             {
@@ -162,7 +158,13 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
                 cpOrdenDetalle.Create(ordenDetalle);
             }
 
-            return RedirectToAction("Index", "Home", null);
+            if (Request.Cookies["cartCookie"] != null)
+            {
+                Response.Cookies["cartCookie"].Expires = DateTime.Now.AddDays(-1);
+            }
+
+            //En lugar de ir a Home a seguir comprando, debería mostrar la orden para pagarla
+            return RedirectToAction("Details", "Order", new { area = "Orders", Rowid = orden.Rowid});
         }
     }
 }

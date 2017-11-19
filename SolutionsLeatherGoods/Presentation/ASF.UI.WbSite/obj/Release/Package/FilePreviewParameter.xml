@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="LeatherGoods" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Presentation\\ASF\.UI\.WbSite\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Presentation\\ASF\.UI\.WbSite\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ASF-Web.config Connection String" description="" value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;Persist Security Info=True;User ID=admin;Password=zaq12wsx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Presentation\\ASF\.UI\.WbSite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ASF']/@connectionString" />
+  </parameter>
+  <parameter name="OrdersContext-Web.config Connection String" description="" value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;User ID=admin;Password=zaq12wsx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Presentation\\ASF\.UI\.WbSite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OrdersContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;Persist Security Info=True;User ID=admin;Password=zaq12wsx" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Presentation\\ASF\.UI\.WbSite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

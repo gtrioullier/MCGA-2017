@@ -178,6 +178,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -293,13 +294,21 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
+    <Compile Include="Controllers\SweetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PagoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServicesReferenced\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\Audit\Audit.cs" />
     <Compile Include="Services\Audit\AuditService.cs" />
     <Compile Include="Services\Audit\IAuditService.cs" />
@@ -448,10 +457,17 @@
     <Content Include="Areas\Categories\Views\Category\Index.cshtml" />
     <Content Include="Content\img\banner-marroquineria.jpg" />
     <Content Include="Content\img\carteras.jpg" />
+    <Content Include="Content\img\controls.png" />
     <Content Include="Content\img\marroquinería.png" />
     <Content Include="Content\img\no-image.gif" />
     <Content Include="Content\img\zapatos.jpg" />
     <Content Include="Content\landing-page.css" />
+    <Content Include="Content\lightslider.css" />
+    <Content Include="Content\lightslider.min.css" />
+    <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
+    <Content Include="Content\sweetalert\docs.css" />
+    <Content Include="Content\sweetalert\sweet-alert.css" />
+    <Content Include="Content\sweetalert\thumbs-up.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -599,20 +615,41 @@
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Edit.cshtml" />
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Translate.cshtml" />
     <Content Include="Areas\Orders\Views\Order\Create.cshtml" />
+    <Content Include="Scripts\card.js" />
     <Content Include="Scripts\detalles.js" />
     <Content Include="Scripts\carusel.js" />
     <Content Include="Scripts\Cookie.js" />
+    <Content Include="Scripts\jquery.card.js" />
+    <Content Include="Scripts\pagos.js" />
     <Content Include="Scripts\searchProduct.js" />
     <Content Include="Scripts\subtotal.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\total.js" />
+    <Content Include="Service References\ServicesReferenced\ASF.UI.WbSite.ServicesReferenced.AgregarCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicesReferenced\ASF.UI.WbSite.ServicesReferenced.ValidarTarjetaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServicesReferenced\WebService1.disco" />
+    <None Include="Service References\ServicesReferenced\configuration91.svcinfo" />
+    <None Include="Service References\ServicesReferenced\configuration.svcinfo" />
+    <None Include="Service References\ServicesReferenced\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\Shared\_partialProductCarusel.cshtml" />
     <Content Include="Areas\Products\Views\Product\Sell.cshtml" />
+    <Content Include="Content\sweetalert\sweet-alert.less" />
+    <Content Include="Content\sweetalert\sweet-alert-combine.less" />
+    <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <None Include="ReadMe.html" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Content\bootstrap\site.css">
@@ -756,6 +793,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Shared\Pagar.cshtml" />
+    <Content Include="Views\Shared\Result.cshtml" />
+    <Content Include="Views\Sweet\Alert.cshtml" />
+    <None Include="Service References\ServicesReferenced\WebService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -801,6 +842,12 @@
       <Project>{16102133-b8dc-4516-b714-c2802ecfa923}</Project>
       <Name>ASF.UI.Process</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicesReferenced\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

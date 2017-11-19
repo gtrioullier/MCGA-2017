@@ -5,7 +5,7 @@
         //leo la cookie y cargo el carrito con ese id
         // acá debo cargar el carrito correspondiente
         $('#cartAnchor').attr("href", "/Carts/Cart/Details/" + cartId);
-        alert("Welcome again " + cartId);
+        swal("Welcome again " , cartId, "success");
         //getCart(cartId);
     } else {
         // obtengo el id del carrito que deseo guardar en la cookie desde la base

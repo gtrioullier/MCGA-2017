@@ -48,7 +48,7 @@ namespace ASF.Data
 
         public LocaleStringResource SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [ResourceValue], [LocaleResourceKey_Id], [Language_Id]" +
+            const string sqlStatement = "SELECT [Id], [ResourceValue], [LocaleResourceKey_Id], [Language_Id] " +
                 "FROM dbo.LocaleStringResource WHERE [Id]=@Id";
 
             LocaleStringResource localestringresource = null;
@@ -67,7 +67,7 @@ namespace ASF.Data
 
         public LocaleStringResource Create(LocaleStringResource localestringresource)
         {
-            const string sqlStatement = "INSERT INTO dbo.LocaleStringResource ([ResourceValue], [LocaleResourceKey_Id], [Language_Id])" +
+            const string sqlStatement = "INSERT INTO dbo.LocaleStringResource ([ResourceValue], [LocaleResourceKey_Id], [Language_Id]) " +
                 "VALUES (@ResourceValue, @LocaleResourceKey_Id, @Language_Id)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -76,6 +76,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ResourceValue", DbType.String, localestringresource.ResourceValue);
                 db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, localestringresource.LocaleResourceKey_Id);
                 db.AddInParameter(cmd, "@Language_Id", DbType.Int32, localestringresource.Language_Id);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, localestringresource.Id);
 
                 //Obtener el valor de la primary key.
                 localestringresource.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -97,10 +98,10 @@ namespace ASF.Data
 
         public void UpdateById(LocaleStringResource localestringresource)
         {
-            const string sqlStatement = "UPDATE dbo.LocaleStringResource" +
+            const string sqlStatement = "UPDATE dbo.LocaleStringResource " +
                 "SET [ResourceValue]=@ResourceValue, " +
                     "[LocaleResourceKey_Id]=@LocaleResourceKey_Id, " +
-                    "[Language_Id]=@Language_Id, " +
+                    "[Language_Id]=@Language_Id " +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -109,6 +110,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ResourceValue", DbType.String, localestringresource.ResourceValue);
                 db.AddInParameter(cmd, "@LocaleResourceKey_Id", DbType.Int32, localestringresource.LocaleResourceKey_Id);
                 db.AddInParameter(cmd, "@Language_Id", DbType.Int32, localestringresource.Language_Id);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, localestringresource.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

@@ -1,0 +1,76 @@
+﻿@model  ASF.UI.WbSite.Models.PagoModel
+
+@{
+    ViewBag.Title = "Pagar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pagar</h2>
+
+<div class="container body-content">
+
+    @using (Html.BeginForm("Pagar", "Pagos", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data", id = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>New_Payment</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card-wrapper"></div>
+                <h2></h2>
+                <div class="row row col-md-offset-1">
+                    <div class="col-md-4 col-sm-5 col-lg-5">
+                        @Html.EditorFor(m => m.number, new { htmlAttributes = new { @class = "form-control", placeholder = "Card_number", name = "number" } })
+                        @Html.ValidationMessageFor(m => m.number)
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-lg-5">
+                        @Html.EditorFor(m => m.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Holder", name = "name" } })
+                        @Html.ValidationMessageFor(m => m.name)
+                    </div>
+                </div>
+
+                <h4></h4>
+                <div class="row col-md-offset-2">
+                    <div class="col-md-4 col-sm-3 col-lg-3">
+                        @Html.EditorFor(m => m.expiry, new { htmlAttributes = new { @class = "form-control", placeholder = "MM/YY", name = "expiry" } })
+                        @Html.ValidationMessageFor(m => m.expiry)
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-lg-3">
+                        @Html.EditorFor(m => m.cvc, new { htmlAttributes = new { @class = "form-control", placeholder = "CVC", name = "cvc" } })
+                        @Html.ValidationMessageFor(m => m.cvc)
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-lg-3">
+                        @Html.TextBoxFor(m => m.Importe, new { @class = "form-control", placeholder = "Amount", onkeydown = "return ValidateNumber(event);", name = "Importe" })
+                        @Html.ValidationMessageFor(m => m.Importe)
+                    </div>
+                </div>
+                <h4></h4>
+                <div class="row col-md-offset-5">
+                    <div class="col-md-6">
+                        <input type="submit" value="Pay" class="btn btn-default" id="approve-btn" />
+                        @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/Scripts/card.js"></script>
+<script src="~/Scripts/jquery.card.js"></script>
+<script>
+        new Card({
+            form: document.getElementById('form'),
+            container: '.card-wrapper'
+        });
+</script>
+<script type="text/javascript">
+        function ValidateNumber(e) {
+            var evt = (e) ? e : window.event;
+            var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+            if (charCode == 31 && charCode == 44 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105)) {
+                return false;
+            }
+            return true;
+        };
+</script>

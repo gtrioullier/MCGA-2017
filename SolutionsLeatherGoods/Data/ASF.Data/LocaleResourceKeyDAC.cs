@@ -46,7 +46,7 @@ namespace ASF.Data
 
         public LocaleResourceKey SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [Name], [Notes], [DateAdded] FROM dbo.LocaleResourceKey" + 
+            const string sqlStatement = "SELECT [Id], [Name], [Notes], [DateAdded] FROM dbo.LocaleResourceKey " + 
                 "WHERE [Id]=@Id";
 
             LocaleResourceKey localeresourcekey = null;
@@ -65,7 +65,7 @@ namespace ASF.Data
 
         public LocaleResourceKey Create(LocaleResourceKey localeresourcekey)
         {
-            const string sqlStatement = "INSERT INTO dbo.LocaleResourceKey ([Name], [Notes], [DateAdded])" +
+            const string sqlStatement = "INSERT INTO dbo.LocaleResourceKey ([Name], [Notes], [DateAdded]) " +
                 "VALUES(@Name, @Notes, @DateAdded)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -94,10 +94,10 @@ namespace ASF.Data
 
         public void UpdateById(LocaleResourceKey localeresourcekey)
         {
-            const string sqlStatement = "UPDATE dbo.LocaleResourceKey" +
+            const string sqlStatement = "UPDATE dbo.LocaleResourceKey " +
                 "SET [Name]=@Name, " +
                     "[Notes]=@Notes, " +
-                    "[DateAdded]=@DateAdded, " +
+                    "[DateAdded]=@DateAdded " +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -106,6 +106,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Name", DbType.String, localeresourcekey.Name);
                 db.AddInParameter(cmd, "@Notes", DbType.String, localeresourcekey.Notes);
                 db.AddInParameter(cmd, "@DateAdded", DbType.DateTime, localeresourcekey.DateAdded);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, localeresourcekey.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

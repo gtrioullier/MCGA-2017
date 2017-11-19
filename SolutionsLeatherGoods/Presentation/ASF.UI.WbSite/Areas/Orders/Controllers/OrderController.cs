@@ -31,6 +31,17 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
         {
             var cp = new ASF.UI.Process.OrderProcess();
             var order = cp.Find(Rowid);
+            var cpDetails = new ASF.UI.Process.OrderDetailProcess();
+            var details = cpDetails.SelectList().Where(d => d.OrderId == order.Id).ToList();
+            order.OrderDetail = new List<OrderDetail>();
+            foreach (var detail in details)
+            {
+                var cpProductos = new ASF.UI.Process.ProductProcess();
+                var producto = cpProductos.SelectList().Where(p => p.Id == detail.ProductId).FirstOrDefault();
+                detail.Product = producto;
+                order.OrderDetail.Add(detail);
+            }
+
             return View(order);
         }
 
@@ -51,7 +62,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
 
         //POST: Orders/Order/Create desde carrito
         [HttpPost]
-        public ActionResult Create(double total, string state, DateTime orderdate, int itemcount)
+        public Order Create(double total, string state, DateTime orderdate, int itemcount)
         {
             var order = new ASF.Entities.Order();
             var audit = Audit.getAudit();
@@ -71,7 +82,9 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             var cp = new ASF.UI.Process.OrderProcess();
             cp.Create(order);
 
-            return View(order);
+            Order neworder = cp.Find(order.Rowid);
+
+            return neworder;
         }
 
         //POST: Orders/Order/Create
@@ -145,6 +158,19 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CancelOrder( Guid rowid)
+        {
+            if (ModelState.IsValid)
+            {
+                var cp = new ASF.UI.Process.OrderProcess();
+                var order = cp.Find(rowid);
+                order.State = "Cancelled";
+                cp.Edit(order);
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         public JsonResult GetClients(string Areas, string term = "")

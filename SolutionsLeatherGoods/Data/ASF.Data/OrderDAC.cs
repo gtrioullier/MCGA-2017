@@ -67,10 +67,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, Rowid);
                 using (var dr = db.ExecuteReader(cmd))
                 {
-                    while (dr.Read())
-                    {
                         if (dr.Read()) order = LoadOrder(dr);
-                    }
                 }
             }
 
@@ -80,6 +77,7 @@ namespace ASF.Data
         public Order Create(Order order)
         {
             const string sqlStatement = "INSERT INTO [dbo].[Order] ([ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
+                " OUTPUT Inserted.Id "+
                 "VALUES(@ClientId, @OrderDate, @TotalPrice, @State, @OrderNumber, @ItemCount, @Rowid, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy); SELECT SCOPE_IDENTITY();";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -119,7 +117,7 @@ namespace ASF.Data
             const string sqlStatement = "UPDATE [dbo].[Order]" +
                 "SET [ClientId]=@ClientId , " +
                     "[OrderDate]=@OrderDate, " +
-                    "[TotalTotalPrice]=@TotalPrice, " +
+                    "[TotalPrice]=@TotalPrice, " +
                     "[State]=@State, " +
                     "[OrderNumber]=@OrderNumber, " +
                     "[ItemCount]=@ItemCount, " +
@@ -134,7 +132,7 @@ namespace ASF.Data
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
                 db.AddInParameter(cmd, "@ClientId", DbType.Int32, order.ClientId);
-                db.AddInParameter(cmd, "@OrderDate", DbType.Int32, order.OrderDate);
+                db.AddInParameter(cmd, "@OrderDate", DbType.DateTime, order.OrderDate);
                 db.AddInParameter(cmd, "@TotalPrice", DbType.Double, order.TotalPrice);
                 db.AddInParameter(cmd, "@State", DbType.String, order.State);
                 db.AddInParameter(cmd, "@OrderNumber", DbType.Int32, order.OrderNumber);

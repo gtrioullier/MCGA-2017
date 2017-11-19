@@ -1,0 +1,5 @@
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.UI.Process.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\bin\ASF.UI.Process.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Release\ASF.UI.Process.csprojResolveAssemblyReference.cache
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Release\ASF.UI.Process.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Presentation\ASF.UI.Process\obj\Release\ASF.UI.Process.pdb

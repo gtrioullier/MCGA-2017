@@ -1,0 +1,83 @@
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model ASF.Entities.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.getResourceString("Details")</h2>
+
+<div>
+    @*CABECERA*@
+    <div class="panel panel-default">
+        <div class="col-lg-12">
+            <div class="panel panel-default panel-heading h3">
+                <table width="100%">
+                    <tr>
+                        <td width="50%" align="left" style="vertical-align:central">
+                            @Html.getResourceString("Order") # @Model.OrderNumber
+                        </td>
+                        <td width="50%" align="right" style="vertical-align:central">
+                            @Model.OrderDate.ToShortDateString()
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @*LINEAS DE CARRITO*@
+            <div class="panel panel-default panel-body">
+                <div class="form-group">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" id="cartItemTable">
+                            <thead>
+                                <tr>
+                                    <th width="10%">@Html.getResourceString("Quantity")</th>
+                                    <th width="80%">@Html.getResourceString("Product")</th>
+                                    <th width="10%">@Html.getResourceString("Subtotal")</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.OrderDetail != null && Model.OrderDetail.Count() > 0)
+                                {
+                                    var i = 0;
+                                    foreach (var item in Model.OrderDetail)
+                                    {
+                                        <tr>
+                                            <td width="10%">@item.Quantity</td>
+                                            <td width="80%">@item.Product.Description</td>
+                                            <td width="10%" align="right">$ @item.Price</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <h4 class="text-danger">HA OCURRIDO UN ERROR GRAVE</h4>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default panel-footer h4">
+                <table width="100%">
+                    <tr>
+                        <td width="50%" align="left" style="vertical-align:central">
+                            @Html.getResourceString("Total")
+                        </td>
+                        <td width="50%" align="right" style="vertical-align:central">
+                            $ @Model.TotalPrice
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @*@Html.ActionLink("Pay", "Pagar", "Pagos", new { area="", rowid = Model.Rowid }, new { @class="btn btn-default"} )*@ 
+    @Html.ActionLink("Pay", "", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Cancel", "CancelOrder", "Order", new { rowid = Model.Rowid }, new { @class="btn btn-default"})
+</p>

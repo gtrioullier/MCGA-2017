@@ -4,22 +4,22 @@
     padding-bottom: 30px;
 }
 
-.carousel-inner .item.left.active {
+.carousel-inner .item-left.active {
   transform: translateX(-33%);
 }
-.carousel-inner .item.right.active {
+.carousel-inner .item-right.active {
   transform: translateX(33%);
 }
 
-.carousel-inner .item.next {
+.carousel-inner .item-next {
   transform: translateX(33%)
 }
-.carousel-inner .item.prev {
+.carousel-inner .item-prev {
   transform: translateX(-33%)
 }
 
-.carousel-inner .item.right,
-.carousel-inner .item.left { 
+.carousel-inner .item-right,
+.carousel-inner .item-left { 
   transform: translateX(0);
 }
 
@@ -36,3 +36,7 @@
 }
 
 .carousel-control.left,.carousel-control.right {background-image:none;}
+
+.carousel-indicators{
+    background-color:lightgoldenrodyellow;
+}

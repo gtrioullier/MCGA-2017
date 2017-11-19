@@ -47,7 +47,7 @@ namespace ASF.Data
 
         public Language SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RightToLeft]" +
+            const string sqlStatement = "SELECT [Id], [Name], [LanguageCulture], [FlagImageFileName], [RightToLeft] " +
                 "FROM dbo.Language WHERE [Id]=@Id";
 
             Language language = null;
@@ -65,7 +65,7 @@ namespace ASF.Data
 
         public Language Create(Language language)
         {
-            const string sqlStatement = "INSERT INTO dbo.Language ([Name], [LanguageCulture], [FlagImageFileName], [RightToLeft])" +
+            const string sqlStatement = "INSERT INTO dbo.Language ([Name], [LanguageCulture], [FlagImageFileName], [RightToLeft]) " +
                 "VALUES (@Name, @LanguageCulture, @FlagImageFileName, @RightToLeft)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -75,6 +75,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@LanguageCulture", DbType.String, language.LanguageCulture);
                 db.AddInParameter(cmd, "@FlagImageFileName", DbType.String, language.FlagImageFileName);
                 db.AddInParameter(cmd, "@RightToLeft", DbType.Boolean, language.RightToLeft);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, language.Id);
 
                 // Obtener el valor de la primary key.
                 language.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -84,7 +85,7 @@ namespace ASF.Data
 
         public void DeleteById(int id)
         {
-            const string sqlStatement = "DELETE dbo.Language WHERE [Id]=@Id ";
+            const string sqlStatement = "DELETE dbo.Language WHERE [Id]=@Id";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
@@ -95,11 +96,11 @@ namespace ASF.Data
 
         public void UpdateById(Language language)
         {
-            const string sqlStatement = "UPDATE dbo.Language" +
+            const string sqlStatement = "UPDATE dbo.Language " +
                 "SET [Name]=@Name, " +
                     "[LanguageCulture]=@LanguageCulture," +
-                    "[FlagImageFileName]=@FlagImageFileName," +
-                    "[RightToLeft]=@,RightToLeft" +
+                    "[FlagImageFileName]=@FlagImageFileName, " +
+                    "[RightToLeft]=@RightToLeft " +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -109,6 +110,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@LanguageCulture", DbType.String, language.LanguageCulture);
                 db.AddInParameter(cmd, "@FlagImageFileName", DbType.String, language.FlagImageFileName);
                 db.AddInParameter(cmd, "@RightToLeft", DbType.Boolean, language.RightToLeft);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, language.Id);
 
                 db.ExecuteNonQuery(cmd);
             }

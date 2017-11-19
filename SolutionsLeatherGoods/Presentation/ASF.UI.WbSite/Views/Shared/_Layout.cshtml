@@ -147,6 +147,10 @@
 
         @* You can use the head section to render additional meta tags. *@
         @RenderSection("head", required: false)
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/landing-page.css" rel="stylesheet" />
+    <link href="~/Content/Carousel.css" rel="stylesheet" />
+    <link href="~/Content/lightslider.css" rel="stylesheet"  />
     </head>
     <body>
         @* Skip to main content link for people who use screen readers. sr-only makes this only visible to screen readers.
@@ -220,17 +224,13 @@
                 <p>&copy; @DateTime.Now.Year - @Application.Name</p>
             </footer>
         </div>
-
+        <script src="~/Scripts/sweetalert.min.js" type="text/javascript"></script>
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/jqueryvalunobtrusive")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/site")
+        @Scripts.Render("~/bundles/lightslider/js")
         @RenderSection("scripts", required: false)
-        @*<link href="~/Content/autocomplete.css" rel="stylesheet" />*@
-        @*<link href="~/Content/datepicker.css" rel="stylesheet" />*@
-        <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-        <link href="~/Content/landing-page.css" rel="stylesheet" />
-        <link href="~/Content/Carousel.css" rel="stylesheet" />
     </body>
 </html>

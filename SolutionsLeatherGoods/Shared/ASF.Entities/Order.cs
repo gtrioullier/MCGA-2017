@@ -109,6 +109,6 @@ namespace ASF.Entities
 
         public virtual Client Client { get; set; }
 
-        public virtual OrderDetail OrderDetail { get; set; }
+        public virtual List<OrderDetail> OrderDetail { get; set; }
     }
 }

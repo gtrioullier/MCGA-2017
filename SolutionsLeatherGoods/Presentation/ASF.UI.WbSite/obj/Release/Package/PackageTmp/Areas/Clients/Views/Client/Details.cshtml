@@ -1,0 +1,125 @@
+﻿@using ASF.UI.WbSite.Services.CultureHelper
+
+@model ASF.Entities.Client
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.getResourceString("Details")</h2>
+
+<div>
+    <h4>@Html.getResourceString("Client")</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName(Html.getResourceString("Name"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("LastName"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("Email"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("Country"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("City"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("SignupDate"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rowid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rowid)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("OrderCount"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("CreatedOn"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("CreatedBy"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("ChangedOn"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(Html.getResourceString("ChangedBy"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangedBy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = Model.Rowid }, new { @class = "btn btn-default" })
+    @Html.ActionLink(Html.getResourceString("Back"), "Index", null, new { @class = "btn btn-default" })
+</p>

@@ -205,7 +205,8 @@
                 {
 #if DEBUG
                     // Allow Browser Link to work in debug mode only.
-                    CustomSources = "data:",
+                    //CustomSources = "data:",
+                    CustomSources = "*",
 #else
                     // Allow images from example.com.
                     // CustomSources = "*.example.com",

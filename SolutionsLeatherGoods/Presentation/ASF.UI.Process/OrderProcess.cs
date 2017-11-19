@@ -31,9 +31,10 @@ namespace ASF.UI.Process
             return response.Result;
         }
 
-        public void Create(Order O)
+        public Order Create(Order O)
         {
             var request = HttpPost<Order>("rest/Order/Add", O, MediaType.Json);
+            return request;
         }
 
         public void Delete(Guid Rowid)
