@@ -22,9 +22,9 @@ namespace ASF.Data
                 Price = GetDataValue<Double>(dr, "Price"),
                 Quantity = GetDataValue<int>(dr, "Quantity"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return orderdetail;
@@ -53,7 +53,7 @@ namespace ASF.Data
 
         public OrderDetail SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [OrderId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
+            const string sqlStatement = "SELECT [Id], [OrderId], [ProductId], [Price], [Quantity], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] " +
                 "FROM dbo.OrderDetail WHERE [Id]=@Id ";
 
             OrderDetail orderdetail = null;
@@ -87,9 +87,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, orderdetail.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, orderdetail.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, orderdetail.ChangedBy);
                 // Obtener el valor de la primary key.
                 orderdetail.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -129,9 +129,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Price", DbType.Double, orderdetail.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, orderdetail.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, orderdetail.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, orderdetail.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, orderdetail.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, orderdetail.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, orderdetail.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, orderdetail.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

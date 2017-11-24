@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="RestService" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Hosts\\ASF\.Hosts\.Web\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Hosts\\ASF\.Hosts\.Web\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ASF-Web.config Connection String" description="" value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;Persist Security Info=True;User ID=admin;Password=zaq12wsx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Hosts\\ASF\.Hosts\.Web\\obj\\Release\\Package\\PackageTmp\\web\.config$" match="/configuration/connectionStrings/add[@name='ASF']/@connectionString" />
+  </parameter>
+  <parameter name="default-Web.config Connection String" description="" value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;User ID=admin;Password=zaq12wsx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Hosts\\ASF\.Hosts\.Web\\obj\\Release\\Package\\PackageTmp\\web\.config$" match="/configuration/connectionStrings/add[@name='default']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=COUGAR-W7;Initial Catalog=LeatherGoods;Persist Security Info=True;User ID=admin;Password=zaq12wsx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rick\\Source\\Repos\\MCGA-2017\\SolutionsLeatherGoods\\Hosts\\ASF\.Hosts\.Web\\obj\\Release\\Package\\PackageTmp\\web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

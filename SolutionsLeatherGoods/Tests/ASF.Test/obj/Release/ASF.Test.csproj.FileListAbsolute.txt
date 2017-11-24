@@ -1,0 +1,17 @@
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Test.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Test.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Business.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Entities.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Data.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Business.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Entities.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\ASF.Data.pdb
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\bin\Release\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\obj\Release\ASF.Test.csprojResolveAssemblyReference.cache
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\obj\Release\ASF.Test.dll
+C:\Users\rick\Source\Repos\MCGA-2017\SolutionsLeatherGoods\Tests\ASF.Test\obj\Release\ASF.Test.pdb

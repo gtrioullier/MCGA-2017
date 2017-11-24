@@ -25,11 +25,7 @@ namespace ASF.Data
                 Message = GetDataValue<string>(dr, "Message"),
                 Everything = GetDataValue<string>(dr, "Everything"),
                 HttpReferer = GetDataValue<string>(dr, "HttpReferer"),
-                PathAndQuery = GetDataValue<string>(dr, "PathAndQuery"),
-                CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
-                ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                PathAndQuery = GetDataValue<string>(dr, "PathAndQuery")
             };
 
             return error;
@@ -37,7 +33,7 @@ namespace ASF.Data
 
         public List<Error> Select()
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.Error";
+            const string sqlStatement = "SELECT [Id], [ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery] FROM dbo.Error";
 
             var result = new List<Error>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -58,7 +54,7 @@ namespace ASF.Data
 
         public Error SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
+            const string sqlStatement = "SELECT [Id], [ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery] " +
                 "FROM dbo.Error WHERE [Id]=@Id";
 
             Error error = null;
@@ -82,8 +78,8 @@ namespace ASF.Data
 
         public Error Create(Error error)
         {
-            const string sqlStatement = "INSERT INTO dbo.Error ([ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy])" +
-                "VALUES (@ClientId, @ErrorDate, @IpAddress, @ClientAgent, @Exception, @Message, @Everything, @HttpReferer, @PathAndQuery, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
+            const string sqlStatement = "INSERT INTO dbo.Error ([ClientId], [ErrorDate], [IpAddress], [ClientAgent], [Exception], [Message], [Everything], [HttpReferer], [PathAndQuery]) " +
+                "VALUES (@ClientId, @ErrorDate, @IpAddress, @ClientAgent, @Exception, @Message, @Everything, @HttpReferer, @PathAndQuery)";
 
             var db = DatabaseFactory.CreateDatabase(sqlStatement);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -97,10 +93,7 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Everything", DbType.String, error.Everything);
                 db.AddInParameter(cmd, "@HttpReferer", DbType.String, error.HttpReferer);
                 db.AddInParameter(cmd, "@PathAndQuery", DbType.String, error.PathAndQuery);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, error.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, error.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, error.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, error.ChangedBy);
+                
                 // Obtener el valor de la primary key.
                 error.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -122,7 +115,7 @@ namespace ASF.Data
 
         public void Edit(Error error)
         {
-            const string sqlStatement = "UPDATE db.Error" +
+            const string sqlStatement = "UPDATE db.Error " +
                 "SET [ClientId]=@ClientId ," +
                     "[ErrorDate]=@ErrorDate ," +
                     "[IpAddress]=@IpAddress ," +
@@ -132,10 +125,6 @@ namespace ASF.Data
                     "[Everything]=@Everything ," +
                     "[HttpReferer]=@HttpReferer ," +
                     "[PathAndQuery]=@PathAndQuery ," +
-                    "[CreatedOn]=@CreatedOn ," +
-                    "[CreatedBy]=@CreatedBy ," +
-                    "[ChangedOn]=@ChangedOn ," +
-                    "[ChangedBy]=@ChangedBy ," +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(sqlStatement);
@@ -150,10 +139,6 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Everything", DbType.String, error.Everything);
                 db.AddInParameter(cmd, "@HttpReferer", DbType.String, error.HttpReferer);
                 db.AddInParameter(cmd, "@PathAndQuery", DbType.String, error.PathAndQuery);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, error.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, error.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, error.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, error.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

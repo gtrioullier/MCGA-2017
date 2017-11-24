@@ -18,7 +18,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using ASF.UI.WbSite.Services.Cache;
-using ASF.UI.WbSite.Services.CultureHelper;
+using ASF.UI.WbSite.Services.Localization;
 using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite
@@ -98,7 +98,7 @@ namespace ASF.UI.WbSite
             builder.RegisterType<SitemapService>().As<ISitemapService>().InstancePerRequest();
             builder.RegisterType<SitemapPingerService>().As<ISitemapPingerService>().InstancePerRequest();
             builder.RegisterType<EmailService>().As<IIdentityMessageService>().InstancePerRequest();
-            builder.RegisterType<CultureHelperService>().As<ICultureHelperService>().InstancePerRequest();
+            builder.RegisterType<LocalizationHelperService>().As<ILocalizationHelperService>().InstancePerDependency();
             builder.RegisterType<AuditService>().As<IAuditService>().InstancePerRequest();
         }
 

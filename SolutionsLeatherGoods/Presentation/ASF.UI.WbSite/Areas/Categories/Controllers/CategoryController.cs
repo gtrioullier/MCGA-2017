@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite.Areas.Categories.Controllers
 {
@@ -41,8 +42,11 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
             {
                 DataCacheService.Instance.ClearCategory();
                 var cp = new ASF.UI.Process.CategoryProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
+                var audit = Audit.getAudit();
+                model.CreatedBy = audit.user;
+                model.CreatedOn = audit.date;
+                model.ChangedBy = audit.user;
+                model.ChangedOn = audit.date;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
@@ -86,8 +90,9 @@ namespace ASF.UI.WbSite.Areas.Categories.Controllers
             {
                 DataCacheService.Instance.ClearCategory();
                 var cp = new ASF.UI.Process.CategoryProcess();
-                model.ChangedOn = DateTime.Now;
-                model.ChangedBy = 0;
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

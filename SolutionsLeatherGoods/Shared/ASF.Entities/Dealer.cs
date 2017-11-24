@@ -93,7 +93,7 @@ namespace ASF.Entities
         /// </summary>
         [DataMember]
         [DisplayName("Created By")]
-        public int? CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
         /// 
@@ -107,7 +107,7 @@ namespace ASF.Entities
         /// </summary>
         [DataMember]
         [DisplayName("Changed By")]
-        public int? ChangedBy { get; set; }
+        public string ChangedBy { get; set; }
 
         
     }

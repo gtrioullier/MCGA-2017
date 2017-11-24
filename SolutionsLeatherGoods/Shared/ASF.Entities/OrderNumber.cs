@@ -36,34 +36,6 @@ namespace ASF.Entities
         [DataMember]
         [DisplayName("Number")]
         public int Number { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        [DisplayName("Created On")]
-        public DateTime CreatedOn { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        [DisplayName("Created By")]
-        public int? CreatedBy { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        [DisplayName("Changed On")]
-        public DateTime ChangedOn { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        [DisplayName("Changed By")]
-        public int? ChangedBy { get; set; }
-
+        
     }
 }

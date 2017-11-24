@@ -27,9 +27,9 @@ namespace ASF.Data
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
                 OrderCount = GetDataValue<int>(dr, "OrderCount"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return client;

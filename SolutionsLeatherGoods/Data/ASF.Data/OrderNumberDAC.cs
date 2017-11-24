@@ -17,11 +17,7 @@ namespace ASF.Data
             var ordernumber = new OrderNumber
             {
                 Id = GetDataValue<int>(dr, "Id"),
-                Number = GetDataValue<int>(dr, "Number"),
-                CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
-                ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                Number = GetDataValue<int>(dr, "Number")
             };
 
             return ordernumber;
@@ -29,7 +25,7 @@ namespace ASF.Data
 
         public List<OrderNumber> Select() 
         {
-            const string sqlStatement = "SELECT [Id], [Number], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] FROM dbo.OrderNumber";
+            const string sqlStatement = "SELECT [Id], [Number] FROM dbo.OrderNumber";
 
             var result = new List<OrderNumber>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -50,7 +46,7 @@ namespace ASF.Data
 
         public OrderNumber SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [Number], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" + 
+            const string sqlStatement = "SELECT [Id], [Number] " + 
                 "FROM dbo.OrderNumber WHERE [Id]=@Id";
 
             OrderNumber ordernumber = null;
@@ -73,18 +69,14 @@ namespace ASF.Data
 
         public OrderNumber Create(OrderNumber ordernumber)
         {
-            const string sqlStatement = "INSERT INTO dbo.OrderNumber ([Number], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy])" + 
-                "VALUES(@Number, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
+            const string sqlStatement = "INSERT INTO dbo.OrderNumber ([Number]) " + 
+                "VALUES(@Number)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
                 db.AddInParameter(cmd, "@Number", DbType.Int32, ordernumber.Number);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, ordernumber.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, ordernumber.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, ordernumber.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, ordernumber.ChangedBy);
-
+               
                 ordernumber.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
 
@@ -105,22 +97,14 @@ namespace ASF.Data
 
         public void UpdateById(OrderNumber ordernumber)
         {
-            const string sqlStatement = "UPDATE dbo.OrderNumber" +
+            const string sqlStatement = "UPDATE dbo.OrderNumber " +
                 "SET [Number]=@Number ," +
-                    "[CreatedOn]=@CratedOn ," +
-                    "[CreatedBy]=@CreatedBy ," +
-                    "[ChangedOn]=@ChangedOn ," +
-                    "[ChangedBy]=@ChangedBy " +
                 "WHERE [Id]=@Id";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
                 db.AddInParameter(cmd, "@Number", DbType.Int32, ordernumber.Number);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, ordernumber.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, ordernumber.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, ordernumber.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, ordernumber.ChangedBy);
 
                 ordernumber.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }

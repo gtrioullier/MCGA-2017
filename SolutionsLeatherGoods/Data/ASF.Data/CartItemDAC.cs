@@ -22,9 +22,9 @@ namespace ASF.Data
                 Price = GetDataValue<Double>(dr, "Price"),
                 Quantity = GetDataValue<int>(dr, "Quantity"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return cartitem;
@@ -84,9 +84,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Price", DbType.Double, cartitem.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, cartitem.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cartitem.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cartitem.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, cartitem.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cartitem.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cartitem.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, cartitem.ChangedBy);
                 // Obtener el valor de la primary key.
                 cartitem.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -126,9 +126,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@Price", DbType.Double, cartitem.Price);
                 db.AddInParameter(cmd, "@Quantity", DbType.Int32, cartitem.Quantity);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cartitem.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cartitem.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, cartitem.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cartitem.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cartitem.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, cartitem.ChangedBy);
                 db.AddInParameter(cmd, "@Id", DbType.Int32, cartitem.Id);
 
                 db.ExecuteNonQuery(cmd);

@@ -51,7 +51,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             var order = new ASF.Entities.Order();
             var audit = Audit.getAudit();
 
-            order.ChangedBy = audit.userId;
+            order.ChangedBy = audit.user;
             order.ChangedOn = audit.date;
             order.CreatedBy = order.ChangedBy;
             order.CreatedOn = order.ChangedOn;
@@ -67,7 +67,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             var order = new ASF.Entities.Order();
             var audit = Audit.getAudit();
 
-            order.ChangedBy = audit.userId;
+            order.ChangedBy = audit.user;
             order.ChangedOn = audit.date;
             order.CreatedBy = order.ChangedBy;
             order.CreatedOn = order.ChangedOn;
@@ -138,7 +138,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             var audit = Audit.getAudit();
 
             order.ChangedOn = audit.date;
-            order.ChangedBy = audit.userId;
+            order.ChangedBy = audit.user;
 
             return View(order);
         }
@@ -150,11 +150,9 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.OrderProcess();
-                model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
@@ -166,6 +164,9 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             {
                 var cp = new ASF.UI.Process.OrderProcess();
                 var order = cp.Find(rowid);
+                var audit = Audit.getAudit();
+                order.ChangedOn = audit.date;
+                order.ChangedBy = audit.user;
                 order.State = "Cancelled";
                 cp.Edit(order);
             }
@@ -228,10 +229,6 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
 
             OrderNumber orderNumber = new OrderNumber();
             orderNumber.Number = val;
-            orderNumber.CreatedOn = audit.date;
-            orderNumber.CreatedBy = audit.userId;
-            orderNumber.ChangedBy = orderNumber.CreatedBy;
-            orderNumber.ChangedOn = orderNumber.CreatedOn;
 
             //graba la nueva orden para mantener la correlatividad
             cp.Create(orderNumber);

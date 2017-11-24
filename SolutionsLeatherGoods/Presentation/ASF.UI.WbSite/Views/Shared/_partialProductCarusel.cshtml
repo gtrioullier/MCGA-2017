@@ -1,4 +1,4 @@
-﻿@using ASF.UI.WbSite.Services.CultureHelper
+﻿@using ASF.UI.WbSite.Services.Localization
 
 @model IEnumerable<ASF.Entities.Product>
 
@@ -9,7 +9,7 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <img src="@Url.Content(item.Image)" alt="@item.Description">
+                    <a href="products/product/sell/@item.Rowid"><img src="@Url.Content(item.Image)" alt="@item.Description"></a>
                     <div class="caption text-center">
                         <text>@item.Description</text><br />
                         <text>$ @item.Price </text><br />
@@ -27,4 +27,3 @@ else
     <h3 class="text-center">NO ITEMS FOUND</h3>
 
 }
-

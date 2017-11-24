@@ -406,6 +406,23 @@ namespace ASF.UI.WbSite.Controllers
             return View();
         }
 
+        //[AllowAnonymous]
+        //public async Task<ActionResult> masive()
+        //{
+        //    var cp = new ASF.UI.Process.ClientProcess();
+        //    var users = cp.SelectList();
+        //    foreach (var u in users)
+        //    {
+        //        var user = new ApplicationUser { UserName = u.Email, Email = u.Email };
+        //        var result = await UserManager.CreateAsync(user, u.Email + "123");
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //        }
+        //    }
+        //    return RedirectToAction("Index", "Home", new { Areas = "" });
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

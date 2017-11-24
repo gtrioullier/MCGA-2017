@@ -37,8 +37,6 @@ namespace ASF.UI.WbSite.Areas.Errors.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ErrorProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
@@ -80,11 +78,6 @@ namespace ASF.UI.WbSite.Areas.Errors.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ErrorProcess();
-                model.ChangedOn = DateTime.Now;
-                //if (model.CreatedBy == 0)
-                //{
-                //    model.CreatedBy = null;
-                //}
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

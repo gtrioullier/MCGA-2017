@@ -21,9 +21,9 @@ namespace ASF.Data
                 ProductId = GetDataValue<int>(dr, "ProductId"),
                 Stars = GetDataValue<int>(dr, "Stars"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return rating;
@@ -52,8 +52,8 @@ namespace ASF.Data
 
         public Rating SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [ProductId], [Stars], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
-                "FROM dbo.Rating WHERE [Id]=@Id "; ;
+            const string sqlStatement = "SELECT [Id], [ClientId], [ProductId], [Stars], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] " +
+                "FROM dbo.Rating WHERE [Id]=@Id "; 
 
             Rating rating = null;
 
@@ -76,7 +76,7 @@ namespace ASF.Data
         public Rating Create(Rating rating)
         {
             const string sqlStatement = "INSERT INTO dbo.Rating ([ClientId], [ProductId], [Stars], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]) " +
-                "VALUES(@ClientId, @ProductId, @Stars, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy); SELECT SCOPE_IDENTITY();";
+                "VALUES(@ClientId, @ProductId, @Stars, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
 
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -85,9 +85,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, rating.ProductId);
                 db.AddInParameter(cmd, "@Stars", DbType.Int32, rating.Stars);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, rating.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, rating.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, rating.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, rating.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, rating.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, rating.ChangedBy);
                 // Obtener el valor de la primary key.
                 rating.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -111,7 +111,7 @@ namespace ASF.Data
             const string sqlStatement = "UPDATE dbo.Rating " +
                 "SET [ClientId]=@ClientId, " +
                     "[ProductId]=@ProductId," +
-                    "[Stars]=@Stars," +
+                    "[Stars]=@Stars, " +
                     "[CreatedOn]=@CreatedOn, " +
                     "[CreatedBy]=@CreatedBy, " +
                     "[ChangedOn]=@ChangedOn, " +
@@ -125,9 +125,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ProductId", DbType.Int32, rating.ProductId);
                 db.AddInParameter(cmd, "@Stars", DbType.Int32, rating.Stars);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, rating.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, rating.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, rating.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, rating.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, rating.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, rating.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

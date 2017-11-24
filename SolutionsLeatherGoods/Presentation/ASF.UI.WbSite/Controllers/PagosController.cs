@@ -26,6 +26,7 @@ namespace ASF.UI.WbSite.Controllers
             //Después de instalar el webservice
             try
             {
+                var lista = new List<ASF.Entities.Product>();
                 WebService1SoapClient compra = new WebService1SoapClient();
                 pago.number = pago.number.Replace(" ", "");
                 pago.expiry = pago.expiry.Replace(" / ", "");
@@ -49,15 +50,29 @@ namespace ASF.UI.WbSite.Controllers
                     //con el id de la orden, cambio el status de la orden
                     var order = new ASF.Entities.Order();
                     var cp = new ASF.UI.Process.OrderProcess();
+                 
 
                     order = cp.Find(rowid);
 
                     order.State = "Approved";
 
                     cp.Edit(order);
+
+                    //con el id de orden, me traigo todas la líneas de la orden, y me quedo con el productId.
+                    //tendrá una lista de produtid.... que arman una lista de productos que debo mostrar en resultado
+                    //para que el usuario rankee
+                    var cpd = new ASF.UI.Process.OrderDetailProcess();
+                    var details = cpd.SelectList().Where(d => d.OrderId == order.Id).ToList();
+                    
+                    foreach (var detail in details)
+                    {
+                        var cpp = new ASF.UI.Process.ProductProcess();
+                        var product = cpp.SelectList().Where(p => p.Id == detail.ProductId).FirstOrDefault();
+                        lista.Add(product);
+                    }
                 }
 
-                return View("result");
+                return View("result", lista);
             }
             catch
             {

@@ -1,4 +1,5 @@
 ﻿using ASF.UI.WbSite.Services.Cache;
+using ASF.UI.WbSite.Services.Audit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,11 +53,12 @@ namespace ASF.UI.WbSite.Areas.Dealers.Controllers
 
             Guid g;
             g = Guid.NewGuid();
+            var audit = Audit.getAudit();
             model.Rowid = g;
-            model.CreatedOn = DateTime.Now;
-            model.ChangedOn = DateTime.Now;
-            model.CreatedBy = 0; // int32, no es posible la conversión
-            model.ChangedBy = 0;
+            model.CreatedOn = audit.date;
+            model.ChangedOn = audit.date;
+            model.CreatedBy = audit.user;
+            model.ChangedBy = audit.user;
 
             return View(model);
         }
@@ -114,8 +116,9 @@ namespace ASF.UI.WbSite.Areas.Dealers.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.ChangedOn = DateTime.Now;
-                model.ChangedBy = 0;
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 var cp = new ASF.UI.Process.DealerProcess();
                 cp.Edit(model);
             }

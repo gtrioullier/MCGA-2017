@@ -10,7 +10,6 @@ namespace ASF.UI.WbSite.Services.Audit
     {
         public class auditObj
         {
-            public int userId { get; set; }
             public string user { get; set; }
             public DateTime date { get; set; }
         }

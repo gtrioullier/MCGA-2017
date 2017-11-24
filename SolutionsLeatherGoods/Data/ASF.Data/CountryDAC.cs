@@ -60,9 +60,9 @@ namespace ASF.Data
                 Id = GetDataValue<int>(dr, "Id"),
                 Name = GetDataValue<string>(dr, "Name"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return country;
@@ -78,9 +78,9 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@Name", DbType.String, country.Name);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, country.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, country.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, country.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, country.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, country.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, country.ChangedBy);
                 // Obtener el valor de la primary key.
                 country.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -114,9 +114,9 @@ namespace ASF.Data
             {
                 db.AddInParameter(cmd, "@Name", DbType.String, country.Name);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, country.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, country.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, country.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, country.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, country.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, country.ChangedBy);
                 db.AddInParameter(cmd, "@Id", DbType.Int32, country.Id);
 
                 db.ExecuteNonQuery(cmd);

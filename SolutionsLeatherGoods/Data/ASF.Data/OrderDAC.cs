@@ -25,9 +25,9 @@ namespace ASF.Data
                 ItemCount = GetDataValue<int>(dr, "ItemCount"),
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return order;
@@ -56,7 +56,7 @@ namespace ASF.Data
 
         public Order SelectById(Guid Rowid)
         {
-            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
+            const string sqlStatement = "SELECT [Id], [ClientId], [OrderDate], [TotalPrice], [State], [OrderNumber], [ItemCount], [Rowid], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy] " +
                 "FROM [dbo].[Order] WHERE [Rowid]=@Rowid ";
 
             Order order = null;
@@ -91,9 +91,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, order.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, order.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, order.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, order.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, order.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, order.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, order.ChangedBy);
                 // Obtener el valor de la primary key.
                 order.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -114,7 +114,7 @@ namespace ASF.Data
 
         public void UpdateById(Order order)
         {
-            const string sqlStatement = "UPDATE [dbo].[Order]" +
+            const string sqlStatement = "UPDATE [dbo].[Order] " +
                 "SET [ClientId]=@ClientId , " +
                     "[OrderDate]=@OrderDate, " +
                     "[TotalPrice]=@TotalPrice, " +
@@ -139,9 +139,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, order.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, order.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, order.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, order.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, order.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, order.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, order.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, order.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

@@ -26,9 +26,9 @@ namespace ASF.Data
                 TotalProducts = GetDataValue<int>(dr, "TotalProducts"),
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return dealer;
@@ -92,9 +92,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@TotalProducts", DbType.Int32, dealer.TotalProducts);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, dealer.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, dealer.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, dealer.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, dealer.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, dealer.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, dealer.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, dealer.ChangedBy);
                 // Obtener el valor de la primary key.
                 dealer.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -140,9 +140,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@TotalProducts", DbType.Int32, dealer.TotalProducts);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, dealer.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, dealer.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, dealer.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, dealer.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, dealer.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, dealer.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, dealer.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

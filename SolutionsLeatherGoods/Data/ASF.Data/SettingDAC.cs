@@ -31,11 +31,7 @@ namespace ASF.Data
                 SMTPPort = GetDataValue<string>(dr, "SMTPPort"),
                 SMTPEnableSSL = GetDataValue<bool>(dr, "SMTPEnableSSL"),
                 Theme = GetDataValue<string>(dr, "Theme"),
-                DefaultLanguageId = GetDataValue<int>(dr, "DefaultLanguageId"),
-                CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
-                ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                DefaultLanguageId = GetDataValue<int>(dr, "DefaultLanguageId")
             };
 
             return setting;
@@ -43,7 +39,7 @@ namespace ASF.Data
 
         public List<Setting> Select()
         {
-            const string sqlStatement = "SELECT [Id], [Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]  FROM dbo.Setting";
+            const string sqlStatement = "SELECT [Id], [Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId] FROM dbo.Setting";
 
             var result = new List<Setting>();
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
@@ -63,7 +59,7 @@ namespace ASF.Data
 
         public Setting SelectById(int id)
         {
-            const string sqlStatement = "SELECT [Id], [Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy]" +
+            const string sqlStatement = "SELECT [Id], [Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId] " +
                 "FROM dbo.Setting WHERE [Id]=@Id";
 
             Setting setting = null;
@@ -86,8 +82,8 @@ namespace ASF.Data
 
         public Setting Create(Setting setting)
         {
-            const string sqlStatement = "INSERT INTO dbo.Setting ([Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId], [CreatedOn], [CreatedBy], [ChangedOn], [ChangedBy])" +
-                "VALUES(@Name, @Value, @Description, @LastChangeDate, @WebSiteName, @WebSiteUrl, @PageTitle, @AdminEmailAddress, @SMTP, @SMTPUsername, @SMTPPassword, @SMTPPort, @SMTPEnableSSL, @Theme, @DefaultLanguageId, @CreatedOn, @CreatedBy, @ChangedOn, @ChangedBy)";
+            const string sqlStatement = "INSERT INTO dbo.Setting ([Name], [Value], [Description], [LastChangeDate], [WebSiteName], [WebSiteUrl], [PageTitle], [AdminEmailAddress], [SMTP], [SMTPUsername], [SMTPPassword], [SMTPPort], [SMTPEnableSSL], [Theme], [DefaultLanguageId]) " +
+                "VALUES(@Name, @Value, @Description, @LastChangeDate, @WebSiteName, @WebSiteUrl, @PageTitle, @AdminEmailAddress, @SMTP, @SMTPUsername, @SMTPPassword, @SMTPPort, @SMTPEnableSSL, @Theme, @DefaultLanguageId)";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
             {
@@ -106,10 +102,6 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@SMTPEnableSSL", DbType.Boolean, setting.SMTPEnableSSL);
                 db.AddInParameter(cmd, "@Theme", DbType.String, setting.Theme);
                 db.AddInParameter(cmd, "@DefaultLanguageId", DbType.Int32, setting.DefaultLanguageId);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, setting.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, setting.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, setting.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, setting.ChangedBy);
                 // Obtener el valor de la primary key.
                 setting.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -130,25 +122,21 @@ namespace ASF.Data
         public void UpdateById(Setting setting)
         {
             const string sqlStatement = "UPDATE dbo.Setting" +
-                "SET [Name]=@Name" +
-                    "[Value]=@Value" +
-                    "[Description]=@Description" +
-                    "[LastChangeDate]=@LastChangeDate" +
-                    "[WebSiteName]=@WebSiteName" +
-                    "[WebSiteUrl]=@WebSiteUrl" +
-                    "[PageTitle]=@PageTitle" +
-                    "[AdminEmailAddress]=@AdminEmailAddress" +
-                    "[SMTP]=@SMTP" +
-                    "[SMTPUsername]=@SMTPUsername" +
-                    "[SMTPPassword]=@SMTPPassword" +
-                    "[SMTPPort]=@SMTPPort" +
-                    "[SMTPEnableSSL]=@SMTPEnableSSL" +
-                    "[Theme]=@Theme" +
-                    "[DefaultLanguageId]=@DefaultLanguageId" +
-                    "[CreatedOn]=@CreatedOn" +
-                    "[CreatedBy]=@CreatedBy" +
-                    "[ChangedOn]=@ChangedOn" +
-                    "[ChangedBy]=@ChangedBy" +
+                "SET [Name]=@Name, " +
+                    "[Value]=@Value, " +
+                    "[Description]=@Description, " +
+                    "[LastChangeDate]=@LastChangeDate, " +
+                    "[WebSiteName]=@WebSiteName, " +
+                    "[WebSiteUrl]=@WebSiteUrl, " +
+                    "[PageTitle]=@PageTitle, " +
+                    "[AdminEmailAddress]=@AdminEmailAddress, " +
+                    "[SMTP]=@SMTP, " +
+                    "[SMTPUsername]=@SMTPUsername, " +
+                    "[SMTPPassword]=@SMTPPassword, " +
+                    "[SMTPPort]=@SMTPPort, " +
+                    "[SMTPEnableSSL]=@SMTPEnableSSL, " +
+                    "[Theme]=@Theme, " +
+                    "[DefaultLanguageId]=@DefaultLanguageId " +
                 "WHERE [Id]=@Id";
             var db = DatabaseFactory.CreateDatabase(ConnectionName);
             using (var cmd = db.GetSqlStringCommand(sqlStatement))
@@ -168,10 +156,6 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@SMTPEnableSSL", DbType.Boolean, setting.SMTPEnableSSL);
                 db.AddInParameter(cmd, "@Theme", DbType.String, setting.Theme);
                 db.AddInParameter(cmd, "@DefaultLanguageId", DbType.Int32, setting.DefaultLanguageId);
-                db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime, setting.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, setting.CreatedBy);
-                db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime, setting.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, setting.ChangedBy);
 
                 db.ExecuteNonQuery(cmd);
             }

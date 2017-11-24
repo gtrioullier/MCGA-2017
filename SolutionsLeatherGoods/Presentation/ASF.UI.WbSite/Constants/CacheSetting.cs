@@ -28,11 +28,11 @@
             public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
         }
 
-        //public static class LocaleResourceKey
-        //{
-        //    public const string Key = "LocaleResourceKey";
-        //    public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
-        //}
+        public static class LocaleResourceKey
+        {
+            public const string Key = "LocaleResourceKey";
+            public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
+        }
 
         public static class LangDictionary
         {

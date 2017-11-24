@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ASF.UI.WbSite.Services.Cache;
+using ASF.UI.WbSite.Services.Audit;
 using System.Globalization;
 
 namespace ASF.UI.WbSite.Areas.Products.Controllers
@@ -45,13 +46,13 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             }).ToList();
 
             var model = new ASF.Entities.Product();
-
+            var audit = Audit.getAudit();
             ViewBag.dealers = dealers.OrderBy(d => d.Text);
 
-            model.CreatedBy = 0;
-            model.ChangedBy = 0;
-            model.CreatedOn = DateTime.Now;
-            model.ChangedOn = DateTime.Now;
+            model.CreatedBy = audit.user;
+            model.ChangedBy = audit.user;
+            model.CreatedOn = audit.date;
+            model.ChangedOn = audit.date;
             model.Rowid = Guid.NewGuid();
             model.AvgStars = 0;
             model.QuantitySold = 0;
@@ -115,9 +116,10 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.ChangedBy = 0;
-                model.ChangedOn = DateTime.Now;
+                var audit = Audit.getAudit();
                 var cp = new ASF.UI.Process.ProductProcess();
+                model.ChangedBy = audit.user;
+                model.ChangedOn = audit.date;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

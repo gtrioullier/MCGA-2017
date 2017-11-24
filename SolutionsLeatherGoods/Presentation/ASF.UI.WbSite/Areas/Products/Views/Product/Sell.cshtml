@@ -1,4 +1,4 @@
-﻿@using ASF.UI.WbSite.Services.CultureHelper
+﻿@using ASF.UI.WbSite.Services.Localization
 
 @model ASF.Entities.Product
 
@@ -11,38 +11,34 @@
 
 <div>
     <h4>@Html.getResourceString("Product")</h4>
-    <div class="content-section-b">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">
-                    <div class="clearfix"></div>
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayName(Html.getResourceString("Description")):
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayName(Html.getResourceString("Price")):
-                            </dt>
-
-                            <dd>
-                                <text>$ </text>@Html.DisplayFor(model => model.Price)
-                            </dd>
-                        </dl>
-                        <p>
-                            @Html.ActionLink(Html.getResourceString("Add to cart"), "Create", "CartItem", new { area="CartsItems", productRowid = Model.Rowid }, new { @class = "btn btn-default" })
-                            @Html.ActionLink(Html.getResourceString("Cancel"), "Index", "Home", new { area=""}, new { @class = "btn btn-default" })
-                        </p>
-                    </div>
-                <div class="col-lg-5 col-sm-pull-6 col-sm-6">
-                    <img src="@Url.Content(Model.Image)" class="img-home-responsive" />
-                </div>
+    <div class="container">
+        <div class="col-lg-6">
+            <img src="@Url.Content(Model.Image)" class="img-home-responsive" />
+        </div>
+        <div class="col-lg-6">
+            <h1 class="text-center">
+                @Html.DisplayFor(model => model.Description)
+                <br />
+                <text>$ </text>@Html.DisplayFor(model => model.Price)
+            </h1>
+            <div class="col-lg-offset-4">
+                <span class="stars"></span>
+            </div>
+            <div class="text-center">
+                avg rating: <label id="avgStars">@Model.AvgStars</label><br/>
+                based on @Model.QuantitySold ratings
             </div>
         </div>
     </div>
+    <h2>
+        @Html.ActionLink(Html.getResourceString("Add to cart"), "Create", "CartItem", new { area = "CartsItems", productRowid = Model.Rowid }, new { @class = "btn btn-default" })
+        @Html.ActionLink(Html.getResourceString("Cancel"), "Index", "Home", new { area = "" }, new { @class = "btn btn-default" })
+    </h2>
+
 </div>
 
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/rating.js" type="text/javascript"></script>
+}

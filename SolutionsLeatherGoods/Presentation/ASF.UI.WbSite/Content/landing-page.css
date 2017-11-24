@@ -21,9 +21,19 @@ h6 {
     font-weight: 700;
 }
 
+.jumbotron {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  color: inherit;
+  background-image: url('../../Content/img/banner-marroquineria.jpg');
+  background-size: 100% 100%;
+}
+
 .h1-banner {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: whitesmoke;
+    color: whitesmoke !important;
     font-weight: 700;
     text-shadow: 0px 0px 50px black;
     filter: progid:DXImageTransform.Microsoft.Glow(Color=black,Strength=100);
@@ -43,7 +53,6 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/landpage3.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -123,7 +132,7 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../img/landpage4.jpg) no-repeat center center;
+    background: url('../../Content/img/banner-marroquineria.jpg') no-repeat center center;
     background-size: cover;
 }
 

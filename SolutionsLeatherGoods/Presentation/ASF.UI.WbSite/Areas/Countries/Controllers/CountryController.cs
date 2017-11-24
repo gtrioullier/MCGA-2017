@@ -1,4 +1,5 @@
 ﻿using ASF.UI.WbSite.Services.Cache;
+using ASF.UI.WbSite.Services.Audit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,11 +32,11 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
         public ActionResult Create()
         {
             var model = new ASF.Entities.Country();
-
-            model.ChangedOn = DateTime.Now;
-            model.CreatedOn = DateTime.Now;
-            model.ChangedBy = 0;
-            model.CreatedBy = 0;
+            var audit = Audit.getAudit();
+            model.ChangedOn = audit.date;
+            model.CreatedOn = audit.date;
+            model.ChangedBy = audit.user;
+            model.CreatedBy = audit.user;
 
             return View(model);
         }
@@ -91,8 +92,9 @@ namespace ASF.UI.WbSite.Areas.Countries.Controllers
             {
                 DataCacheService.Instance.ClearCountry();
                 var cp = new ASF.UI.Process.CountryProcess();
-                model.ChangedOn = DateTime.Now;
-                model.ChangedBy = 0;
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

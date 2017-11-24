@@ -1,4 +1,5 @@
 ﻿using ASF.UI.WbSite.Services.Cache;
+using ASF.UI.WbSite.Services.Audit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +35,14 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
             var countries = DataCacheService.Instance.CountryList();
             Guid g;
             g = Guid.NewGuid();
+            var audit = Audit.getAudit();
 
             model.OrderCount = 0;
             model.SignupDate = DateTime.Now;
-            model.CreatedBy = 0;
-            model.CreatedOn = DateTime.Now;
-            model.ChangedBy = 0;
-            model.ChangedOn = DateTime.Now;
+            model.CreatedBy = audit.user;
+            model.CreatedOn = audit.date;
+            model.ChangedBy = audit.user;
+            model.ChangedOn = audit.date;
             model.Rowid = g;
             model.Email=User.Identity.Name;
             model.AspNetUsers = User.Identity.GetUserId();
@@ -102,8 +104,9 @@ namespace ASF.UI.WbSite.Areas.Clients.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.ClientProcess();
-                model.ChangedOn = DateTime.Now;
-                model.ChangedBy = 0;
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

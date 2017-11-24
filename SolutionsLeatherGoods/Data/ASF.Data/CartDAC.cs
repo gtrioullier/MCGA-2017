@@ -23,9 +23,9 @@ namespace ASF.Data
                 ItemCount = GetDataValue<int>(dr, "ItemCount"),
                 Rowid = GetDataValue<Guid>(dr, "Rowid"),
                 CreatedOn = GetDataValue<DateTime>(dr, "CreatedOn"),
-                CreatedBy = GetDataValue<int>(dr, "CreatedBy"),
+                CreatedBy = GetDataValue<String>(dr, "CreatedBy"),
                 ChangedOn = GetDataValue<DateTime>(dr, "ChangedOn"),
-                ChangedBy = GetDataValue<int>(dr, "ChangedBy")
+                ChangedBy = GetDataValue<String>(dr, "ChangedBy")
             };
 
             return cart;
@@ -85,9 +85,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, cart.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, cart.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cart.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cart.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, cart.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cart.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cart.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, cart.ChangedBy);
                 // Obtener el valor de la primary key.
                 cart.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
@@ -127,9 +127,9 @@ namespace ASF.Data
                 db.AddInParameter(cmd, "@ItemCount", DbType.Int32, cart.ItemCount);
                 db.AddInParameter(cmd, "@Rowid", DbType.Guid, cart.Rowid);
                 db.AddInParameter(cmd, "@CreatedOn", DbType.DateTime2, cart.CreatedOn);
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cart.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.String, cart.CreatedBy);
                 db.AddInParameter(cmd, "@ChangedOn", DbType.DateTime2, cart.ChangedOn);
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cart.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.String, cart.ChangedBy);
                 db.AddInParameter(cmd, "@Id", DbType.Int32, cart.Id);
 
                 db.ExecuteNonQuery(cmd);

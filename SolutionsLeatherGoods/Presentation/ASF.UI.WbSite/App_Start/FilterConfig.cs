@@ -206,13 +206,14 @@
 #if DEBUG
                     // Allow Browser Link to work in debug mode only.
                     //CustomSources = "data:",
-                    CustomSources = "*",
+                    
 #else
                     // Allow images from example.com.
                     // CustomSources = "*.example.com",
 #endif
                     // Allow images from the same domain.
                     Self = true,
+                    CustomSources = "*",
                 });
             // script-src - This directive restricts which scripts the protected resource can execute.
             //              The directive also controls other resources, such as XSLT style sheets, which can cause the

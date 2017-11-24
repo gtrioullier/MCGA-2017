@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite.Areas.OrdersDetails.Controllers
 {
@@ -37,8 +38,11 @@ namespace ASF.UI.WbSite.Areas.OrdersDetails.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.OrderDetailProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
+                var audit = Audit.getAudit();
+                model.CreatedOn = audit.date;
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
+                model.CreatedBy = audit.user;
                 cp.Create(model);
             }
             return RedirectToAction("Index");
@@ -80,11 +84,9 @@ namespace ASF.UI.WbSite.Areas.OrdersDetails.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.OrderDetailProcess();
-                model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var audit = Audit.getAudit();
+                model.ChangedBy = audit.user;
+                model.ChangedOn = audit.date;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");

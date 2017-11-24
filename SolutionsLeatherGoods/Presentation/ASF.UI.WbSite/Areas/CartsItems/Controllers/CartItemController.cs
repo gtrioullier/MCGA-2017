@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Audit;
+using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
 {
@@ -47,6 +49,7 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
         //GET: CartItemsItems/CartItem/Create/5
         public ActionResult Create(Guid productRowid)
         {
+            var audit = Audit.getAudit();
             ASF.Entities.CartItem cartItem = new Entities.CartItem();
             Guid cartRowid = new Guid();
             if (Request.Cookies["cartCookie"] != null)
@@ -63,10 +66,10 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             cartItem.ProductId = product.Id;
             cartItem.Quantity = 1;
             cartItem.Price = product.Price * cartItem.Quantity;
-            cartItem.CreatedOn = DateTime.Now;
-            cartItem.CreatedBy = 0;
-            cartItem.ChangedOn = DateTime.Now;
-            cartItem.ChangedBy = 0;
+            cartItem.CreatedOn = audit.date;
+            cartItem.CreatedBy = audit.user;
+            cartItem.ChangedOn = audit.date;
+            cartItem.ChangedBy = audit.user;
 
             var cpCartItem = new ASF.UI.Process.CartItemProcess();
             cpCartItem.Create(cartItem);
@@ -114,11 +117,9 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.CartItemProcess();
-                model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var audit = Audit.getAudit();
+                model.ChangedOn = audit.date;
+                model.ChangedBy = audit.user;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
@@ -129,8 +130,9 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             var cp = new ASF.UI.Process.CartItemProcess();
             var cartItem = cp.Find(cartItemId);
             var productPrice = cartItem.Price / cartItem.Quantity;
-            cartItem.ChangedOn = DateTime.Now;
-            cartItem.ChangedBy = 0;
+            var audit = Audit.getAudit();
+            cartItem.ChangedOn = audit.date;
+            cartItem.ChangedBy = audit.user;
             cartItem.Quantity = cartItem.Quantity + 1;
             cartItem.Price = productPrice * cartItem.Quantity;
             cp.Edit(cartItem);
@@ -144,8 +146,9 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             var cp = new ASF.UI.Process.CartItemProcess();
             var cartItem = cp.Find(cartItemId);
             var productPrice = cartItem.Price / cartItem.Quantity;
-            cartItem.ChangedOn = DateTime.Now;
-            cartItem.ChangedBy = 0;
+            var audit = Audit.getAudit();
+            cartItem.ChangedOn = audit.date;
+            cartItem.ChangedBy = audit.user;
             cartItem.Quantity = cartItem.Quantity - 1;
             cartItem.Price = productPrice * cartItem.Quantity;
             cp.Edit(cartItem);

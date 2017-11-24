@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -92,21 +93,21 @@ namespace ASF.UI.WbSite.Services.Cache
             _cacheService.Remove(CacheSetting.Language.Key);
         }
 
-        //public List<LocaleResourceKey> LocaleResourceKey()
-        //{
-        //    var lista = _cacheService.GetOrAdd(CacheSetting.LocaleResourceKey.Key, () =>
-        //    {
-        //        var cp = new LocaleResourceKeyProcess();
-        //        return cp.SelectList();
-        //    },
-        //    CacheSetting.LocaleResourceKey.SlidingExpiration);
-        //    return lista;
-        //}
+        public List<LocaleResourceKey> LocaleResourceKeyList()
+        {
+            var lista = _cacheService.GetOrAdd(CacheSetting.LocaleResourceKey.Key, () =>
+            {
+                var cp = new LocaleResourceKeyProcess();
+                return cp.SelectList();
+            },
+            CacheSetting.LocaleResourceKey.SlidingExpiration);
+            return lista;
+        }
 
-        //public void ClearLocaleResourceKey()
-        //{
-        //    _cacheService.Remove(CacheSetting.LocaleResourceKey.Key);
-        //}
+        public void ClearLocaleResourceKey()
+        {
+            _cacheService.Remove(CacheSetting.LocaleResourceKey.Key);
+        }
 
         public Dictionary<string, string> LangDictionary()
         {
@@ -116,9 +117,13 @@ namespace ASF.UI.WbSite.Services.Cache
             if (dictionary == null)
             {
                 dictionary = new Dictionary<string, string>();
-                var languageId = LanguageList().Where(l => l.LanguageCulture == CultureInfo.CurrentCulture.Name).Select(l => l.Id).First();
-                var cpk = new LocaleResourceKeyProcess();
-                var keys = cpk.SelectList();
+                var languageId = LanguageList().Where(l => l.LanguageCulture == HttpContext.Current.Request.UserLanguages[0]).Select(l => l.Id).FirstOrDefault();
+                var keys = LocaleResourceKeyList();
+                if (languageId < 1)
+                {
+                    //llamar a settings, por ahora lo fijo en castellano a mano.
+                    languageId = 2;
+                }
                 var cp = new LocaleStringResourceProcess();
                 var recursos = cp.SelectList().Where(l => l.Language_Id == languageId).ToList();
                 foreach (var key in keys)
@@ -127,6 +132,7 @@ namespace ASF.UI.WbSite.Services.Cache
                 };
 
                 _cacheService.GetOrAdd(CacheSetting.LangDictionary.key, () => dictionary, CacheSetting.LangDictionary.SlidingExpiration);
+                return dictionary;
             }
 
             return dictionary;

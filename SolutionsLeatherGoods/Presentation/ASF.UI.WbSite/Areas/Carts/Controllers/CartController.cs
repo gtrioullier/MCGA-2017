@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Audit;
+using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.Carts.Controllers
 {
@@ -37,6 +39,12 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
         //GET: Carts/Cart/Create
         public ActionResult Create()
         {
+            var model = new ASF.Entities.Cart();
+            var audit = Audit.getAudit();
+            model.ChangedBy = audit.user;
+            model.ChangedOn = audit.date;
+            model.CreatedBy = audit.user;
+            model.CreatedOn = audit.date;
             return View();
         }
 
@@ -47,8 +55,6 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.CartProcess();
-                model.CreatedOn = DateTime.Now;
-                model.ChangedOn = DateTime.Now;
                 var id = cp.Create(model);
             }
             return RedirectToAction("Index");
@@ -90,11 +96,9 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
             if (ModelState.IsValid)
             {
                 var cp = new ASF.UI.Process.CartProcess();
-                model.ChangedOn = DateTime.Now;
-                if (model.CreatedBy == 0)
-                {
-                    model.CreatedBy = null;
-                }
+                var audit = Audit.getAudit();
+                model.ChangedBy = audit.user;
+                model.ChangedOn = audit.date;
                 cp.Edit(model);
             }
             return RedirectToAction("Index");
@@ -104,10 +108,11 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
         {
             var cart = new ASF.Entities.Cart();
             var cp = new ASF.UI.Process.CartProcess();
-            cart.CreatedOn = DateTime.Now;
-            cart.ChangedOn = DateTime.Now;
-            cart.CreatedBy = 0;
-            cart.ChangedBy = 0;
+            var audit = Audit.getAudit();
+            cart.ChangedBy = audit.user;
+            cart.ChangedOn = audit.date;
+            cart.CreatedBy = audit.user;
+            cart.CreatedOn = audit.date;
             cart.CartDate = DateTime.Now;
             cart.Rowid = Guid.NewGuid();
             cart.Cookie = cart.Rowid.ToString();
@@ -118,6 +123,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
 
         public ActionResult Buy(Guid CartRowid)
         {
+            var audit = Audit.getAudit();
             var Cart = new ASF.Entities.Cart();
             var cpCart = new ASF.UI.Process.CartProcess();
             Cart = cpCart.Find(CartRowid);
@@ -151,10 +157,10 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
                 ordenDetalle.Price = item.Price;
                 ordenDetalle.OrderId = orden.Id;
                 ordenDetalle.Quantity = item.Quantity;
-                ordenDetalle.CreatedOn = DateTime.Today;
-                ordenDetalle.CreatedBy = 0;
-                ordenDetalle.ChangedOn = DateTime.Today;
-                ordenDetalle.ChangedBy = 0;
+                ordenDetalle.CreatedOn = audit.date;
+                ordenDetalle.CreatedBy = audit.user;
+                ordenDetalle.ChangedOn = audit.date;
+                ordenDetalle.ChangedBy = audit.user;
                 cpOrdenDetalle.Create(ordenDetalle);
             }
 

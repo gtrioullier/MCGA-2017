@@ -409,6 +409,7 @@ li {
 }
 img {
     display: block;
-    height: 250px;
+    margin: 0 auto;
+    height: 200px;
     max-width: 100%;
 }

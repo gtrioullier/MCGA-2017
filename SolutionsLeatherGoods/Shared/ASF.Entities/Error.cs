@@ -52,20 +52,5 @@ namespace ASF.Entities
         [DisplayName("Path And Query")]
         public string PathAndQuery { get; set; }
 
-        [DataMember]
-        [DisplayName("Created On")]
-        public DateTime CreatedOn { get; set; }
-
-        [DataMember]
-        [DisplayName("Created By")]
-        public int? CreatedBy { get; set; }
-
-        [DataMember]
-        [DisplayName("Changed On")]
-        public DateTime ChangedOn { get; set; }
-
-        [DataMember]
-        [DisplayName("Changed By")]
-        public int? ChangedBy { get; set; }
     }
 }
