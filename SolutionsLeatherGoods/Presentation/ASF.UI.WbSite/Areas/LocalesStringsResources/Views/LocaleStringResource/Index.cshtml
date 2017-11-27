@@ -1,25 +1,27 @@
-﻿@model IEnumerable<ASF.Entities.LocaleStringResource>
+﻿@using ASF.UI.WbSite.Services.Localization
+
+@model IEnumerable<ASF.Entities.LocaleStringResource>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@Html.getResourceString("Index")</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(Html.getResourceString("Create"), "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ResourceValue)
+            @Html.getResourceString("Resource.value")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocaleResourceKey_Id)
+            @Html.getResourceString("Resource_Id")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Language_Id)
+            @Html.getResourceString("Language_Id")
         </th>
         <th></th>
     </tr>
@@ -36,9 +38,9 @@
             @Html.DisplayFor(modelItem => item.Language_Id)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { id=item.Id }) |
+            @Html.ActionLink(Html.getResourceString("Details"), "Details", new { id=item.Id }) |
+            @Html.ActionLink(Html.getResourceString("Delete"), "Delete", new { id=item.Id })
         </td>
     </tr>
 }

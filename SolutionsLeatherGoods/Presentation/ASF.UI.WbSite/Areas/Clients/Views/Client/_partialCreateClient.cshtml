@@ -1,0 +1,30 @@
+﻿@using ASF.UI.WbSite.Services.Localization
+
+@model ASF.Entities.Client
+
+@Html.HiddenFor(model => model.ChangedBy)
+@Html.HiddenFor(model => model.CreatedBy)
+@Html.HiddenFor(model => model.ChangedOn)
+@Html.HiddenFor(model => model.CreatedOn)
+@Html.HiddenFor(model => model.Rowid)
+@Html.HiddenFor(model => model.AspNetUsers)
+@Html.HiddenFor(model => model.SignupDate)
+@Html.HiddenFor(model => model.Email)
+@Html.HiddenFor(model => model.OrderCount)
+
+<table class="table">
+    <tr>
+        <td width="20%">
+            <img src="~/Content/img/exclamation-poinT.png" class="img-responsive" alt="exclamation mark"/>
+        </td>
+        <td width="80%">
+            <h1 style="text-align:center; vertical-align:central; color:#ee2c22; height:inherit">
+                @Html.getResourceString("Complete.profile")
+            </h1>
+        </td>
+    </tr>
+</table>
+<div>
+    @Html.ActionLink(@Html.getResourceString("Complete"), "Create", new { model = Model }, new { @class = "btn btn-default col-lg-12" })
+</div>
+<br/>

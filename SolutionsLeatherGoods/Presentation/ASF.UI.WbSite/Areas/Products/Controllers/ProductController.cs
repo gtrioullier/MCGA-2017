@@ -6,25 +6,48 @@ using System.Web.Mvc;
 using ASF.UI.WbSite.Services.Cache;
 using ASF.UI.WbSite.Services.Audit;
 using System.Globalization;
+using PagedList;
 
 namespace ASF.UI.WbSite.Areas.Products.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         // GET: Products/Product
-        public ActionResult Index()
+        [AllowAnonymous]
+        public ActionResult Index(int? page, string q = "")
         {
             var cp = new ASF.UI.Process.ProductProcess();
             var cpd = new ASF.UI.Process.DealerProcess();
             var dealers = cpd.SelectList();
-            var lista = cp.SelectList();
+            var lista = cp.SelectList().OrderBy(p => p.Description).ThenBy(p => p.Price);
+            var search = cp.SelectList().Where(p => p.Description.ToLower().Contains(q)).OrderBy(c => c.Description).ThenBy(c => c.Price);
 
-            foreach (var l in lista)
+            if (q == "")
             {
-                l.Vendedor = dealers.Find(v => v.Id == l.DealerId);
+                foreach (var l in lista)
+                {
+                    l.Vendedor = dealers.Find(v => v.Id == l.DealerId);
+                }
+
+                var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                var onePageOfProducts = lista.ToPagedList(pageNumber, 6); // will only contain 10 clients max because of the pageSize
+                ViewBag.onePageOfProducts = onePageOfProducts;
+            }
+            else
+            {
+                foreach (var l in search)
+                {
+                    l.Vendedor = dealers.Find(v => v.Id == l.DealerId);
+                }
+
+                var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                var onePageOfProducts = search.ToPagedList(pageNumber, 6); // will only contain 10 clients max because of the pageSize
+                ViewBag.onePageOfProducts = onePageOfProducts;
+                ViewBag.searchQuery = q;
             }
 
-            return View(lista.OrderBy(l => l.Vendedor.LastName));
+            return View();
         }
 
         //GET: Products/Product/Details/5
@@ -127,6 +150,7 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
 
 
         //GET: Products/Product/fillCarusel
+        [AllowAnonymous]
         public ActionResult fillCarusel(string categoria)
         {
             var lista = new List<ASF.Entities.Product>();
@@ -137,12 +161,13 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             foreach (var dealer in dealers)
             {
                 var cp = new ASF.UI.Process.ProductProcess();
-                lista = cp.SelectList().Where(p => p.DealerId == dealer).ToList();
+                lista = cp.SelectList().Where(p => p.DealerId == dealer).Take(12).ToList();
             }
             return PartialView("_partialProductCarusel", lista);
         }
 
         //GET: Products/Product/Sell/5
+        [AllowAnonymous]
         public ActionResult Sell(Guid Rowid)
         {
             var cp = new ASF.UI.Process.ProductProcess();
@@ -150,6 +175,7 @@ namespace ASF.UI.WbSite.Areas.Products.Controllers
             return View(product);
         }
 
+        [AllowAnonymous]
         public JsonResult GetProducts(string Areas, string term = "")
         {
             {

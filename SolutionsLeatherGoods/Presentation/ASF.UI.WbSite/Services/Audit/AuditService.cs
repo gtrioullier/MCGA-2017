@@ -15,5 +15,51 @@ namespace ASF.UI.WbSite.Services.Audit
             _audit.user = HttpContext.Current.User.Identity.Name;
             return _audit;
         }
+
+        public Boolean isAdmin()
+        {
+            try
+            {
+                var user = HttpContext.Current.User;
+
+                if (user.IsInRole("Administrador"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public Guid isClient(string aspnetuser)
+        {
+            try
+            {
+                var cp = new ASF.UI.Process.ClientProcess();
+
+                var client = cp.SelectList().Where(c => c.AspNetUsers.ToLower() == aspnetuser).FirstOrDefault();
+
+                if (client != null)
+                {
+                    return client.Rowid;
+                }
+                else
+                {
+                    return Guid.Empty;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

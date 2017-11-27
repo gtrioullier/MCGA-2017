@@ -7,6 +7,7 @@ using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite.Areas.Settings.Controllers
 {
+    [Authorize]
     public class SettingController : Controller
     {
         // GET: Settings/Setting

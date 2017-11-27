@@ -170,6 +170,14 @@
     <Reference Include="Owin">
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Quartz, Version=2.6.0.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Quartz.2.6.0\lib\net40\Quartz.dll</HintPath>
       <Private>True</Private>
@@ -343,6 +351,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Carousel.css" />
+    <Content Include="Content\img\exclamation-poinT.png" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -467,6 +476,7 @@
     <Content Include="Content\landing-page.css" />
     <Content Include="Content\lightslider.css" />
     <Content Include="Content\lightslider.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\rating.css" />
     <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Content\sweetalert\docs.css" />
@@ -620,9 +630,11 @@
     <Content Include="Areas\LocalesStringsResources\Views\LocaleStringResource\Translate.cshtml" />
     <Content Include="Areas\Orders\Views\Order\Create.cshtml" />
     <Content Include="Scripts\card.js" />
+    <Content Include="Scripts\cliente.js" />
     <Content Include="Scripts\detalles.js" />
     <Content Include="Scripts\carusel.js" />
     <Content Include="Scripts\Cookie.js" />
+    <Content Include="Scripts\unitario.js" />
     <Content Include="Scripts\jquery.card.js" />
     <Content Include="Scripts\lightslider.js" />
     <Content Include="Scripts\lightslider.min.js" />
@@ -638,6 +650,10 @@
     <Content Include="Service References\ServicesReferenced\ASF.UI.WbSite.ServicesReferenced.ValidarTarjetaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Areas\Clients\Views\Client\_partialClient.cshtml" />
+    <Content Include="Areas\Clients\Views\Client\_partialCreateClient.cshtml" />
+    <Content Include="Areas\Products\Views\Product\_partialProductClient.cshtml" />
+    <Content Include="Areas\Products\Views\Product\_partialProductAdmin.cshtml" />
     <None Include="Service References\ServicesReferenced\WebService1.disco" />
     <None Include="Service References\ServicesReferenced\configuration91.svcinfo" />
     <None Include="Service References\ServicesReferenced\configuration.svcinfo" />

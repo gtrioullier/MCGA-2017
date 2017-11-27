@@ -21,5 +21,19 @@ namespace ASF.UI.WbSite.Services.Audit
             return result;
         }
 
+        public static Boolean isAdmin()
+        {
+            var auditService = DependencyResolver.Current.GetService<IAuditService>();
+            var result = auditService.isAdmin();
+            return result;
+        }
+
+        public static Guid isClient(string aspnetuser)
+        {
+            var auditService = DependencyResolver.Current.GetService<IAuditService>();
+            var result = auditService.isClient(aspnetuser);
+            return result;
+        }
+
     }
 }

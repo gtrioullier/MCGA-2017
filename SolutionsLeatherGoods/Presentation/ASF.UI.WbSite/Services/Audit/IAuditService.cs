@@ -10,5 +10,7 @@ namespace ASF.UI.WbSite.Services.Audit
     interface IAuditService
     {
         Audit.auditObj getAudit();
+        Boolean isAdmin();
+        Guid isClient(string aspnetuser);
     }
 }

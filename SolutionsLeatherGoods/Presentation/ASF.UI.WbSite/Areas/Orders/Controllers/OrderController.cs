@@ -9,21 +9,96 @@ using Microsoft.AspNet.Identity;
 using ASF.UI.WbSite.Areas.Orders.Models;
 using System.Data.Entity;
 using ASF.Entities;
+using PagedList;
 
 namespace ASF.UI.WbSite.Areas.Orders.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         // GET: Orders/Order
-        public ActionResult Index()
+        public ActionResult Index(int? page, string q = "")
         {
             //var order = db.Order.Include(o => o.Client);
             //return View(order.ToList());
-
+            var isAdmin = Audit.isAdmin();
             var cp = new ASF.UI.Process.OrderProcess();
-            var lista = cp.SelectList();
+            var cpc = new ASF.UI.Process.ClientProcess();
 
-            return View(lista);
+            if (q == "")
+            {
+                if (isAdmin)
+                {
+                    var clients = cpc.SelectList();
+                    var lista = cp.SelectList();
+                    foreach (var l in lista)
+                    {
+                        l.Client = clients.Where(c => c.Id == l.ClientId).FirstOrDefault();
+                    }
+
+                    var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                    var onePageOfOrders = lista.ToPagedList(pageNumber, 10); // will only contain 10 clients max because of the pageSize
+                    ViewBag.onePageOfOrders = onePageOfOrders;
+
+                    return View();
+                }
+                else
+                {
+                    var clientGUID = Audit.isClient(User.Identity.Name.ToLower());
+                    var client = cpc.Find(clientGUID);
+                    var clientId = client.Id;
+
+                    var lista = cp.SelectList().Where(o => o.ClientId == clientId).OrderBy(o => o.OrderDate);
+
+                    foreach (var l in lista)
+                    {
+                        l.Client = client;
+                    }
+
+                    var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                    var onePageOfOrders = lista.ToPagedList(pageNumber, 10); // will only contain 10 clients max because of the pageSize
+                    ViewBag.onePageOfOrders = onePageOfOrders;
+
+                    return View();
+                }
+            }
+            else
+            {
+                if (isAdmin)
+                {
+                    var clients = cpc.SelectList();
+                    var lista = cp.SelectList().Where(o => o.OrderNumber.ToString().ToLower().Contains(q)).OrderBy(o => o.OrderDate);
+                    foreach (var l in lista)
+                    {
+                        l.Client = clients.Where(c => c.Id == l.ClientId).FirstOrDefault();
+                    }
+
+                    var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                    var onePageOfOrders = lista.ToPagedList(pageNumber, 10); // will only contain 10 clients max because of the pageSize
+                    ViewBag.onePageOfOrders = onePageOfOrders;
+
+                    return View();
+                }
+                else
+                {
+                    var clientGUID = Audit.isClient(User.Identity.Name.ToLower());
+                    var client = cpc.Find(clientGUID);
+                    var clientId = client.Id;
+
+                    var lista = cp.SelectList().Where(o => o.OrderNumber.ToString().ToLower().Contains(q)).Where(o => o.ClientId == clientId).OrderBy(o => o.OrderDate);
+
+                    foreach (var l in lista)
+                    {
+                        l.Client = client;
+                    }
+
+                    var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+                    var onePageOfOrders = lista.ToPagedList(pageNumber, 10); // will only contain 10 clients max because of the pageSize
+                    ViewBag.onePageOfOrders = onePageOfOrders;
+
+                    return View();
+                }
+            }
         }
 
         //GET: Orders/Order/Details/5
@@ -66,6 +141,9 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
         {
             var order = new ASF.Entities.Order();
             var audit = Audit.getAudit();
+            var clientGUID = Audit.isClient(User.Identity.Name);
+            var cpc = new ASF.UI.Process.ClientProcess();
+            var client = cpc.Find(clientGUID);
 
             order.ChangedBy = audit.user;
             order.ChangedOn = audit.date;
@@ -77,7 +155,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             order.ItemCount = itemcount;
             order.State = state;
             order.TotalPrice = total;
-            order.ClientId = 4;
+            order.ClientId = client.Id;
 
             var cp = new ASF.UI.Process.OrderProcess();
             cp.Create(order);
@@ -158,7 +236,7 @@ namespace ASF.UI.WbSite.Areas.Orders.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult CancelOrder( Guid rowid)
+        public ActionResult CancelOrder(Guid rowid)
         {
             if (ModelState.IsValid)
             {

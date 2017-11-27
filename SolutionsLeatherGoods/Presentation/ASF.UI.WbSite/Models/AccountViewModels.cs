@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ASF.UI.WbSite.Services.Localization;
 
 namespace ASF.UI.WbSite.Models
 {

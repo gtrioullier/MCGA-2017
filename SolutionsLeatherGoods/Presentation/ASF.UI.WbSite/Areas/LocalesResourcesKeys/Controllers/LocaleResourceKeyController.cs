@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.LocalesResourcesKeys.Controllers
 {
+    [Authorize]
     public class LocaleResourceKeyController : Controller
     {
         // GET: LocalesResourcesKeys/LocaleResourceKey
@@ -36,6 +38,8 @@ namespace ASF.UI.WbSite.Areas.LocalesResourcesKeys.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearLocaleResourceKey();
+                DataCacheService.Instance.ClearLangDictionary();
                 var cp = new ASF.UI.Process.LocaleResourceKeyProcess();
                 cp.Create(model);
             }
@@ -77,6 +81,8 @@ namespace ASF.UI.WbSite.Areas.LocalesResourcesKeys.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearLocaleResourceKey();
+                DataCacheService.Instance.ClearLangDictionary();
                 var cp = new ASF.UI.Process.LocaleResourceKeyProcess();
                 cp.Edit(model);
             }

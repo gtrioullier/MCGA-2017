@@ -8,6 +8,7 @@ using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.Carts.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         // GET: Carts/Cart
@@ -19,6 +20,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
         }
 
         //GET: Carts/Cart/Details/5
+        [AllowAnonymous]
         public ActionResult Details(Guid Rowid)
         {
             var cp = new ASF.UI.Process.CartProcess();
@@ -104,6 +106,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public JsonResult getCartId()
         {
             var cart = new ASF.Entities.Cart();
@@ -124,6 +127,23 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
         public ActionResult Buy(Guid CartRowid)
         {
             var audit = Audit.getAudit();
+            var clientId = Audit.isClient(User.Identity.Name);
+
+            if (clientId != Guid.Empty)
+            {
+                var cpc = new ASF.UI.Process.ClientProcess();
+                var client = cpc.Find(clientId);
+                client.OrderCount = client.OrderCount + 1;
+                client.ChangedBy = audit.user;
+                client.ChangedOn = audit.date;
+                cpc.Edit(client);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Manage", new { area = "" });
+            }
+
+
             var Cart = new ASF.Entities.Cart();
             var cpCart = new ASF.UI.Process.CartProcess();
             Cart = cpCart.Find(CartRowid);
@@ -136,7 +156,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
 
             orden.OrderDate = Cart.CartDate;
             orden.ItemCount = Cart.ItemCount;
-            
+
             foreach (var item in CartItems)
             {
                 totalPrice = totalPrice + item.Price;
@@ -170,7 +190,7 @@ namespace ASF.UI.WbSite.Areas.Carts.Controllers
             }
 
             //En lugar de ir a Home a seguir comprando, debería mostrar la orden para pagarla
-            return RedirectToAction("Details", "Order", new { area = "Orders", Rowid = orden.Rowid});
+            return RedirectToAction("Details", "Order", new { area = "Orders", Rowid = orden.Rowid });
         }
     }
 }

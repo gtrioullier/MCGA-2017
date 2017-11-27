@@ -8,6 +8,7 @@ using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
 {
+    [Authorize]
     public class CartItemController : Controller
     {
         // GET: CartItemsItems/CartItem
@@ -47,6 +48,7 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
         //}
 
         //GET: CartItemsItems/CartItem/Create/5
+        [AllowAnonymous]
         public ActionResult Create(Guid productRowid)
         {
             var audit = Audit.getAudit();
@@ -125,6 +127,7 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public JsonResult addItem(int cartItemId)
         {
             var cp = new ASF.UI.Process.CartItemProcess();
@@ -141,6 +144,7 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             return Json(value, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public JsonResult removeItem(int cartItemId)
         {
             var cp = new ASF.UI.Process.CartItemProcess();
@@ -157,6 +161,7 @@ namespace ASF.UI.WbSite.Areas.CartsItems.Controllers
             return Json(value, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public JsonResult removeDetail(int cartItemId)
         {
             var cp = new ASF.UI.Process.CartItemProcess();

@@ -8,6 +8,7 @@ using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite.Areas.Ratings.Controllers
 {
+    [Authorize]
     public class RatingController : Controller
     {
         // GET: Ratings/Rating

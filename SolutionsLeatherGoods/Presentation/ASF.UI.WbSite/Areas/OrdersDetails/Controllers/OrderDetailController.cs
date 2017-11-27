@@ -7,6 +7,7 @@ using ASF.UI.WbSite.Services.Audit;
 
 namespace ASF.UI.WbSite.Areas.OrdersDetails.Controllers
 {
+    [Authorize]
     public class OrderDetailController : Controller
     {
         // GET: OrdersDetails/OrderDetail

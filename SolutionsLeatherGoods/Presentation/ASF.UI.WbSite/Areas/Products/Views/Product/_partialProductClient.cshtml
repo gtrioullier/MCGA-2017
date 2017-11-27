@@ -1,0 +1,13 @@
+﻿<ul>
+    @foreach (var item in ViewBag.onePageOfProducts)
+            {
+        <li style="float:left">
+            <a href="sell/@item.Rowid"><img src="@Url.Content(item.Image)" alt="@item.Description"></a>
+            <div class="caption text-center">
+                <text>@item.Description</text><br />
+                <text>$ @item.Price </text><br />
+                <a href="/CartsItems/CartItem/Create/?productRowid=@item.Rowid">agregar al carrito</a>
+            </div>
+        </li>
+    }
+</ul>

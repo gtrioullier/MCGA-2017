@@ -1,102 +1,45 @@
 ﻿@using ASF.UI.WbSite.Services.Localization
+@using PagedList.Mvc
+@using PagedList
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @model IEnumerable<ASF.Entities.Product>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var q = ViewBag.searchQuery;
 }
 
-<h2>@Html.getResourceString("Index")</h2>
+<h2>@Html.getResourceString("Product")</h2>
 
-<p>
-    @Html.ActionLink(Html.getResourceString("Create"), "Create")
-</p>
-<table class="table table-responsive table-striped">
-    <tr>
-        <th>
-            @Html.DisplayName(Html.getResourceString("Title"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("Description"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("Dealer"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("Image"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("Price"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("QuantitySold"))
-        </th>
-        <th>
-            @Html.DisplayName(Html.getResourceString("AvgStars"))
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Rowid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChangedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChangedBy)
-        </th>*@
-        <th></th>
-    </tr>
+<div class="wrapper">
+    <!-- cuadro de búsqueda-->
+    <div class="search-box">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" name="q" class="search-text form-control" placeholder="@Html.getResourceString("Search") @Html.getResourceString("Product")..." />
+            </div>
+            <button type="submit" class="btn btn-info">@Html.getResourceString("Search")</button>
+        </form>
+    </div>
+    <br />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendedor.LastName), @Html.DisplayFor(modelItem => item.Vendedor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuantitySold)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AvgStars)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Rowid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChangedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChangedBy)
-        </td>*@
-        <td>
-            @Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = item.Rowid }) |
-            @Html.ActionLink(Html.getResourceString("Details"), "Details", new { Rowid = item.Rowid }) |
-            @Html.ActionLink(Html.getResourceString("Delete"), "Delete", new { Rowid = item.Rowid })
-        </td>
-    </tr>
-}
+    <!-- loop through each of your products and display it however you want. we're just printing the name here-->
 
-</table>
+    <div class="container">
+        @if (User.IsInRole("Administrador"))
+        {
+            @Html.Partial("_partialProductAdmin")
+        }
+        else
+        {
+            @Html.Partial("_partialProductClient")
+        }
+    </div>
+    <div class="wrapper">
+        <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+        @Html.PagedListPager((IPagedList)ViewBag.onePageOfProducts, page => Url.Action("Index", new { page, q }))
+    </div>
+</div>

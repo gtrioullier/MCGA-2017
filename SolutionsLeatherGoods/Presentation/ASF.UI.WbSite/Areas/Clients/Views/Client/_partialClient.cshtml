@@ -1,0 +1,64 @@
+﻿@using ASF.UI.WbSite.Services.Localization
+
+@model ASF.Entities.Client
+
+@{
+    var country = ViewBag.country;
+    var date = Model.SignupDate.ToShortDateString();
+}
+
+<h2>@Html.getResourceString("Details")</h2>
+
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayName(Html.getResourceString("Name"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayName(Html.getResourceString("LastName"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayName(Html.getResourceString("Email"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt>
+        @Html.DisplayName(Html.getResourceString("Country"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => country)
+    </dd>
+
+    <dt>
+        @Html.DisplayName(Html.getResourceString("City"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.City)
+    </dd>
+
+    <dt>
+        @Html.DisplayName(Html.getResourceString("Singup"))
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => date)
+    </dd>
+</dl>
+
+@Html.ActionLink(Html.getResourceString("Edit"), "Edit", new { Rowid = Model.Rowid }, new { @class = "btn btn-default" })
+@Html.ActionLink(Html.getResourceString("Start.buying"), "Index", "Home", new { area = "" }, new { @class = "btn btn-default" })

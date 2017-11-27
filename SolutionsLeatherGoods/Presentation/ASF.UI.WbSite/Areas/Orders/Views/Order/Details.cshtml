@@ -43,16 +43,16 @@
                                     var i = 0;
                                     foreach (var item in Model.OrderDetail)
                                     {
-                                <tr>
-                                    <td width="10%">@item.Quantity</td>
-                                    <td width="80%">@item.Product.Description</td>
-                                    <td width="10%" align="right">$ @item.Price</td>
-                                </tr>
+                                        <tr>
+                                            <td width="10%">@item.Quantity</td>
+                                            <td width="80%">@item.Product.Description</td>
+                                            <td width="10%" align="right">$ @item.Price</td>
+                                        </tr>
                                     }
                                 }
                                 else
                                 {
-                                <h4 class="text-danger">HA OCURRIDO UN ERROR GRAVE</h4>
+                                    <h4 class="text-danger">HA OCURRIDO UN ERROR GRAVE</h4>
                                 }
                             </tbody>
                         </table>
@@ -76,7 +76,19 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Pay", "Pagar", "Pagos", new { area = "", rowid = Model.Rowid, Importe = Model.TotalPrice }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Cancel", "CancelOrder", "Order", new { rowid = Model.Rowid }, new { @class = "btn btn-default" })
-</p>
+
+@if (Model.State == "Approved")
+{<p>
+        @Html.ActionLink(@Html.getResourceString("Back"), "Index", "Order", null, new { @class = "btn btn-default" })
+    </p>
+}
+
+else
+{
+    <p>
+        @Html.ActionLink(@Html.getResourceString("Pay"), "Pagar", "Pagos", new { area = "", rowid = Model.Rowid, Importe = Model.TotalPrice }, new { @class = "btn btn-default" })
+        @Html.ActionLink(@Html.getResourceString("Cancel"), "CancelOrder", "Order", new { rowid = Model.Rowid }, new { @class = "btn btn-default" })
+    </p>
+}
+
+

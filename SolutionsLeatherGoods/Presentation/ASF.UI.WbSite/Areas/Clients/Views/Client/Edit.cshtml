@@ -27,6 +27,7 @@
         @Html.HiddenFor(model => model.AspNetUsers)
         @Html.HiddenFor(model => model.SignupDate)
         @Html.HiddenFor(model => model.OrderCount)
+        @Html.HiddenFor(model => model.Email)
 
         <div class="form-group">
             @Html.Label(Html.getResourceString("Name"), htmlAttributes: new { @class = "control-label col-md-2" })
@@ -44,13 +45,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.Label(Html.getResourceString("Email"), htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div class="form-group">
+                @Html.Label(Html.getResourceString("Email"), htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.Label(Html.getResourceString("Country"), htmlAttributes: new { @class = "control-label col-md-2" })
@@ -135,7 +136,14 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value=@Html.getResourceString("Save") class="btn btn-default" />
-                @Html.ActionLink(Html.getResourceString("Cancel"), "Index", null, new { @class = "btn btn-default" })
+                @if (User.IsInRole("Administrador"))
+                {
+                    @Html.ActionLink(Html.getResourceString("Cancel"), "Index", null, new { @class = "btn btn-default" })
+                }
+                else
+                {
+                    @Html.ActionLink(Html.getResourceString("Cancel"), "Index", "Manage", new { area = "" }, new { @class = "btn btn-default" })
+                }
             </div>
         </div>
     </div>

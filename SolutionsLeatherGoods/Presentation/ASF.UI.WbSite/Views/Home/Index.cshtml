@@ -1,5 +1,7 @@
 ﻿@using ASF.UI.WbSite.Constants.ErrorController
 @using ASF.UI.WbSite.Constants.HomeController
+@using ASF.UI.WbSite.Services.Localization
+
 @{
     // title - The title of the page which appears in the browser window title. Aim for the title to be less than 70
     //         characters. The site name appears at the end for better SEO.
@@ -52,11 +54,11 @@
         <div class="row">
             <div class="col-lg-5 col-sm-6">
                 <div class="clearfix"></div>
-                <h1><span aria-hidden="true" class="fa fa-users"></span> About </h1>
-                <p>The Leather Goods about page.</p>
+                <h1><span aria-hidden="true" class="fa fa-users"></span> @Html.getResourceString("About") </h1>
+                @Html.getResourceString("About.page")
             </div>
             <div class="col-lg-5 col-lg-offset-1 col-sm-6" style="margin-left:165px;">
-                <img class="img-home-responsive" src="~/Content/img/carteras.jpg" alt="">
+                <img class="img-home-responsive" src="~/Content/img/carteras.jpg" alt="carteras">
             </div>
         </div>
     </div>
@@ -69,16 +71,16 @@
             <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">
                 <div class="clearfix"></div>
                 <div>
-                    <h1><span aria-hidden="true" class="fa fa-phone"></span> Contact </h1>
+                    <h1><span aria-hidden="true" class="fa fa-phone"></span> @Html.getResourceString("Contact") </h1>
                     <address>
                         Boedo 2821<br />
                         Boulgone, San Isidro, 1609<br />
-                        Phone: +54-11-4700-0682<br />
+                        @Html.getResourceString("Phone"): +54-11-4700-0682<br />
                     </address>
 
                     <address>
-                        <strong>Support:</strong>   <a href="mailto:Soporte@leathergoods.com.ar">Soporte@leathergoods.com.ar</a><br />
-                        <strong>Marketing:</strong> <a href="mailto:Marketing@leathergoods.com.ar">Marketing@leathergoods.com.ar</a>
+                        <strong>@Html.getResourceString("Support"):</strong>   <a href="mailto:Soporte@leathergoods.com.ar">Soporte@leathergoods.com.ar</a><br />
+                        <strong>@Html.getResourceString("Marketing"):</strong> <a href="mailto:Marketing@leathergoods.com.ar">Marketing@leathergoods.com.ar</a>
                     </address>
                     <br />
                     <ul class="list-inline intro-social-buttons">
@@ -104,7 +106,7 @@
                 </div>
             </div>
             <div class="col-lg-5 col-sm-pull-6 col-sm-6">
-                <img class="img-home-responsive" src="~/Content/img/zapatos.jpg" alt="">
+                <img class="img-home-responsive" src="~/Content/img/zapatos.jpg" alt="zapatos">
             </div>
         </div>
     </div>

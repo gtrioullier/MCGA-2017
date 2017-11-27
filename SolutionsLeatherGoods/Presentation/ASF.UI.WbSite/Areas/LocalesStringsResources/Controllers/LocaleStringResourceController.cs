@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASF.UI.WbSite.Services.Cache;
 
 namespace ASF.UI.WbSite.Areas.LocalesStringsResources
 {
+    [Authorize]
     public class LocaleStringResourceController : Controller
     {
         // GET: LocalesStringsResources/LocaleStringResource
@@ -36,6 +38,7 @@ namespace ASF.UI.WbSite.Areas.LocalesStringsResources
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearLangDictionary();
                 var cp = new ASF.UI.Process.LocaleStringResourceProcess();
                 cp.Create(model);
             }
@@ -77,6 +80,7 @@ namespace ASF.UI.WbSite.Areas.LocalesStringsResources
         {
             if (ModelState.IsValid)
             {
+                DataCacheService.Instance.ClearLangDictionary();                
                 var cp = new ASF.UI.Process.LocaleStringResourceProcess();
                 cp.Edit(model);
             }

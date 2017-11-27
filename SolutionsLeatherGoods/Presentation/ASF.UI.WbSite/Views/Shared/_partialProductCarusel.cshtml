@@ -13,7 +13,7 @@
                     <div class="caption text-center">
                         <text>@item.Description</text><br />
                         <text>$ @item.Price </text><br />
-                        <a href="/CartsItems/CartItem/Create/?productRowid=@item.Rowid">agregar al carrito</a>
+                        <a href="/CartsItems/CartItem/Create/?productRowid=@item.Rowid">@Html.getResourceString("AddToCart")</a>
                     </div>
                 </li>
             }
@@ -24,6 +24,6 @@
 else
 {
 
-    <h3 class="text-center">NO ITEMS FOUND</h3>
+    <h3 class="text-center">@Html.getResourceString("NoItemsFound")</h3>
 
 }

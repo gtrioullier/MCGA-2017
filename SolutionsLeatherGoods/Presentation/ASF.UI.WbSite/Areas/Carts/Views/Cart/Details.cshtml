@@ -35,7 +35,7 @@
                                 <tr>
                                     <th width="10%"></th>
                                     <th width="5%">@Html.getResourceString("Quantity")</th>
-                                    <th width="50%">@Html.getResourceString("Product")</th>
+                                    <th width="60%">@Html.getResourceString("Product")</th>
                                     <th width="10%">@Html.getResourceString("Price")</th>
                                     <th width="10%">@Html.getResourceString("Subtotal")</th>
                                     <th width="5%"></th>
@@ -55,9 +55,9 @@
                                                 <button id="@i" value="eliminarDetalle" class="btn btn-default">-</button>
                                             </td>
                                             <td width="5%">@Html.TextBox("CartItem[" + i + "].Quantity", item.Quantity, new { @class = "form-control", @id = "quantity" + i, @readonly = "readonly" })</td>
-                                            <td width="50%">@Html.TextBox("CartItem[" + i + "].ProductId", item.Product.Description, new { @class = "form-control", @id = "product" + i, @readonly = "readonly" }) </td>
+                                            <td width="60%">@Html.TextBox("CartItem[" + i + "].ProductId", item.Product.Description, new { @class = "form-control", @id = "product" + i, @readonly = "readonly" }) </td>
                                             <td width="10%">@Html.TextBox("CartItem[" + i + "].Price", item.Product.Price, new { @class = "form-control", @id = "price" + i, @readonly = "readonly" })</td>
-                                            <td width="10%">@Html.TextBox("CartItem[" + i + "].Subtotal", item.Price, new { @class = "form-control", @id = "subtotal" + i, @placeholder = "$ #.##", @readonly = "readonly" })</td>
+                                            <td width="10%">@Html.TextBox("CartItem[" + i + "].Subtotal", item.Price, new { @class="form-control", @id = "subtotal" + i, @placeholder = "$ #.##", @readonly = "readonly" })</td>
                                             <td width="5%"><button id="@i" value="eliminarLinea" class="btn btn-default">x</button></td>
                                         </tr>
                                         i++;
@@ -65,7 +65,7 @@
                                 }
                                 else
                                 {
-                                    <h4>Todavía no hay items en el carrito</h4>
+                                    <h4>@Html.getResourceString("NoItemsCart")</h4>
                                 }
                             </tbody>
                         </table>
@@ -80,7 +80,7 @@
                         </td>
                         <td width="50%" align="right" style="vertical-align:central">
                             @*<input type="text" id="total" />*@
-                            <input type="text" id="total" class="text-right" />
+                            <input type="text" id="total" style="text-align:right;border:none;background-color:white" />
                         </td>
                     </tr>
                 </table>
@@ -90,8 +90,8 @@
 </div>
 
 <p>
-    @Html.ActionLink("Buy", "Buy", "Cart", new { CartRowid = Model.Rowid }, new { @id = "BuyBtn", @class = "btn btn-default" })
-    @Html.ActionLink("Continue shopping", "Index", "Home", new { area = "" }, new { @class = "btn btn-default" })
+    @Html.ActionLink(@Html.getResourceString("Buy"), "Buy", "Cart", new { CartRowid = Model.Rowid }, new { @id = "BuyBtn", @class = "btn btn-default" })
+    @Html.ActionLink(@Html.getResourceString("ContinueShopp"), "Index", "Home", new { area = "" }, new { @class = "btn btn-default" })
 </p>
 
 @section Scripts{

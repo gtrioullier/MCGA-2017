@@ -1,19 +1,21 @@
-﻿@model ASF.Entities.LocaleStringResource
+﻿@using ASF.UI.WbSite.Services.Localization
+
+@model ASF.Entities.LocaleStringResource
 
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>@Html.getResourceString("Delete")</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-danger">@Html.getResourceString("Delete.Message")</h3>
 <div>
-    <h4>LocaleStringResource</h4>
+    <h4>@Html.getResourceString("Resources")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ResourceValue)
+            @Html.getResourceString("Resource.value")
         </dt>
 
         <dd>
@@ -21,7 +23,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LocaleResourceKey_Id)
+            @Html.getResourceString("Resource_Id")
         </dt>
 
         <dd>
@@ -29,7 +31,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Language_Id)
+            @Html.getResourceString("Language_Id")
         </dt>
 
         <dd>
@@ -38,12 +40,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value=@Html.getResourceString("Delete") class="btn btn-default" />
+            @Html.ActionLink(Html.getResourceString("Cancel"), "Index", null, new { @class = "btn btn-default" })
         </div>
     }
 </div>

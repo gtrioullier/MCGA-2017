@@ -1,95 +1,123 @@
-﻿@model IEnumerable<ASF.Entities.Order>
+﻿@using ASF.UI.WbSite.Services.Localization
+@using PagedList.Mvc
+@using PagedList
+
+@model IEnumerable<ASF.Entities.Order>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var fecha = "";
+    var q = ViewBag.searchQuery;
 }
 
-<h2>Index</h2>
+<h2>@Html.getResourceString("Order")</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("CreateJ", "CreateJ")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ClientId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rowid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChangedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChangedBy)
-        </th>
-        <th></th>
-    </tr>
+<div class="wrapper">
+    <!-- cuadro de búsqueda-->
+    <div class="search-box">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" name="q" class="search-text form-control" placeholder="@Html.getResourceString("Search") @Html.getResourceString("Order")..." />
+            </div>
+            <button type="submit" class="btn btn-info">@Html.getResourceString("Search")</button>
+        </form>
+    </div>
+    <br />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rowid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChangedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChangedBy)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Details", "Details", new { Rowid = item.Rowid }) |
-            @Html.ActionLink("Delete", "Delete", new { Rowid = item.Rowid })
-        </td>
-    </tr>
-}
+    <!-- loop through each of your products and display it however you want. we're just printing the name here-->
 
-</table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("Client"))
+            </th>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("Order.Date"))
+            </th>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("Total.Price"))
+            </th>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("State"))
+            </th>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("Order.Number"))
+            </th>
+            <th>
+                @Html.DisplayName(@Html.getResourceString("Item.Count"))
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Rowid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChangedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChangedBy)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.onePageOfOrders)
+        {
+            <tr>
+                <td>
+                    @item.Client.LastName,
+                    @item.Client.FirstName
+                </td>
+                <td>
+                    @if (fecha == "")
+                {
+                    fecha = item.OrderDate.ToShortDateString();
+                }
+                    @fecha
+                </td>
+                <td>
+                    $ @item.TotalPrice
+                </td>
+                <td>
+                    @item.State
+                </td>
+                <td>
+                    @item.OrderNumber
+                </td>
+                <td>
+                    @item.ItemCount
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Rowid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChangedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChangedBy)
+                    </td>*@
+                <td>
+                    @Html.ActionLink(Html.getResourceString("Cancel"), "CancelOrder", new { Rowid = item.Rowid }) |
+                    @Html.ActionLink(Html.getResourceString("Details"), "Details", new { Rowid = item.Rowid })
+                    @*   @Html.ActionLink(Html.getResourceString("Delete"), "Delete", new { Rowid = item.Rowid })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="wrapper">
+        <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+        @Html.PagedListPager((IPagedList)ViewBag.onePageOfOrders, page => Url.Action("Index", new { page, q }))
+    </div>
+</div>

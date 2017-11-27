@@ -12,7 +12,7 @@ $('#Importe').keypress(function (e) {
 });
 
 $('#name').keypress(function (e) {
-    if ((e.which < 97 || e.which > 122) && e.which != 32 &&  (e.which < 192 || e.which > 253)) {
+    if ((e.which < 65 || e.which > 90) && (e.which < 97 || e.which > 122) && e.which != 32 &&  (e.which < 192 || e.which > 253)) {
         return false;
     }
 });

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ASF.UI.WbSite.Areas.OrdersNumbers.Controllers
 {
+    [Authorize]
     public class OrderNumberController : Controller
     {
         // GET: OrdersNumbers/OrderNumber
